@@ -13,7 +13,7 @@ import CoreData
 public class Checklist: NSManagedObject {
     
     convenience init(name: String,
-                     checklistID: String,
+                     checklistID: String = NSUUID().uuidString,
                      event: Event,
                      context: NSManagedObjectContext = CoreDataStack.context) {
         self.init(context: context)

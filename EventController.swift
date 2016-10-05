@@ -47,7 +47,7 @@ class EventController {
         let _ = Event(name: name)
        
         
-        saveToPersistedStorage()
+        PersistenceController.sharedController.saveToPersistedStorage()
     }
     
     func addGuest(userName: String,
@@ -57,7 +57,7 @@ class EventController {
         let newGuest = Guest(userName: userName, eventID: event.eventID, event: event)
         event.addToGuests(newGuest)
         
-        saveToPersistedStorage()
+        PersistenceController.sharedController.saveToPersistedStorage()
     }
     
     func deleteEvent(){
@@ -68,15 +68,5 @@ class EventController {
         
     }
     
-    
-    // MARK: - Sync Controller
-    
-    func saveToPersistedStorage(){
-        do {
-            try CoreDataStack.context.save()
-        } catch {
-            print("Error saving to persisted storage: \(error.localizedDescription)")
-        }
-    }
-    
+
 }
