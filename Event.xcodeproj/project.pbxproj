@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FADEA3C31DA54EC8000A46C3 /* EventModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3C11DA54EC8000A46C3 /* EventModel.xcdatamodeld */; };
+		FADEA3C51DA54F24000A46C3 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3C41DA54F24000A46C3 /* CoreDataStack.swift */; };
+		FADEA3DB1DA59014000A46C3 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3D11DA59014000A46C3 /* User+CoreDataClass.swift */; };
+		FADEA3DC1DA59014000A46C3 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3D21DA59014000A46C3 /* User+CoreDataProperties.swift */; };
+		FADEA3DD1DA59014000A46C3 /* Guest+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3D31DA59014000A46C3 /* Guest+CoreDataClass.swift */; };
+		FADEA3DE1DA59014000A46C3 /* Guest+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3D41DA59014000A46C3 /* Guest+CoreDataProperties.swift */; };
+		FADEA3DF1DA59014000A46C3 /* Checklist+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3D51DA59014000A46C3 /* Checklist+CoreDataClass.swift */; };
+		FADEA3E01DA59014000A46C3 /* Checklist+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3D61DA59014000A46C3 /* Checklist+CoreDataProperties.swift */; };
+		FADEA3E11DA59014000A46C3 /* Event+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3D71DA59014000A46C3 /* Event+CoreDataClass.swift */; };
+		FADEA3E21DA59014000A46C3 /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3D81DA59014000A46C3 /* Event+CoreDataProperties.swift */; };
+		FADEA3E31DA59014000A46C3 /* ListItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3D91DA59014000A46C3 /* ListItem+CoreDataClass.swift */; };
+		FADEA3E41DA59014000A46C3 /* ListItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3DA1DA59014000A46C3 /* ListItem+CoreDataProperties.swift */; };
 		FAE8AE0D1DA54BC3000F1A34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE8AE0C1DA54BC3000F1A34 /* AppDelegate.swift */; };
 		FAE8AE121DA54BC3000F1A34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE8AE101DA54BC3000F1A34 /* Main.storyboard */; };
 		FAE8AE141DA54BC3000F1A34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE8AE131DA54BC3000F1A34 /* Assets.xcassets */; };
@@ -14,6 +26,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FADEA3C21DA54EC8000A46C3 /* EventModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EventModel.xcdatamodel; sourceTree = "<group>"; };
+		FADEA3C41DA54F24000A46C3 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		FADEA3D11DA59014000A46C3 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		FADEA3D21DA59014000A46C3 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FADEA3D31DA59014000A46C3 /* Guest+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Guest+CoreDataClass.swift"; sourceTree = "<group>"; };
+		FADEA3D41DA59014000A46C3 /* Guest+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Guest+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FADEA3D51DA59014000A46C3 /* Checklist+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Checklist+CoreDataClass.swift"; sourceTree = "<group>"; };
+		FADEA3D61DA59014000A46C3 /* Checklist+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Checklist+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FADEA3D71DA59014000A46C3 /* Event+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataClass.swift"; sourceTree = "<group>"; };
+		FADEA3D81DA59014000A46C3 /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FADEA3D91DA59014000A46C3 /* ListItem+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ListItem+CoreDataClass.swift"; sourceTree = "<group>"; };
+		FADEA3DA1DA59014000A46C3 /* ListItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ListItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		FAE8AE091DA54BC3000F1A34 /* Event.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Event.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAE8AE0C1DA54BC3000F1A34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAE8AE111DA54BC3000F1A34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -33,9 +57,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FADEA3E51DA5901F000A46C3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FADEA3C11DA54EC8000A46C3 /* EventModel.xcdatamodeld */,
+				FADEA3D11DA59014000A46C3 /* User+CoreDataClass.swift */,
+				FADEA3D21DA59014000A46C3 /* User+CoreDataProperties.swift */,
+				FADEA3D31DA59014000A46C3 /* Guest+CoreDataClass.swift */,
+				FADEA3D41DA59014000A46C3 /* Guest+CoreDataProperties.swift */,
+				FADEA3D51DA59014000A46C3 /* Checklist+CoreDataClass.swift */,
+				FADEA3D61DA59014000A46C3 /* Checklist+CoreDataProperties.swift */,
+				FADEA3D71DA59014000A46C3 /* Event+CoreDataClass.swift */,
+				FADEA3D81DA59014000A46C3 /* Event+CoreDataProperties.swift */,
+				FADEA3D91DA59014000A46C3 /* ListItem+CoreDataClass.swift */,
+				FADEA3DA1DA59014000A46C3 /* ListItem+CoreDataProperties.swift */,
+			);
+			name = Model;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		FAE8AE001DA54BC3000F1A34 = {
 			isa = PBXGroup;
 			children = (
+				FADEA3C41DA54F24000A46C3 /* CoreDataStack.swift */,
 				FAE8AE0B1DA54BC3000F1A34 /* Event */,
 				FAE8AE0A1DA54BC3000F1A34 /* Products */,
 			);
@@ -52,6 +96,7 @@
 		FAE8AE0B1DA54BC3000F1A34 /* Event */ = {
 			isa = PBXGroup;
 			children = (
+				FADEA3E51DA5901F000A46C3 /* Model */,
 				FAE8AE0C1DA54BC3000F1A34 /* AppDelegate.swift */,
 				FAE8AE101DA54BC3000F1A34 /* Main.storyboard */,
 				FAE8AE131DA54BC3000F1A34 /* Assets.xcassets */,
@@ -134,6 +179,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FADEA3E21DA59014000A46C3 /* Event+CoreDataProperties.swift in Sources */,
+				FADEA3DE1DA59014000A46C3 /* Guest+CoreDataProperties.swift in Sources */,
+				FADEA3E31DA59014000A46C3 /* ListItem+CoreDataClass.swift in Sources */,
+				FADEA3E41DA59014000A46C3 /* ListItem+CoreDataProperties.swift in Sources */,
+				FADEA3C51DA54F24000A46C3 /* CoreDataStack.swift in Sources */,
+				FADEA3E11DA59014000A46C3 /* Event+CoreDataClass.swift in Sources */,
+				FADEA3C31DA54EC8000A46C3 /* EventModel.xcdatamodeld in Sources */,
+				FADEA3E01DA59014000A46C3 /* Checklist+CoreDataProperties.swift in Sources */,
+				FADEA3DD1DA59014000A46C3 /* Guest+CoreDataClass.swift in Sources */,
+				FADEA3DB1DA59014000A46C3 /* User+CoreDataClass.swift in Sources */,
+				FADEA3DC1DA59014000A46C3 /* User+CoreDataProperties.swift in Sources */,
+				FADEA3DF1DA59014000A46C3 /* Checklist+CoreDataClass.swift in Sources */,
 				FAE8AE0D1DA54BC3000F1A34 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,6 +358,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FADEA3C11DA54EC8000A46C3 /* EventModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FADEA3C21DA54EC8000A46C3 /* EventModel.xcdatamodel */,
+			);
+			currentVersion = FADEA3C21DA54EC8000A46C3 /* EventModel.xcdatamodel */;
+			name = EventModel.xcdatamodeld;
+			path = Event/EventModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FAE8AE011DA54BC3000F1A34 /* Project object */;
 }
