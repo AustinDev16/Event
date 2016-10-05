@@ -16,11 +16,11 @@ extension ListItem {
         return NSFetchRequest<ListItem>(entityName: "ListItem");
     }
 
-    @NSManaged public var name: String?
+    @NSManaged public var name: String
     @NSManaged public var isComplete: Bool
-    @NSManaged public var responsibleParty: String?
-    @NSManaged public var checklistID: String?
-    @NSManaged public var eventID: String?
-    @NSManaged public var checklist: Checklist?
+    @NSManaged public var responsibleParty: String
+    @NSManaged public var checklistID: String
+    @NSManaged public var eventID: String
+    @NSManaged public var checklist: Checklist
 
 }

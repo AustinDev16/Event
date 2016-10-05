@@ -11,5 +11,21 @@ import CoreData
 
 @objc(Guest)
 public class Guest: NSManagedObject {
+    
+    convenience init(userName: String,
+                     hasAcceptedInvite: Bool = false,
+                     userID: String = "",
+                     eventID: String,
+                     event: Event,
+                     context: NSManagedObjectContext = CoreDataStack.context) {
+        
+        self.init(context: context)
+        self.userName = userName
+        self.hasAcceptedInvite = hasAcceptedInvite
+        self.userID = userID
+        self.eventID = eventID
+        self.event = event
+        
+    }
 
 }

@@ -11,5 +11,17 @@ import CoreData
 
 @objc(Checklist)
 public class Checklist: NSManagedObject {
+    
+    convenience init(name: String,
+                     checklistID: String,
+                     event: Event,
+                     context: NSManagedObjectContext = CoreDataStack.context) {
+        self.init(context: context)
+        
+        self.name = name
+        self.checklistID = checklistID
+        self.eventID = event.eventID
+        self.event = event
+    }
 
 }

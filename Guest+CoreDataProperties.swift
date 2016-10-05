@@ -16,10 +16,10 @@ extension Guest {
         return NSFetchRequest<Guest>(entityName: "Guest");
     }
 
-    @NSManaged public var userName: String?
+    @NSManaged public var userName: String
     @NSManaged public var hasAcceptedInvite: Bool
-    @NSManaged public var userID: String?
-    @NSManaged public var eventID: String?
-    @NSManaged public var event: Event?
+    @NSManaged public var userID: String
+    @NSManaged public var eventID: String
+    @NSManaged public var event: Event
 
 }

@@ -16,11 +16,11 @@ extension Checklist {
         return NSFetchRequest<Checklist>(entityName: "Checklist");
     }
 
-    @NSManaged public var name: String?
-    @NSManaged public var checklistID: String?
-    @NSManaged public var eventID: String?
-    @NSManaged public var listItems: NSSet?
-    @NSManaged public var event: Event?
+    @NSManaged public var name: String
+    @NSManaged public var checklistID: String
+    @NSManaged public var eventID: String
+    @NSManaged public var listItems: NSSet
+    @NSManaged public var event: Event
 
 }
 

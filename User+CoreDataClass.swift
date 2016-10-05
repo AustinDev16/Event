@@ -11,5 +11,16 @@ import CoreData
 
 @objc(User)
 public class User: NSManagedObject {
+    
+    convenience init(name: String,
+                     phoneNumber: Int,
+                     userID: String,
+                     context: NSManagedObjectContext = CoreDataStack.context) {
+        self.init(context: context)
+        
+        self.name = name
+        self.phoneNumber = Int16(phoneNumber)
+        self.userID = userID
+    }
 
 }

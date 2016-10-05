@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class Stack {
+enum CoreDataStack {
     
     static let container: NSPersistentContainer = {
         

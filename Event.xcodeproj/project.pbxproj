@@ -19,6 +19,7 @@
 		FADEA3E21DA59014000A46C3 /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3D81DA59014000A46C3 /* Event+CoreDataProperties.swift */; };
 		FADEA3E31DA59014000A46C3 /* ListItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3D91DA59014000A46C3 /* ListItem+CoreDataClass.swift */; };
 		FADEA3E41DA59014000A46C3 /* ListItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3DA1DA59014000A46C3 /* ListItem+CoreDataProperties.swift */; };
+		FADEA3EA1DA595DD000A46C3 /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3E91DA595DD000A46C3 /* EventController.swift */; };
 		FAE8AE0D1DA54BC3000F1A34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE8AE0C1DA54BC3000F1A34 /* AppDelegate.swift */; };
 		FAE8AE121DA54BC3000F1A34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE8AE101DA54BC3000F1A34 /* Main.storyboard */; };
 		FAE8AE141DA54BC3000F1A34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE8AE131DA54BC3000F1A34 /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 		FADEA3D81DA59014000A46C3 /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		FADEA3D91DA59014000A46C3 /* ListItem+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ListItem+CoreDataClass.swift"; sourceTree = "<group>"; };
 		FADEA3DA1DA59014000A46C3 /* ListItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ListItem+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FADEA3E91DA595DD000A46C3 /* EventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventController.swift; sourceTree = "<group>"; };
 		FAE8AE091DA54BC3000F1A34 /* Event.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Event.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAE8AE0C1DA54BC3000F1A34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAE8AE111DA54BC3000F1A34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -76,10 +78,19 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		FAE8AE001DA54BC3000F1A34 = {
+		FADEA3E61DA593BA000A46C3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				FADEA3C41DA54F24000A46C3 /* CoreDataStack.swift */,
+			);
+			name = Resources;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		FAE8AE001DA54BC3000F1A34 = {
+			isa = PBXGroup;
+			children = (
+				FADEA3E91DA595DD000A46C3 /* EventController.swift */,
 				FAE8AE0B1DA54BC3000F1A34 /* Event */,
 				FAE8AE0A1DA54BC3000F1A34 /* Products */,
 			);
@@ -96,6 +107,7 @@
 		FAE8AE0B1DA54BC3000F1A34 /* Event */ = {
 			isa = PBXGroup;
 			children = (
+				FADEA3E61DA593BA000A46C3 /* Resources */,
 				FADEA3E51DA5901F000A46C3 /* Model */,
 				FAE8AE0C1DA54BC3000F1A34 /* AppDelegate.swift */,
 				FAE8AE101DA54BC3000F1A34 /* Main.storyboard */,
@@ -191,6 +203,7 @@
 				FADEA3DB1DA59014000A46C3 /* User+CoreDataClass.swift in Sources */,
 				FADEA3DC1DA59014000A46C3 /* User+CoreDataProperties.swift in Sources */,
 				FADEA3DF1DA59014000A46C3 /* Checklist+CoreDataClass.swift in Sources */,
+				FADEA3EA1DA595DD000A46C3 /* EventController.swift in Sources */,
 				FAE8AE0D1DA54BC3000F1A34 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

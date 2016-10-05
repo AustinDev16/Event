@@ -11,5 +11,20 @@ import CoreData
 
 @objc(ListItem)
 public class ListItem: NSManagedObject {
+    
+    convenience init(name: String,
+                     isComplete: Bool = false,
+                     responsibleParty: String,
+                     checklist: Checklist,
+                     event: Event,
+                     context: NSManagedObjectContext = CoreDataStack.context) {
+        self.init(context: context)
+        self.name = name
+        self.isComplete = isComplete
+        self.responsibleParty = responsibleParty
+        self.checklistID = checklist.checklistID
+        self.eventID = event.eventID
+        self.checklist = checklist
+    }
 
 }
