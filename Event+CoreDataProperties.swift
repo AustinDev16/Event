@@ -22,8 +22,8 @@ extension Event {
     @NSManaged public var detailDescription: String
     @NSManaged public var eventID: String
     @NSManaged public var hostID: String
-    @NSManaged public var guests: NSSet
-    @NSManaged public var checklists: NSSet
+    @NSManaged public var guests: NSOrderedSet
+    @NSManaged public var checklists: NSOrderedSet
 
 }
 

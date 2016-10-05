@@ -14,8 +14,8 @@
         <attribute name="hostID" attributeType="String" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <relationship name="checklists" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Checklist" inverseName="event" inverseEntity="Checklist" syncable="YES"/>
-        <relationship name="guests" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Guest" inverseName="event" inverseEntity="Guest" syncable="YES"/>
+        <relationship name="checklists" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Checklist" inverseName="event" inverseEntity="Checklist" syncable="YES"/>
+        <relationship name="guests" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Guest" inverseName="event" inverseEntity="Guest" syncable="YES"/>
     </entity>
     <entity name="Guest" representedClassName="Guest" syncable="YES">
         <attribute name="eventID" attributeType="String" syncable="YES"/>
