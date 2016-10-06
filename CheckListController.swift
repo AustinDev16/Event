@@ -21,6 +21,7 @@ class ChecklistController {
         
         let newChecklist = Checklist(name: name, event: event)
         event.addToChecklists(newChecklist)
+        PersistenceController.sharedController.saveToPersistedStorage()
     }
     
     func deleteCheckList(checklist: Checklist, event: Event){

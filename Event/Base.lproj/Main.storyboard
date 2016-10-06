@@ -118,8 +118,16 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Title" id="ezD-t7-utW">
                         <rightBarButtonItems>
-                            <barButtonItem title="+ List" id="okE-A7-mdT"/>
-                            <barButtonItem title="+ List Item" id="yCo-Yj-Nc9"/>
+                            <barButtonItem title="+ List" id="okE-A7-mdT">
+                                <connections>
+                                    <action selector="addListTapped:" destination="kys-iJ-W6d" id="Ga0-6o-hg8"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="+ List Item" id="yCo-Yj-Nc9">
+                                <connections>
+                                    <action selector="addListItemTapped:" destination="kys-iJ-W6d" id="SaZ-ri-hL5"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>

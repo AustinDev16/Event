@@ -29,6 +29,14 @@ class EventController {
     static let sharedController = EventController()
     
     // MARK: - Properties
+//    let request: NSFetchRequest<Event> = Event.fetchRequest()
+//    let moc = CoreDataStack.context
+//    
+//    do {
+//    return try moc.fetch(request)
+//    } catch {
+//    return []
+//    }
     
     var events: [Event] {
         let request: NSFetchRequest<Event> = Event.fetchRequest()
