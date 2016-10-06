@@ -42,6 +42,8 @@ class ChecklistController {
     
     func removeItemFromList(listItem: ListItem, checklist: Checklist){
         checklist.removeFromListItems(listItem)
+        
+        PersistenceController.sharedController.saveToPersistedStorage()
     }
     
     func assignResponsiblePartyToItem(person: Guest, listItem: ListItem){
