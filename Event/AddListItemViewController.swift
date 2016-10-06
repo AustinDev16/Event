@@ -26,12 +26,14 @@ class AddListItemViewController: UIViewController, UIPickerViewDelegate, UIPicke
         // Do any additional setup after loading the view.
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        categoryPicker.reloadAllComponents()
+    }
     // MARK: - Actions
     
     @IBAction func addButtonTapped(_ sender: AnyObject) {
         
         guard let event = self.event,
-            let checklists = self.event?.checklists,
             let name = listItemTextField.text,
         name.characters.count > 0 else { return}
         let index = categoryPicker.selectedRow(inComponent: 0)
@@ -64,14 +66,16 @@ class AddListItemViewController: UIViewController, UIPickerViewDelegate, UIPicke
         let checklist = checklists[row] as? Checklist else { return ""}
         return checklist.name
     }
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "toManageLists" {
+            guard let manageListsTVC = segue.destination as? ManageListsTableViewController else { return}
+            manageListsTVC.event = self.event
+        }
     }
-    */
+    
 
 }

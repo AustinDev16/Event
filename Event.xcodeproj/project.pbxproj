@@ -11,6 +11,7 @@
 		FAA573FD1DA6BF6B007CCBA2 /* ListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA573FC1DA6BF6B007CCBA2 /* ListItemTableViewCell.swift */; };
 		FAA573FF1DA6C012007CCBA2 /* EventDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA573FE1DA6C012007CCBA2 /* EventDetailTableViewController.swift */; };
 		FAA574011DA6F45F007CCBA2 /* AddListItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA574001DA6F45F007CCBA2 /* AddListItemViewController.swift */; };
+		FAA574031DA70D9D007CCBA2 /* ManageListsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA574021DA70D9D007CCBA2 /* ManageListsTableViewController.swift */; };
 		FADEA3C31DA54EC8000A46C3 /* EventModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3C11DA54EC8000A46C3 /* EventModel.xcdatamodeld */; };
 		FADEA3C51DA54F24000A46C3 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3C41DA54F24000A46C3 /* CoreDataStack.swift */; };
 		FADEA3DB1DA59014000A46C3 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3D11DA59014000A46C3 /* User+CoreDataClass.swift */; };
@@ -37,6 +38,7 @@
 		FAA573FC1DA6BF6B007CCBA2 /* ListItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItemTableViewCell.swift; sourceTree = "<group>"; };
 		FAA573FE1DA6C012007CCBA2 /* EventDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailTableViewController.swift; sourceTree = "<group>"; };
 		FAA574001DA6F45F007CCBA2 /* AddListItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddListItemViewController.swift; sourceTree = "<group>"; };
+		FAA574021DA70D9D007CCBA2 /* ManageListsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageListsTableViewController.swift; sourceTree = "<group>"; };
 		FADEA3C21DA54EC8000A46C3 /* EventModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EventModel.xcdatamodel; sourceTree = "<group>"; };
 		FADEA3C41DA54F24000A46C3 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		FADEA3D11DA59014000A46C3 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 				FADEA3E51DA5901F000A46C3 /* Model */,
 				FAE8AE0C1DA54BC3000F1A34 /* AppDelegate.swift */,
 				FAE8AE101DA54BC3000F1A34 /* Main.storyboard */,
+				FAA574021DA70D9D007CCBA2 /* ManageListsTableViewController.swift */,
 				FAA574001DA6F45F007CCBA2 /* AddListItemViewController.swift */,
 				FAA573FE1DA6C012007CCBA2 /* EventDetailTableViewController.swift */,
 				FAA573FC1DA6BF6B007CCBA2 /* ListItemTableViewCell.swift */,
@@ -229,6 +232,7 @@
 				FADEA3E11DA59014000A46C3 /* Event+CoreDataClass.swift in Sources */,
 				FAA573FD1DA6BF6B007CCBA2 /* ListItemTableViewCell.swift in Sources */,
 				FADEA3C31DA54EC8000A46C3 /* EventModel.xcdatamodeld in Sources */,
+				FAA574031DA70D9D007CCBA2 /* ManageListsTableViewController.swift in Sources */,
 				FADEA3E01DA59014000A46C3 /* Checklist+CoreDataProperties.swift in Sources */,
 				FADEA3DD1DA59014000A46C3 /* Guest+CoreDataClass.swift in Sources */,
 				FADEA3ED1DA5A0D0000A46C3 /* PersistenceController.swift in Sources */,
