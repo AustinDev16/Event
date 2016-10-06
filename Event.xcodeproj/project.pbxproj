@@ -10,6 +10,7 @@
 		FAA573FB1DA6ACC8007CCBA2 /* EventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA573FA1DA6ACC7007CCBA2 /* EventTableViewController.swift */; };
 		FAA573FD1DA6BF6B007CCBA2 /* ListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA573FC1DA6BF6B007CCBA2 /* ListItemTableViewCell.swift */; };
 		FAA573FF1DA6C012007CCBA2 /* EventDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA573FE1DA6C012007CCBA2 /* EventDetailTableViewController.swift */; };
+		FAA574011DA6F45F007CCBA2 /* AddListItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA574001DA6F45F007CCBA2 /* AddListItemViewController.swift */; };
 		FADEA3C31DA54EC8000A46C3 /* EventModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3C11DA54EC8000A46C3 /* EventModel.xcdatamodeld */; };
 		FADEA3C51DA54F24000A46C3 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3C41DA54F24000A46C3 /* CoreDataStack.swift */; };
 		FADEA3DB1DA59014000A46C3 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3D11DA59014000A46C3 /* User+CoreDataClass.swift */; };
@@ -35,6 +36,7 @@
 		FAA573FA1DA6ACC7007CCBA2 /* EventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewController.swift; sourceTree = "<group>"; };
 		FAA573FC1DA6BF6B007CCBA2 /* ListItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItemTableViewCell.swift; sourceTree = "<group>"; };
 		FAA573FE1DA6C012007CCBA2 /* EventDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailTableViewController.swift; sourceTree = "<group>"; };
+		FAA574001DA6F45F007CCBA2 /* AddListItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddListItemViewController.swift; sourceTree = "<group>"; };
 		FADEA3C21DA54EC8000A46C3 /* EventModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EventModel.xcdatamodel; sourceTree = "<group>"; };
 		FADEA3C41DA54F24000A46C3 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		FADEA3D11DA59014000A46C3 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 				FADEA3E51DA5901F000A46C3 /* Model */,
 				FAE8AE0C1DA54BC3000F1A34 /* AppDelegate.swift */,
 				FAE8AE101DA54BC3000F1A34 /* Main.storyboard */,
+				FAA574001DA6F45F007CCBA2 /* AddListItemViewController.swift */,
 				FAA573FE1DA6C012007CCBA2 /* EventDetailTableViewController.swift */,
 				FAA573FC1DA6BF6B007CCBA2 /* ListItemTableViewCell.swift */,
 				FAA573FA1DA6ACC7007CCBA2 /* EventTableViewController.swift */,
@@ -216,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAA573FB1DA6ACC8007CCBA2 /* EventTableViewController.swift in Sources */,
+				FAA574011DA6F45F007CCBA2 /* AddListItemViewController.swift in Sources */,
 				FADEA3E21DA59014000A46C3 /* Event+CoreDataProperties.swift in Sources */,
 				FADEA3DE1DA59014000A46C3 /* Guest+CoreDataProperties.swift in Sources */,
 				FADEA3EF1DA5A0EC000A46C3 /* CheckListController.swift in Sources */,
