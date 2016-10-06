@@ -18,8 +18,7 @@ class EventController {
             EventController.sharedController.addEvent(name: "Picnic")
             let selectedEvent = EventController.sharedController.events[0]
             EventController.sharedController.addGuest(userName: "Bill", event: selectedEvent)
-            
-            
+
             
         }
         
@@ -68,7 +67,9 @@ class EventController {
         PersistenceController.sharedController.saveToPersistedStorage()
     }
     
-    func deleteEvent(){
+    func deleteEvent(event: Event){
+        event.managedObjectContext?.delete(event)
+        PersistenceController.sharedController.saveToPersistedStorage()
         
     }
     
