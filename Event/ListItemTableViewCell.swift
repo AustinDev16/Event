@@ -10,6 +10,8 @@ import UIKit
 
 class ListItemTableViewCell: UITableViewCell {
 
+    var listItem: ListItem?
+    
     @IBOutlet weak var listItemLabel: UILabel!
     @IBOutlet weak var checkBoxButton: UIButton!
     
@@ -30,5 +32,20 @@ class ListItemTableViewCell: UITableViewCell {
         
     }
     
+    func updateViewWithListItem(listItem: ListItem){
+        
+        self.listItemLabel.text = listItem.name
+        switch listItem.isComplete{
+        case true:
+            self.checkBoxButton.setImage(#imageLiteral(resourceName: "complete"), for: .normal)
+        case false:
+            self.checkBoxButton.setImage(#imageLiteral(resourceName: "incomplete"), for: .normal)
+        }
+        self.checkBoxButton.imageView?.image = #imageLiteral(resourceName: "complete")
+        checkBoxButton.setTitle("BUTTON", for: .normal)
+    }
+    
 
 }
+
+

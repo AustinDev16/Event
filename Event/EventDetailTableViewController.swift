@@ -79,14 +79,15 @@ class EventDetailTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "itemListCell", for: indexPath) as? ListItemTableViewCell
-        let checklist = event?.checklists[indexPath.section] as? Checklist
-        let listItem = checklist?.listItems[indexPath.row] as? ListItem
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "itemListCell", for: indexPath) as? ListItemTableViewCell,
+        let checklist = event?.checklists[indexPath.section] as? Checklist,
+            let listItem = checklist.listItems[indexPath.row] as? ListItem else { return UITableViewCell() }
         
-        cell?.textLabel?.text = listItem?.name
+        cell.updateViewWithListItem(listItem: listItem)
+        //cell.listItem = listItem
         // Configure the cell...
         
-        return cell ?? UITableViewCell()
+        return cell
     }
     
     
