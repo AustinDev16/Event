@@ -24,9 +24,8 @@ class EventDetailTableViewController: UITableViewController {
         
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewDidAppear(_ animated: Bool) {
+        self.tableView.reloadData()
     }
     // MARK: - Actions
     
@@ -80,7 +79,7 @@ class EventDetailTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "listItemCell", for: indexPath) as? ListItemTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "itemListCell", for: indexPath) as? ListItemTableViewCell
         let checklist = event?.checklists[indexPath.section] as? Checklist
         let listItem = checklist?.listItems[indexPath.row] as? ListItem
         

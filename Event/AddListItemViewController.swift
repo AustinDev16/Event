@@ -20,6 +20,9 @@ class AddListItemViewController: UIViewController, UIPickerViewDelegate, UIPicke
         super.viewDidLoad()
         categoryPicker.delegate = self
         
+        listItemTextField.placeholder = "New item name."
+        listItemTextField.returnKeyType = .done
+        
         // Do any additional setup after loading the view.
     }
 
@@ -27,6 +30,17 @@ class AddListItemViewController: UIViewController, UIPickerViewDelegate, UIPicke
     
     @IBAction func addButtonTapped(_ sender: AnyObject) {
         
+        guard let event = self.event,
+            let checklists = self.event?.checklists,
+            let name = listItemTextField.text,
+        name.characters.count > 0 else { return}
+        let index = categoryPicker.selectedRow(inComponent: 0)
+        guard let checklist = event.checklists[index] as? Checklist else {return}
+        listItemTextField.resignFirstResponder()
+        
+        let newListItem = ListItem(name: name, responsibleParty: "Austin", checklist: checklist, event: event)
+        
+        ChecklistController.sharedController.addItemToList(listItem: newListItem, checklist: checklist)
         
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }

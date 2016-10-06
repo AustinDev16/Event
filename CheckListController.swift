@@ -36,6 +36,8 @@ class ChecklistController {
     func addItemToList(listItem: ListItem, checklist: Checklist){
         
         checklist.addToListItems(listItem)
+        
+        PersistenceController.sharedController.saveToPersistedStorage()
     }
     
     func removeItemFromList(listItem: ListItem, checklist: Checklist){
