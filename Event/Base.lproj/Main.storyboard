@@ -3,6 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -40,7 +42,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="kys-iJ-W6d" kind="show" id="2YV-JH-91F"/>
+                                    <segue destination="kys-iJ-W6d" kind="show" identifier="toDetailFromExisting" id="2YV-JH-91F"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -64,19 +66,49 @@
         <!--Title-->
         <scene sceneID="6Qa-bG-hRO">
             <objects>
-                <tableViewController id="kys-iJ-W6d" sceneMemberID="viewController">
+                <tableViewController id="kys-iJ-W6d" customClass="EventDetailTableViewController" customModule="Event" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="n6p-Qk-d6j">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="lVd-dH-wDV">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemListCell" id="lVd-dH-wDV" customClass="ListItemTableViewCell" customModule="Event" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lVd-dH-wDV" id="IeR-zZ-mAG">
                                     <frame key="frameInset" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S9d-rd-Lu3">
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="S9d-rd-Lu3" secondAttribute="height" multiplier="1:1" id="1cS-rm-niT"/>
+                                                <constraint firstAttribute="width" constant="30" id="AVx-nT-Ukg"/>
+                                            </constraints>
+                                            <state key="normal" title="Button" image="incomplete"/>
+                                            <connections>
+                                                <action selector="checkBoxButtonTapped:" destination="lVd-dH-wDV" eventType="touchUpInside" id="2oy-Pb-Lym"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iyu-NN-9um">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="293" id="xQ5-te-hsZ"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="iyu-NN-9um" firstAttribute="centerY" secondItem="IeR-zZ-mAG" secondAttribute="centerY" id="8cL-QK-fBk"/>
+                                        <constraint firstItem="iyu-NN-9um" firstAttribute="centerY" secondItem="S9d-rd-Lu3" secondAttribute="centerY" id="GIG-si-3PT"/>
+                                        <constraint firstItem="iyu-NN-9um" firstAttribute="trailing" secondItem="IeR-zZ-mAG" secondAttribute="trailingMargin" id="Q0r-MN-1vX"/>
+                                        <constraint firstItem="iyu-NN-9um" firstAttribute="leading" secondItem="S9d-rd-Lu3" secondAttribute="trailing" constant="20" id="vQ6-A8-AsT"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="checkBoxButton" destination="S9d-rd-Lu3" id="hMB-Pt-sfi"/>
+                                    <outlet property="listItemLabel" destination="iyu-NN-9um" id="bA2-a5-2Fr"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -93,7 +125,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ce-pe-TcS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3303" y="173"/>
+            <point key="canvasLocation" x="3301.5999999999999" y="172.26386806596702"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="BDJ-kM-iKV">
@@ -129,4 +161,7 @@
             <point key="canvasLocation" x="1557.5999999999999" y="169.56521739130437"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="incomplete" width="512" height="512"/>
+    </resources>
 </document>

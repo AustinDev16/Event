@@ -19,7 +19,7 @@ extension Checklist {
     @NSManaged public var name: String
     @NSManaged public var checklistID: String
     @NSManaged public var eventID: String
-    @NSManaged public var listItems: NSSet
+    @NSManaged public var listItems: NSOrderedSet
     @NSManaged public var event: Event
 
 }

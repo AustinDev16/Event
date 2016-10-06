@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="15G1004" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="16A323" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Checklist" representedClassName="Checklist" syncable="YES">
         <attribute name="checklistID" attributeType="String" syncable="YES"/>
         <attribute name="eventID" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="event" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="checklists" inverseEntity="Event" syncable="YES"/>
-        <relationship name="listItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ListItem" inverseName="checklist" inverseEntity="ListItem" syncable="YES"/>
+        <relationship name="listItems" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ListItem" inverseName="checklist" inverseEntity="ListItem" syncable="YES"/>
     </entity>
     <entity name="Event" representedClassName="Event" syncable="YES">
         <attribute name="date" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -38,10 +38,10 @@
         <attribute name="userID" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="User" positionX="-353" positionY="-538" width="128" height="88"/>
+        <element name="Checklist" positionX="-135" positionY="-423" width="128" height="120"/>
         <element name="Event" positionX="-369" positionY="-414" width="128" height="163"/>
-        <element name="ListItem" positionX="63" positionY="-403" width="128" height="133"/>
         <element name="Guest" positionX="-153" positionY="-166" width="128" height="118"/>
-        <element name="Checklist" positionX="-135" positionY="-423" width="128" height="88"/>
+        <element name="ListItem" positionX="63" positionY="-403" width="128" height="133"/>
+        <element name="User" positionX="-353" positionY="-538" width="128" height="88"/>
     </elements>
 </model>
