@@ -1,5 +1,5 @@
 //
-//  EventDetailViewController.swift
+//  eventDetail_GuestsViewController.swift
 //  Event
 //
 //  Created by Austin Blaser on 10/7/16.
@@ -8,26 +8,18 @@
 
 import UIKit
 
-class EventDetailViewController: UIViewController {
-    
-    var event: Event?
-    
-    // MARK: - Outlets
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
-    @IBOutlet weak var innerContentView: UIView!
-    
-    // MARK: - innerContentView Properties
-    
-    //lazy var detailViewController:
-    
-    // MARK: - View
+class eventDetail_GuestsViewController: UIViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.backgroundColor = UIColor.brown
         // Do any additional setup after loading the view.
     }
 
-
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
 
     /*
