@@ -8,8 +8,9 @@
 
 import UIKit
 
-class EventTableViewController: UITableViewController {
+class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var tableView: UITableView!
     @IBAction func newEventTapped(_ sender: AnyObject) {
         
         let addEventAlertController = UIAlertController(title: "Event", message: "Fill out event details", preferredStyle: .alert)
@@ -48,19 +49,21 @@ class EventTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        self.title = "Events"
     }
 
  
     // MARK: - Table view data source
 
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return EventController.sharedController.events.count
     }
 
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath)
 
         let event = EventController.sharedController.events[indexPath.row]
@@ -74,7 +77,7 @@ class EventTableViewController: UITableViewController {
 
     
     // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
             let eventToDelete = EventController.sharedController.events[indexPath.row]
