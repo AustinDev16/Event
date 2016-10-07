@@ -136,10 +136,10 @@
             </objects>
             <point key="canvasLocation" x="4328.8000000000002" y="-32.833583208395808"/>
         </scene>
-        <!--View Controller-->
+        <!--Event Detail Lists View Controller-->
         <scene sceneID="Fwq-ak-q2t">
             <objects>
-                <viewController storyboardIdentifier="eventDetail_Lists" id="PKi-Gu-VCf" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="eventDetail_Lists" id="PKi-Gu-VCf" customClass="eventDetail_ListsViewController" customModule="Event" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SW9-5P-XYX"/>
                         <viewControllerLayoutGuide type="bottom" id="UoA-ZU-Igr"/>
@@ -154,10 +154,10 @@
             </objects>
             <point key="canvasLocation" x="5769" y="-707"/>
         </scene>
-        <!--View Controller-->
+        <!--Event Detail Guests View Controller-->
         <scene sceneID="IZl-PW-G0r">
             <objects>
-                <viewController storyboardIdentifier="eventDetail_Guests" id="LnU-8G-X5b" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="eventDetail_Guests" id="LnU-8G-X5b" customClass="eventDetail_GuestsViewController" customModule="Event" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ASS-hN-k4V"/>
                         <viewControllerLayoutGuide type="bottom" id="KkY-gY-g8K"/>
@@ -172,10 +172,10 @@
             </objects>
             <point key="canvasLocation" x="6445" y="-707"/>
         </scene>
-        <!--View Controller-->
+        <!--Event Detail Detail View Controller-->
         <scene sceneID="kCR-FU-8MZ">
             <objects>
-                <viewController storyboardIdentifier="eventDetail_Detail" id="EQr-t0-oVr" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="eventDetail_Detail" id="EQr-t0-oVr" customClass="eventDetail_DetailViewController" customModule="Event" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ahy-rK-cHG"/>
                         <viewControllerLayoutGuide type="bottom" id="fFK-wx-V9g"/>
