@@ -76,10 +76,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="8Ke-Ay-3EH" firstAttribute="top" secondItem="Dh3-si-YYl" secondAttribute="top" id="NPS-MZ-cRh"/>
                             <constraint firstAttribute="trailing" secondItem="8Ke-Ay-3EH" secondAttribute="trailing" id="SMq-Y0-khL"/>
                             <constraint firstItem="8Ke-Ay-3EH" firstAttribute="bottom" secondItem="icX-Vs-hbT" secondAttribute="top" id="c5A-V5-9wh"/>
                             <constraint firstItem="8Ke-Ay-3EH" firstAttribute="leading" secondItem="Dh3-si-YYl" secondAttribute="leading" id="jfY-CC-wP0"/>
-                            <constraint firstItem="8Ke-Ay-3EH" firstAttribute="top" secondItem="QMC-cN-D2y" secondAttribute="bottom" id="soD-fq-wEa"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Oa9-13-LXd"/>

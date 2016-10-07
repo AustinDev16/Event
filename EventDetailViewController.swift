@@ -18,16 +18,45 @@ class EventDetailViewController: UIViewController {
     
     // MARK: - innerContentView Properties
     
-    //lazy var detailViewController:
+    lazy var detailViewController: eventDetail_DetailViewController = {
+       let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "eventDetail_Detail") as! eventDetail_DetailViewController
+        return viewController
+    }()
+    
+    lazy var listsViewController: eventDetail_ListsViewController = {
+       let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "eventDetail_Lists") as! eventDetail_ListsViewController
+        return viewController
+    }()
+    
+    lazy var guestsViewController: eventDetail_GuestsViewController = {
+       let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "eventDetail_Guests") as! eventDetail_GuestsViewController
+        return viewController
+    }()
     
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setUpSegmentedControl()
         // Do any additional setup after loading the view.
     }
+    
+    func setUpSegmentedControl(){
+        segmentedControl.removeAllSegments()
+        segmentedControl.insertSegment(withTitle: "Details", at: 0, animated: false)
+        segmentedControl.insertSegment(withTitle: "Lists", at: 1, animated: false)
+        segmentedControl.insertSegment(withTitle: "Guests", at: 2, animated: false)
+        
+        segmentedControl.addTarget(self, action: #selector(segmentSelectionChanged(sender:)), for: .valueChanged)
+        
+        segmentedControl.selectedSegmentIndex = 0
+    }
 
-
+    func segmentSelectionChanged(sender: UISegmentedControl){
+        
+    }
     
 
     /*
