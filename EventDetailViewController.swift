@@ -51,9 +51,11 @@ class EventDetailViewController: UIViewController, InnerContentViewDelegate {
         self.definesPresentationContext = true
         
         self.title = event?.name
+        updateInnerContentView()
         // Do any additional setup after loading the view.
     }
     
+ 
     func setUpSegmentedControl(){
         segmentedControl.removeAllSegments()
         segmentedControl.insertSegment(withTitle: "Details", at: 0, animated: false)
