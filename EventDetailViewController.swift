@@ -36,6 +36,10 @@ class EventDetailViewController: UIViewController {
         return viewController
     }()
     
+    lazy var innerContentViewControllers: [UIViewController] = {
+        return [self.detailViewController, self.listsViewController, self.guestsViewController]
+    }()
+    
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,10 +56,44 @@ class EventDetailViewController: UIViewController {
         segmentedControl.addTarget(self, action: #selector(segmentSelectionChanged(sender:)), for: .valueChanged)
         
         segmentedControl.selectedSegmentIndex = 0
+        
+        for viewController in self.innerContentViewControllers {
+            addViewControllerAsChild(viewController: viewController)
+        }
     }
 
     func segmentSelectionChanged(sender: UISegmentedControl){
+        updateInnerContentView()
+    }
+    
+    func updateInnerContentView(){
+        let index = segmentedControl.selectedSegmentIndex
         
+        
+        for viewController in self.innerContentViewControllers {
+            viewController.view.isHidden = true
+        }
+        
+        let selectedViewController = self.innerContentViewControllers[index]
+        selectedViewController.view.isHidden = false
+    }
+    
+    func addViewControllerAsChild(viewController: UIViewController){
+        // add child view controller
+        self.addChildViewController(viewController)
+        
+        // add child as subview
+        
+        innerContentView.addSubview(viewController.view)
+        
+        // Configure child view
+        viewController.view.frame = innerContentView.bounds
+        viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        // Notify Child ViewController
+        
+        viewController.didMove(toParentViewController: self)
+
     }
     
 
