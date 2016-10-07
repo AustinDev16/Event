@@ -12,6 +12,7 @@
 		FAA573FF1DA6C012007CCBA2 /* EventDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA573FE1DA6C012007CCBA2 /* EventDetailTableViewController.swift */; };
 		FAA574011DA6F45F007CCBA2 /* AddListItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA574001DA6F45F007CCBA2 /* AddListItemViewController.swift */; };
 		FAA574031DA70D9D007CCBA2 /* ManageListsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA574021DA70D9D007CCBA2 /* ManageListsTableViewController.swift */; };
+		FACF38C01DA84C9400513642 /* InnerContentViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF38BF1DA84C9400513642 /* InnerContentViewDelegate.swift */; };
 		FADEA3C31DA54EC8000A46C3 /* EventModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3C11DA54EC8000A46C3 /* EventModel.xcdatamodeld */; };
 		FADEA3C51DA54F24000A46C3 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3C41DA54F24000A46C3 /* CoreDataStack.swift */; };
 		FADEA3DB1DA59014000A46C3 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3D11DA59014000A46C3 /* User+CoreDataClass.swift */; };
@@ -40,9 +41,10 @@
 /* Begin PBXFileReference section */
 		FAA573FA1DA6ACC7007CCBA2 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventViewController.swift; sourceTree = "<group>"; };
 		FAA573FC1DA6BF6B007CCBA2 /* ListItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItemTableViewCell.swift; sourceTree = "<group>"; };
-		FAA573FE1DA6C012007CCBA2 /* EventDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailTableViewController.swift; sourceTree = "<group>"; };
-		FAA574001DA6F45F007CCBA2 /* AddListItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddListItemViewController.swift; sourceTree = "<group>"; };
-		FAA574021DA70D9D007CCBA2 /* ManageListsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageListsTableViewController.swift; sourceTree = "<group>"; };
+		FAA573FE1DA6C012007CCBA2 /* EventDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventDetailTableViewController.swift; path = Event/EventDetailTableViewController.swift; sourceTree = "<group>"; };
+		FAA574001DA6F45F007CCBA2 /* AddListItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddListItemViewController.swift; path = Event/AddListItemViewController.swift; sourceTree = "<group>"; };
+		FAA574021DA70D9D007CCBA2 /* ManageListsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManageListsTableViewController.swift; path = Event/ManageListsTableViewController.swift; sourceTree = "<group>"; };
+		FACF38BF1DA84C9400513642 /* InnerContentViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InnerContentViewDelegate.swift; sourceTree = "<group>"; };
 		FADEA3C21DA54EC8000A46C3 /* EventModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EventModel.xcdatamodel; sourceTree = "<group>"; };
 		FADEA3C41DA54F24000A46C3 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		FADEA3D11DA59014000A46C3 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -123,10 +125,6 @@
 		FAE8AE001DA54BC3000F1A34 = {
 			isa = PBXGroup;
 			children = (
-				FAEF1B041DA837B700F2E64E /* EventDetailViewController.swift */,
-				FAEF1B061DA839EA00F2E64E /* eventDetail_DetailViewController.swift */,
-				FAEF1B081DA83A0000F2E64E /* eventDetail_ListsViewController.swift */,
-				FAEF1B0A1DA83A0C00F2E64E /* eventDetail_GuestsViewController.swift */,
 				FAE8AE0B1DA54BC3000F1A34 /* Event */,
 				FAE8AE0A1DA54BC3000F1A34 /* Products */,
 			);
@@ -143,14 +141,12 @@
 		FAE8AE0B1DA54BC3000F1A34 /* Event */ = {
 			isa = PBXGroup;
 			children = (
+				FAEF1B0C1DA8463300F2E64E /* View Controller */,
 				FADEA3EB1DA5A055000A46C3 /* Model Controller */,
 				FADEA3E61DA593BA000A46C3 /* Resources */,
 				FADEA3E51DA5901F000A46C3 /* Model */,
 				FAE8AE0C1DA54BC3000F1A34 /* AppDelegate.swift */,
 				FAE8AE101DA54BC3000F1A34 /* Main.storyboard */,
-				FAA574021DA70D9D007CCBA2 /* ManageListsTableViewController.swift */,
-				FAA574001DA6F45F007CCBA2 /* AddListItemViewController.swift */,
-				FAA573FE1DA6C012007CCBA2 /* EventDetailTableViewController.swift */,
 				FAA573FC1DA6BF6B007CCBA2 /* ListItemTableViewCell.swift */,
 				FAA573FA1DA6ACC7007CCBA2 /* EventViewController.swift */,
 				FAE8AE131DA54BC3000F1A34 /* Assets.xcassets */,
@@ -158,6 +154,22 @@
 				FAE8AE181DA54BC3000F1A34 /* Info.plist */,
 			);
 			path = Event;
+			sourceTree = "<group>";
+		};
+		FAEF1B0C1DA8463300F2E64E /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FACF38BF1DA84C9400513642 /* InnerContentViewDelegate.swift */,
+				FAA574021DA70D9D007CCBA2 /* ManageListsTableViewController.swift */,
+				FAA574001DA6F45F007CCBA2 /* AddListItemViewController.swift */,
+				FAA573FE1DA6C012007CCBA2 /* EventDetailTableViewController.swift */,
+				FAEF1B041DA837B700F2E64E /* EventDetailViewController.swift */,
+				FAEF1B061DA839EA00F2E64E /* eventDetail_DetailViewController.swift */,
+				FAEF1B081DA83A0000F2E64E /* eventDetail_ListsViewController.swift */,
+				FAEF1B0A1DA83A0C00F2E64E /* eventDetail_GuestsViewController.swift */,
+			);
+			name = "View Controller";
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,6 +249,7 @@
 				FAA574011DA6F45F007CCBA2 /* AddListItemViewController.swift in Sources */,
 				FADEA3E21DA59014000A46C3 /* Event+CoreDataProperties.swift in Sources */,
 				FADEA3DE1DA59014000A46C3 /* Guest+CoreDataProperties.swift in Sources */,
+				FACF38C01DA84C9400513642 /* InnerContentViewDelegate.swift in Sources */,
 				FADEA3EF1DA5A0EC000A46C3 /* CheckListController.swift in Sources */,
 				FADEA3E31DA59014000A46C3 /* ListItem+CoreDataClass.swift in Sources */,
 				FADEA3E41DA59014000A46C3 /* ListItem+CoreDataProperties.swift in Sources */,

@@ -9,7 +9,8 @@
 import UIKit
 
 class eventDetail_GuestsViewController: UIViewController {
-
+    weak var delegate: InnerContentViewDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.brown

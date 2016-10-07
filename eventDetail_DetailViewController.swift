@@ -9,13 +9,33 @@
 import UIKit
 
 class eventDetail_DetailViewController: UIViewController {
-
+    // MARK: - Outlets
+    @IBOutlet weak var eventName: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
+    weak var delegate: InnerContentViewDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.cyan
+       
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        view.backgroundColor = UIColor.clear
+        updateView()
+    }
 
+    func updateView(){
+        guard let event = delegate?.event else { return }
+        eventName.text = event.name
+        dateLabel.text = String(describing: event.date)
+        locationLabel.text = event.location
+        descriptionLabel.text = event.detailDescription
+        
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

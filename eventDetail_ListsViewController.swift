@@ -10,6 +10,7 @@ import UIKit
 
 class eventDetail_ListsViewController: UIViewController {
 
+    weak var delegate: InnerContentViewDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.red

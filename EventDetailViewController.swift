@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EventDetailViewController: UIViewController {
+class EventDetailViewController: UIViewController, InnerContentViewDelegate {
     
     var event: Event?
     
@@ -21,18 +21,22 @@ class EventDetailViewController: UIViewController {
     lazy var detailViewController: eventDetail_DetailViewController = {
        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let viewController = storyboard.instantiateViewController(withIdentifier: "eventDetail_Detail") as! eventDetail_DetailViewController
+        
+        viewController.delegate = self
         return viewController
     }()
     
     lazy var listsViewController: eventDetail_ListsViewController = {
        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let viewController = storyboard.instantiateViewController(withIdentifier: "eventDetail_Lists") as! eventDetail_ListsViewController
+        viewController.delegate = self
         return viewController
     }()
     
     lazy var guestsViewController: eventDetail_GuestsViewController = {
        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let viewController = storyboard.instantiateViewController(withIdentifier: "eventDetail_Guests") as! eventDetail_GuestsViewController
+        viewController.delegate = self
         return viewController
     }()
     
@@ -44,6 +48,9 @@ class EventDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpSegmentedControl()
+        self.definesPresentationContext = true
+        
+        self.title = event?.name
         // Do any additional setup after loading the view.
     }
     

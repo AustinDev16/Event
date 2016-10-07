@@ -113,7 +113,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // Pass the selected object to the new view controller.
         
         if segue.identifier == "toDetailFromExisting" {
-            guard let eventDetailTVC = segue.destination as? EventDetailTableViewController,
+            guard let eventDetailTVC = segue.destination as? EventDetailViewController,
             let cell = sender as? UITableViewCell,
             let index = tableView.indexPath(for: cell) else {return}
         
