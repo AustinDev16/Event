@@ -22,7 +22,10 @@ class eventDetail_ListsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    
+    func newListButtonTapped(){
+        print("new list button tapped")
+    }
     /*
     // MARK: - Navigation
 

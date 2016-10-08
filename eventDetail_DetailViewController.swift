@@ -17,6 +17,11 @@ class eventDetail_DetailViewController: UIViewController {
     
     weak var delegate: InnerContentViewDelegate?
     
+    func editEventButtonTapped(){
+        print("edit event button tapped")
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        

@@ -38,6 +38,12 @@ class eventDetail_GuestsViewController: UIViewController, UITableViewDelegate, U
         self.tableView.reloadData()
     }
 
+
+    func inviteGuestsButtonTapped(){
+        print("invite guests button tapped")
+    }
+    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -11,23 +11,35 @@ import UIKit
 class EventDetailViewController: UIViewController, InnerContentViewDelegate {
     
     var event: Event?
-    var editEventButton: UIBarButtonItem = UIBarButtonItem(title: "Edit Event", style:.plain, target: self, action: #selector(editEventButtonTapped))
-    var inviteButton: UIBarButtonItem = UIBarButtonItem(title: "Invite", style: .plain, target: self, action: #selector(inviteGuestsButtonTapped))
-    
-    var newListButton: UIBarButtonItem = UIBarButtonItem(title: "New List", style: .plain, target: self, action: #selector(newListButtonTapped))
-    
-    // MARK: - Bar Button Functions
+    var editEventButton = UIBarButtonItem()
+    var inviteGuestsButton = UIBarButtonItem()
+    var newListButton = UIBarButtonItem()
     
     func editEventButtonTapped(){
-        print("edit event button tapped")
     }
     
     func inviteGuestsButtonTapped(){
-        print("invite guests button tapped")
     }
     
     func newListButtonTapped(){
-        print("new list button tapped")
+    }
+    // MARK: - Bar Button Setup
+    
+    func setUpBarButtons(){
+        editEventButton.title = "Edit Event"
+        editEventButton.style = .plain
+        editEventButton.target = detailViewController
+        editEventButton.action = #selector(editEventButtonTapped)
+        
+        inviteGuestsButton.title = "Invite"
+        inviteGuestsButton.style = .plain
+        inviteGuestsButton.target = guestsViewController
+        inviteGuestsButton.action = #selector(inviteGuestsButtonTapped)
+        
+        newListButton.title = "New List"
+        newListButton.style = .plain
+        newListButton.target = listsViewController
+        newListButton.action = #selector(newListButtonTapped)
     }
     
     
@@ -71,6 +83,7 @@ class EventDetailViewController: UIViewController, InnerContentViewDelegate {
         
         self.title = event?.name
         updateInnerContentView()
+        setUpBarButtons()
         updateNavigationBarButtons()
         // Do any additional setup after loading the view.
     }
@@ -127,14 +140,14 @@ class EventDetailViewController: UIViewController, InnerContentViewDelegate {
     }
     
     func updateNavigationBarButtons(){ // configures the navigation bar for each innerContent view when it is selected
-        
+      
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             self.navigationItem.rightBarButtonItem = editEventButton
         case 1:
             self.navigationItem.rightBarButtonItem = newListButton
         case 2:
-            self.navigationItem.rightBarButtonItem = inviteButton
+            self.navigationItem.rightBarButtonItem = inviteGuestsButton
         default:
             return
         }
