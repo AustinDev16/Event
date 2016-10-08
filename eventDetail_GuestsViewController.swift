@@ -30,6 +30,12 @@ class eventDetail_GuestsViewController: UIViewController, UITableViewDelegate, U
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.brown
         
+        NotificationCenter.default.addObserver(self, selector: #selector(guestListUpdated), name: NSNotification.Name(rawValue: "guestListUpdated"), object: nil)
+        
+    }
+    
+    func guestListUpdated(){
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
