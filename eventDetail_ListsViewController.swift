@@ -46,7 +46,28 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
     
     
     func newListButtonTapped(){
-        print("new list button tapped")
+        let newListAlertController = UIAlertController(title: "New list", message: nil, preferredStyle: .alert)
+        
+        newListAlertController.addTextField { (textField) in
+            textField.placeholder = "List name"
+            textField.autocapitalizationType = .words
+            textField.returnKeyType = .default
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let create = UIAlertAction(title: "Create list", style: .default) { (_) in
+            guard let textField = newListAlertController.textFields?.first,
+                let name = textField.text, name.characters.count > 0,
+                let event = self.innerContentViewDelegate?.event else { return }
+            
+            textField.resignFirstResponder()
+            ChecklistController.sharedController.createNewCheckList(name: name, event: event)
+            self.tableView.reloadData()
+        }
+        
+        newListAlertController.addAction(cancel)
+        newListAlertController.addAction(create)
+        self.present(newListAlertController, animated: true, completion: nil)
     }
     
     // MARK: - List Item Delegate
