@@ -120,6 +120,22 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
         cell.delegate = self
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            guard let event = innerContentViewDelegate?.event,
+             let checklist = event.checklists[indexPath.section] as? Checklist,
+            let itemToDelete = checklist.listItems[indexPath.row] as? ListItem else { return }
+            
+            
+            
+            ChecklistController.sharedController.removeItemFromList(listItem: itemToDelete, checklist: checklist)
+            
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+        }
+    }
   
     // MARK: - Header views
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
