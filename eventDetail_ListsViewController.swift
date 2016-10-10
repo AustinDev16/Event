@@ -184,6 +184,8 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
         
         return view
     }
+    
+    // MARK: - Add Actions
 
     func addListItemButtonTapped(sender: Any){
         guard let button = sender as? UIButton,
@@ -205,6 +207,7 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
             textField.resignFirstResponder()
             
              ChecklistController.sharedController.addItemToList(name: name, checklist: checklist, event: event)
+            self.tableView.reloadData()
         }
         newListItemAlertController.addAction(cancel)
         newListItemAlertController.addAction(add)
