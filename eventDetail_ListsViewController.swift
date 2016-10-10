@@ -52,11 +52,16 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
     // MARK: - List Item Delegate
     
     func checkBoxTapped(cell: ListItemTableViewCell) {
+        print("Check box tapped")
+        guard let listItem = cell.listItem else { return }
         
+        // toggle checklist
+        ChecklistController.sharedController.toggleIsDone(listItem: listItem)
+        tableView.reloadData()
     }
     
     func responsiblePartyTapped(cell: ListItemTableViewCell) {
-        
+        print("Responsible party tapped")
     }
     
     // MARK: TableView
@@ -88,8 +93,7 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
          let checklist = checklists[indexPath.section] as? Checklist else { return UITableViewCell() }
      
         let items = checklist.listItems.flatMap { $0 as? ListItem}
-        
-        //cell.textLabel?.text = items[indexPath.row].name
+
         cell.updateWithItem(item: items[indexPath.row])
         cell.listItem = items[indexPath.row]
         cell.delegate = self

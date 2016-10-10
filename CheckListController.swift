@@ -54,6 +54,12 @@ class ChecklistController {
         
     }
     
+    func toggleIsDone(listItem: ListItem){
+        listItem.isComplete = !listItem.isComplete
+        
+        PersistenceController.sharedController.saveToPersistedStorage()
+    }
+    
 
     
     
