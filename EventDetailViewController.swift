@@ -53,21 +53,21 @@ class EventDetailViewController: UIViewController, InnerContentViewDelegate {
        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let viewController = storyboard.instantiateViewController(withIdentifier: "eventDetail_Detail") as! eventDetail_DetailViewController
         
-        viewController.delegate = self
+        viewController.innerContentViewDelegate = self
         return viewController
     }()
     
     lazy var listsViewController: eventDetail_ListsViewController = {
        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let viewController = storyboard.instantiateViewController(withIdentifier: "eventDetail_Lists") as! eventDetail_ListsViewController
-        viewController.delegate = self
+        viewController.innerContentViewDelegate = self
         return viewController
     }()
     
     lazy var guestsViewController: eventDetail_GuestsViewController = {
        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let viewController = storyboard.instantiateViewController(withIdentifier: "eventDetail_Guests") as! eventDetail_GuestsViewController
-        viewController.delegate = self
+        viewController.innerContentViewDelegate = self
         return viewController
     }()
     

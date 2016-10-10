@@ -9,9 +9,11 @@
 import UIKit
 
 class eventDetail_GuestsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    weak var delegate: InnerContentViewDelegate?
+    weak var innerContentViewDelegate: InnerContentViewDelegate?
+    
+    
     var guests: [Guest] {
-        guard let event = delegate?.event else {return []}
+        guard let event = innerContentViewDelegate?.event else {return []}
         return event.guests.flatMap{ $0 as? Guest}
     }
     

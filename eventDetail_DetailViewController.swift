@@ -15,7 +15,7 @@ class eventDetail_DetailViewController: UIViewController {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    weak var delegate: InnerContentViewDelegate?
+    weak var innerContentViewDelegate: InnerContentViewDelegate?
     
     func editEventButtonTapped(){
         print("edit event button tapped")
@@ -34,7 +34,7 @@ class eventDetail_DetailViewController: UIViewController {
     }
 
     func updateView(){
-        guard let event = delegate?.event else { return }
+        guard let event = innerContentViewDelegate?.event else { return }
         eventName.text = event.name
         dateLabel.text = String(describing: event.date)
         locationLabel.text = event.location
