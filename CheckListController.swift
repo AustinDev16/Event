@@ -33,8 +33,17 @@ class ChecklistController {
     
     // MARK: - ListItem functions
     
-    func addItemToList(listItem: ListItem, checklist: Checklist){
+    func addItemToList(name: String, responsibleParty: String = "Austin", checklist: Checklist, event: Event){
         
+        let newItem = ListItem(name: name, responsibleParty: responsibleParty, checklist: checklist, event: event)
+        
+        checklist.addToListItems(newItem)
+        
+        PersistenceController.sharedController.saveToPersistedStorage()
+    }
+    
+    func addItemToList(listItem: ListItem, checklist: Checklist){
+    
         checklist.addToListItems(listItem)
         
         PersistenceController.sharedController.saveToPersistedStorage()

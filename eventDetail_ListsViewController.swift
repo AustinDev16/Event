@@ -137,7 +137,7 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
         let title = checklists[section].name
         let view = UIView()
         view.bounds = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 30)
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor.cyan
         
         // Title Label
         let titleLabel = UILabel()
@@ -153,9 +153,12 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
         
         // Add Button
         let addButton = UIButton(type: .custom)
+        addButton.tag = section
         addButton.setTitle("Add", for: .normal)
         addButton.setTitleColor(UIColor.black, for: .normal)
         addButton.translatesAutoresizingMaskIntoConstraints = false
+        addButton.addTarget(self, action: #selector(self.addListItemButtonTapped), for: .touchUpInside)
+        
         view.addSubview(addButton)
         
         let addButtonBottom = NSLayoutConstraint(item: addButton, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0.0)
@@ -164,5 +167,33 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
         view.addConstraints([addButtonBottom, addButtonTrailing, addButtonWidth])
         
         return view
+    }
+
+    func addListItemButtonTapped(sender: Any){
+        guard let button = sender as? UIButton,
+             let event = innerContentViewDelegate?.event,
+        let checklist = event.checklists[button.tag] as? Checklist else {return}
+        
+        // Alert controller
+        let newListItemAlertController = UIAlertController(title: "New item", message: "For list: \(checklist.name)", preferredStyle: .alert)
+        newListItemAlertController.addTextField { (textField) in
+            textField.placeholder = "New item"
+            textField.autocapitalizationType = .sentences
+        }
+        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        let add = UIAlertAction(title: "Add", style: .default) { (_) in
+            guard let textField = newListItemAlertController.textFields?.first,
+                let name = textField.text,
+                name.characters.count > 0 else { return }
+            
+            textField.resignFirstResponder()
+            
+             ChecklistController.sharedController.addItemToList(name: name, checklist: checklist, event: event)
+        }
+        newListItemAlertController.addAction(cancel)
+        newListItemAlertController.addAction(add)
+        self.present(newListItemAlertController, animated: true, completion: nil)
+       
+        
     }
 }
