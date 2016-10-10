@@ -57,7 +57,7 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
         
         // toggle checklist
         ChecklistController.sharedController.toggleIsDone(listItem: listItem)
-        tableView.reloadData()
+        cell.updateWithItem(item: listItem)
     }
     
     func responsiblePartyTapped(cell: ListItemTableViewCell) {
