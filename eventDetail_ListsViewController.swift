@@ -19,9 +19,13 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
         self.view.backgroundColor = UIColor.red
         
         setupTableView()
+        tableView.reloadData()
         // Do any additional setup after loading the view.
-        
-        
+       
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
     }
     
     func setupTableView(){
@@ -30,6 +34,7 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
         view.addSubview(tableView)
         tableView.bounds = view.frame
         tableView.delegate = self
+        tableView.dataSource = self
         
         let tableViewTop = NSLayoutConstraint(item: tableView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: 0)
         let tableViewLeading = NSLayoutConstraint(item: tableView, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1.0, constant: 0)
@@ -57,9 +62,11 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
     // MARK: TableView
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        guard let checklists = innerContentViewDelegate?.event?.checklists else {return 0}
-        print("Checklists:\(checklists.count)")
-        return checklists.count
+        print("nuber of sections")
+        guard let event = innerContentViewDelegate?.event else {  print("error")
+            return 0}
+        print(event.checklists.count)
+    return event.checklists.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -70,15 +77,22 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "listItemCell") as! ListItemTableViewCell
-        guard let checklists = innerContentViewDelegate?.event?.checklists,
+       
+        var cell: UITableViewCell! = tableView.dequeueReusableCell(withIdentifier: "listItemCell")
+        
+        if cell == nil {
+            cell = UITableViewCell(style: .value1, reuseIdentifier: "listItemCell")
+        }
+            
+          guard  let checklists = innerContentViewDelegate?.event?.checklists,
          let checklist = checklists[indexPath.section] as? Checklist else { return UITableViewCell() }
      
         let items = checklist.listItems.flatMap { $0 as? ListItem}
         
-        cell.updateWithItem(item: items[indexPath.row])
-        cell.listItem = items[indexPath.row]
-        cell.delegate = self
+        cell.textLabel?.text = items[indexPath.row].name
+//        cell.updateWithItem(item: items[indexPath.row])
+//        cell.listItem = items[indexPath.row]
+//        cell.delegate = self
         return cell
     }
   

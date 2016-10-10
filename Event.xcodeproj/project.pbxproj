@@ -93,6 +93,17 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		FABCE9851DAC13DC00DEB1DF /* Event Detail Segmented */ = {
+			isa = PBXGroup;
+			children = (
+				FAEF1B041DA837B700F2E64E /* EventDetailViewController.swift */,
+				FAEF1B061DA839EA00F2E64E /* eventDetail_DetailViewController.swift */,
+				FAEF1B081DA83A0000F2E64E /* eventDetail_ListsViewController.swift */,
+				FAEF1B0A1DA83A0C00F2E64E /* eventDetail_GuestsViewController.swift */,
+			);
+			name = "Event Detail Segmented";
+			sourceTree = "<group>";
+		};
 		FADEA3E51DA5901F000A46C3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,10 +183,7 @@
 				FAA573FA1DA6ACC7007CCBA2 /* EventViewController.swift */,
 				FAA574021DA70D9D007CCBA2 /* ManageListsTableViewController.swift */,
 				FAA574001DA6F45F007CCBA2 /* AddListItemViewController.swift */,
-				FAEF1B041DA837B700F2E64E /* EventDetailViewController.swift */,
-				FAEF1B061DA839EA00F2E64E /* eventDetail_DetailViewController.swift */,
-				FAEF1B081DA83A0000F2E64E /* eventDetail_ListsViewController.swift */,
-				FAEF1B0A1DA83A0C00F2E64E /* eventDetail_GuestsViewController.swift */,
+				FABCE9851DAC13DC00DEB1DF /* Event Detail Segmented */,
 			);
 			name = "View Controller";
 			path = ..;
