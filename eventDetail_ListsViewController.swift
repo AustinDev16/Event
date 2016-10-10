@@ -9,7 +9,7 @@
 import UIKit
 
 class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,  ListItemDelegate {
-
+    
     
     let tableView = UITableView()
     weak var innerContentViewDelegate: InnerContentViewDelegate?
@@ -21,7 +21,7 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
         setupTableView()
         tableView.reloadData()
         // Do any additional setup after loading the view.
-       
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,7 +42,7 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
         let tableViewBottom = NSLayoutConstraint(item: tableView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0)
         self.view.addConstraints([tableViewTop, tableViewBottom, tableViewLeading, tableViewTrailing])
     }
-
+    
     
     
     func newListButtonTapped(){
@@ -92,29 +92,29 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
         guard let event = innerContentViewDelegate?.event else {  print("error")
             return 0}
         print(event.checklists.count)
-    return event.checklists.count
+        return event.checklists.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let checklists = innerContentViewDelegate?.event?.checklists,
-         let checklist = checklists[section] as? Checklist else {return 0}
-       print("list items: \(checklist.listItems.count)")
+            let checklist = checklists[section] as? Checklist else {return 0}
+        print("list items: \(checklist.listItems.count)")
         return checklist.listItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       
+        
         var cell: ListItemTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "listItemCell") as? ListItemTableViewCell
         
         if cell == nil {
             cell = ListItemTableViewCell(style: .default, reuseIdentifier: "listItemCell")
         }
         
-          guard  let checklists = innerContentViewDelegate?.event?.checklists,
-         let checklist = checklists[indexPath.section] as? Checklist else { return UITableViewCell() }
-     
+        guard  let checklists = innerContentViewDelegate?.event?.checklists,
+            let checklist = checklists[indexPath.section] as? Checklist else { return UITableViewCell() }
+        
         let items = checklist.listItems.flatMap { $0 as? ListItem}
-
+        
         cell.updateWithItem(item: items[indexPath.row])
         cell.listItem = items[indexPath.row]
         cell.delegate = self
@@ -124,8 +124,8 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             guard let event = innerContentViewDelegate?.event,
-             let checklist = event.checklists[indexPath.section] as? Checklist,
-            let itemToDelete = checklist.listItems[indexPath.row] as? ListItem else { return }
+                let checklist = event.checklists[indexPath.section] as? Checklist,
+                let itemToDelete = checklist.listItems[indexPath.row] as? ListItem else { return }
             
             
             
@@ -136,12 +136,12 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
     }
-  
+    
     // MARK: - Header views
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40.0
     }
-
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         return headerViewForSection(section: section)
@@ -186,11 +186,11 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
     }
     
     // MARK: - Add Actions
-
+    
     func addListItemButtonTapped(sender: Any){
         guard let button = sender as? UIButton,
-             let event = innerContentViewDelegate?.event,
-        let checklist = event.checklists[button.tag] as? Checklist else {return}
+            let event = innerContentViewDelegate?.event,
+            let checklist = event.checklists[button.tag] as? Checklist else {return}
         
         // Alert controller
         let newListItemAlertController = UIAlertController(title: "New item", message: "For list: \(checklist.name)", preferredStyle: .alert)
@@ -206,13 +206,13 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
             
             textField.resignFirstResponder()
             
-             ChecklistController.sharedController.addItemToList(name: name, checklist: checklist, event: event)
+            ChecklistController.sharedController.addItemToList(name: name, checklist: checklist, event: event)
             self.tableView.reloadData()
         }
         newListItemAlertController.addAction(cancel)
         newListItemAlertController.addAction(add)
         self.present(newListItemAlertController, animated: true, completion: nil)
-       
+        
         
     }
 }
