@@ -78,21 +78,21 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
        
-        var cell: UITableViewCell! = tableView.dequeueReusableCell(withIdentifier: "listItemCell")
+        var cell: ListItemTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "listItemCell") as? ListItemTableViewCell
         
         if cell == nil {
-            cell = UITableViewCell(style: .value1, reuseIdentifier: "listItemCell")
+            cell = ListItemTableViewCell(style: .default, reuseIdentifier: "listItemCell")
         }
-            
+        
           guard  let checklists = innerContentViewDelegate?.event?.checklists,
          let checklist = checklists[indexPath.section] as? Checklist else { return UITableViewCell() }
      
         let items = checklist.listItems.flatMap { $0 as? ListItem}
         
-        cell.textLabel?.text = items[indexPath.row].name
-//        cell.updateWithItem(item: items[indexPath.row])
-//        cell.listItem = items[indexPath.row]
-//        cell.delegate = self
+        //cell.textLabel?.text = items[indexPath.row].name
+        cell.updateWithItem(item: items[indexPath.row])
+        cell.listItem = items[indexPath.row]
+        cell.delegate = self
         return cell
     }
   
@@ -112,7 +112,7 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
         let title = checklists[section].name
         let view = UIView()
         view.bounds = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 30)
-        view.backgroundColor = UIColor.magenta
+        view.backgroundColor = UIColor.white
         
         // Title Label
         let titleLabel = UILabel()
