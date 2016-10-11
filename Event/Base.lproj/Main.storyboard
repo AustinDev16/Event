@@ -110,9 +110,47 @@
                     <view key="view" contentMode="scaleToFill" id="yD7-k2-4WF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="EhC-ik-uSV">
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Event name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l0h-WK-2JP">
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nxW-am-s7J">
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Ksn-VJ-GYX">
+                                        <date key="date" timeIntervalSinceReferenceDate="497895543.811746">
+                                            <!--2016-10-11 16:19:03 +0000-->
+                                        </date>
+                                    </datePicker>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Add a description." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="E2Y-nQ-efl">
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="EhC-ik-uSV" firstAttribute="top" secondItem="w1M-eL-sTj" secondAttribute="bottom" constant="8" id="7DB-IC-Upz"/>
+                            <constraint firstItem="fOS-Rj-Wcd" firstAttribute="top" secondItem="EhC-ik-uSV" secondAttribute="bottom" id="BDx-n9-vbp"/>
+                            <constraint firstAttribute="trailing" secondItem="EhC-ik-uSV" secondAttribute="trailing" constant="8" id="FC1-Y6-FS7"/>
+                            <constraint firstItem="EhC-ik-uSV" firstAttribute="leading" secondItem="yD7-k2-4WF" secondAttribute="leading" constant="8" id="nrd-rg-Ocq"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="VU0-DJ-ui7"/>
+                    <connections>
+                        <outlet property="datePicker" destination="Ksn-VJ-GYX" id="zyC-zF-ujy"/>
+                        <outlet property="descriptionField" destination="E2Y-nQ-efl" id="PCv-mw-kC3"/>
+                        <outlet property="eventNameField" destination="l0h-WK-2JP" id="W0V-am-Whl"/>
+                        <outlet property="locationField" destination="nxW-am-s7J" id="I54-cj-6nd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8XB-HU-cnc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
