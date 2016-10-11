@@ -10,17 +10,55 @@ import UIKit
 
 class EditAccountViewController: UIViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.title = "New account"
-        // Do any additional setup after loading the view.
+    var user: User?
+    let instructionLabel = UILabel()
+    let nameLabel = UILabel()
+    let nameTextField = UITextField()
+    let phoneNumberLabel = UILabel()
+    let phoneNumberTextField = UITextField()
+    
+    func addUIElementsToView(){
+        // Instruction Label
+        instructionLabel.translatesAutoresizingMaskIntoConstraints = false
+        instructionLabel.numberOfLines = 0
+        instructionLabel.textAlignment = .justified
+        instructionLabel.text = "Invite friends to events, be invited to events, and sync your events across your other iOS devices by creating an account."
+        self.view.addSubview(instructionLabel)
         
-        setupNavigationBarItems()
+        let instructionLabelTop = NSLayoutConstraint(item: instructionLabel, attribute: .top, relatedBy: .equal, toItem: self.topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 8)
+        let instructionLabelLeading = NSLayoutConstraint(item: instructionLabel, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leadingMargin, multiplier: 1.0, constant: 0.0)
+        let instructionLabelTrailing = NSLayoutConstraint(item: instructionLabel, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailingMargin, multiplier: 1.0, constant: 0.0)
+        
+        self.view.addConstraints([instructionLabelTop, instructionLabelLeading, instructionLabelTrailing])
+        
+        // Name Label
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.text = "Pick a screen name.\nThis is how your friends will identify you."
+        nameLabel.numberOfLines = 0
+        self.view.addSubview(nameLabel)
+        
+        let nameLabelTop = NSLayoutConstraint(item: nameLabel, attribute: .top, relatedBy: .equal, toItem: instructionLabel, attribute: .bottom, multiplier: 1.0, constant: 8.0)
+        let nameLabelLeading = NSLayoutConstraint(item: nameLabel, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leadingMargin, multiplier: 1.0, constant: 0)
+        let nameLabelTrailing = NSLayoutConstraint(item: nameLabel, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailingMargin, multiplier: 1.0, constant: 0)
+        self.view.addConstraints([nameLabelTop, nameLabelLeading, nameLabelTrailing])
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupNavigationBarItems()
+        setupViews()
+        addUIElementsToView()
+    }
+    
+    func setupViews(){
+        if let user = self.user {
+            self.title = "Edit Account"
+            nameLabel.text = user.name
+        } else {
+            self.title = "New Account"
+        }
     }
     
     // MARK: - NavigationBar
