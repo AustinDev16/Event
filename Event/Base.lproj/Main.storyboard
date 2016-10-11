@@ -101,7 +101,7 @@
         <!--Title-->
         <scene sceneID="1yI-pF-3jH">
             <objects>
-                <viewController id="FHb-qy-OzW" customClass="EditEventViewController" customModule="Event" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="editEventController" id="FHb-qy-OzW" customClass="EditEventViewController" customModule="Event" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="w1M-eL-sTj"/>
                         <viewControllerLayoutGuide type="bottom" id="fOS-Rj-Wcd"/>
@@ -370,7 +370,7 @@
         <!--Navigation Controller-->
         <scene sceneID="QnS-d2-Hyv">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kpC-R9-XxH" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="editEventNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="kpC-R9-XxH" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NWy-Yj-dNM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

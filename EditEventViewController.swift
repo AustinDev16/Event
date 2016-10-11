@@ -51,24 +51,31 @@ class EditEventViewController: UIViewController {
     }
     
     func doneButtonTapped(){
-        
-        if let event = self.event {
-            // Update Existing
-        } else {
-            // Create new
-            guard let name = eventNameField.text,
+        // Conditions for saving and editing
+        guard let name = eventNameField.text,
             name.characters.count > 0,
             let location = locationField.text,
             location.characters.count > 0,
             var detailDescription = descriptionField.text else { return }
+        
+        let date = datePicker.date as NSDate
+        
+        
+        if detailDescription == self.descriptionPlaceHolder {
+            detailDescription = ""
+        }
+        
+        if let event = self.event {
+            // Update Existing
+            event.name = name
+            event.location = location
+            event.detailDescription = detailDescription
+            event.date = date
             
-            if detailDescription == self.descriptionPlaceHolder {
-                detailDescription = ""
-            }
+            EventController.sharedController.eventHasBeenModified()
             
-            let date = datePicker.date as NSDate
-            
-            
+        } else {
+            // Create new             
             EventController.sharedController.addEvent(name: name, date: date, location: location, detailDescription: detailDescription)
         }
         

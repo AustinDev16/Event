@@ -18,7 +18,15 @@ class eventDetail_DetailViewController: UIViewController {
     weak var innerContentViewDelegate: InnerContentViewDelegate?
     
     func editEventButtonTapped(){
-        print("edit event button tapped")
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        
+        guard let navigationController = storyboard.instantiateViewController(withIdentifier: "editEventNavigationController") as? UINavigationController,
+        let editVC = navigationController.viewControllers.first as? EditEventViewController else { return }
+        
+        editVC.event = innerContentViewDelegate?.event
+
+        present(navigationController, animated: true, completion: nil)
+            
     }
     
     

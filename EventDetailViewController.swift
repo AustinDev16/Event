@@ -16,6 +16,7 @@ class EventDetailViewController: UIViewController, InnerContentViewDelegate {
     var newListButton = UIBarButtonItem()
     
     func editEventButtonTapped(){
+        
     }
     
     func inviteGuestsButtonTapped(){
@@ -97,7 +98,7 @@ class EventDetailViewController: UIViewController, InnerContentViewDelegate {
         
         segmentedControl.addTarget(self, action: #selector(segmentSelectionChanged(sender:)), for: .valueChanged)
         
-        segmentedControl.selectedSegmentIndex = 1
+        segmentedControl.selectedSegmentIndex = 0
         
         for viewController in self.innerContentViewControllers {
             addViewControllerAsChild(viewController: viewController)

@@ -74,8 +74,8 @@ class EventController {
         
     }
     
-    func modifyEvent(){
-        
+    func eventHasBeenModified(){
+        PersistenceController.sharedController.saveToPersistedStorage()
     }
     
 
