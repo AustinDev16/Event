@@ -14,7 +14,7 @@ public class User: NSManagedObject {
     
     convenience init(name: String,
                      phoneNumber: Int,
-                     userID: String,
+                     userID: String = NSUUID().uuidString,
                      context: NSManagedObjectContext = CoreDataStack.context) {
         self.init(context: context)
         
