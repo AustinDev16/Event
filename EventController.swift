@@ -49,6 +49,8 @@ class EventController {
     
     var events: [Event] {
         let request: NSFetchRequest<Event> = Event.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
         let moc = CoreDataStack.context
         
         do {
