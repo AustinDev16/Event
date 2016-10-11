@@ -161,11 +161,11 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
         titleLabel.text = title
         view.addSubview(titleLabel)
         
-        let titleLabelTop = NSLayoutConstraint(item: titleLabel, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: 0)
+        let titleLabelBottom = NSLayoutConstraint(item: titleLabel, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: 0)
         let titleLabelLeading = NSLayoutConstraint(item: titleLabel, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leadingMargin, multiplier: 1.0, constant: 0.0)
         let titleLabelTrailing = NSLayoutConstraint(item: titleLabel, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailingMargin, multiplier: 1.0, constant: 0.0)
         
-        view.addConstraints([titleLabelTop, titleLabelLeading, titleLabelTrailing])
+        view.addConstraints([titleLabelBottom, titleLabelLeading, titleLabelTrailing])
         
         // Add Button
         let addButton = UIButton(type: .custom)
@@ -174,18 +174,50 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
         addButton.setTitleColor(UIColor.black, for: .normal)
         addButton.translatesAutoresizingMaskIntoConstraints = false
         addButton.addTarget(self, action: #selector(self.addListItemButtonTapped), for: .touchUpInside)
-        
         view.addSubview(addButton)
         
         let addButtonBottom = NSLayoutConstraint(item: addButton, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0.0)
         let addButtonTrailing = NSLayoutConstraint(item: addButton, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailingMargin, multiplier: 1.0, constant: 0)
-        let addButtonWidth = NSLayoutConstraint(item: addButton, attribute: .width, relatedBy: .equal, toItem: addButton, attribute: .height, multiplier: 1.0, constant: 0)
+        let addButtonWidth = NSLayoutConstraint(item: addButton, attribute: .width, relatedBy: .greaterThanOrEqual, toItem: addButton, attribute: .height, multiplier: 1.0, constant: 0)
         view.addConstraints([addButtonBottom, addButtonTrailing, addButtonWidth])
+        
+        // Delete button
+        let trashButton = UIButton()
+        trashButton.tag = section
+        trashButton.setTitle("Delete", for: .normal)
+        trashButton.setTitleColor(UIColor.black, for: .normal)
+        trashButton.translatesAutoresizingMaskIntoConstraints = false
+        trashButton.addTarget(self, action: #selector(self.deleteCheckListTapped(sender:)), for: .touchUpInside)
+        view.addSubview(trashButton)
+        
+        let trashButtonBottom = NSLayoutConstraint(item: trashButton, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0)
+        let trashButtonTrailing = NSLayoutConstraint(item: trashButton, attribute: .trailing, relatedBy: .equal, toItem: addButton, attribute: .leadingMargin, multiplier: 1.0, constant: -20.0)
+        let trashButtonWidth = NSLayoutConstraint(item: trashButton, attribute: .width, relatedBy: .greaterThanOrEqual, toItem: trashButton, attribute: .height, multiplier: 1.0, constant: 0)
+        view.addConstraints([trashButtonBottom, trashButtonTrailing, trashButtonWidth])
         
         return view
     }
     
     // MARK: - Add Actions
+    func deleteCheckListTapped(sender: Any){
+        guard let button = sender as? UIButton,
+        let event = innerContentViewDelegate?.event,
+        let checklist = event.checklists[button.tag] as? Checklist else {return}
+        
+        let deleteAlertController = UIAlertController(title: "Are you sure?", message: "Deleting will erase this list and all of it's items.", preferredStyle: .actionSheet)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let delete = UIAlertAction(title: "Delete", style: .destructive) { (_) in
+            ChecklistController.sharedController.deleteCheckList(checklist: checklist, event: event)
+            self.tableView.reloadData()
+        }
+        deleteAlertController.addAction(cancel)
+        deleteAlertController.addAction(delete)
+        
+        self.present(deleteAlertController, animated: true, completion: nil)
+        
+        
+        
+    }
     
     func addListItemButtonTapped(sender: Any){
         guard let button = sender as? UIButton,

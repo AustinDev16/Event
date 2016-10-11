@@ -28,6 +28,7 @@ class ChecklistController {
         
         event.removeFromChecklists(checklist)
         checklist.managedObjectContext?.delete(checklist)
+        PersistenceController.sharedController.saveToPersistedStorage()
         
     }
     
