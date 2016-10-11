@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA1B021B1DAD44DC00CF8F78 /* EditEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B021A1DAD44DC00CF8F78 /* EditEventViewController.swift */; };
 		FAA573FB1DA6ACC8007CCBA2 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA573FA1DA6ACC7007CCBA2 /* EventViewController.swift */; };
 		FAA574031DA70D9D007CCBA2 /* ManageListsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA574021DA70D9D007CCBA2 /* ManageListsTableViewController.swift */; };
 		FABCE9811DAC06E500DEB1DF /* ListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABCE9801DAC06E500DEB1DF /* ListItemTableViewCell.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA1B021A1DAD44DC00CF8F78 /* EditEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditEventViewController.swift; sourceTree = "<group>"; };
 		FAA573FA1DA6ACC7007CCBA2 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventViewController.swift; path = Event/EventViewController.swift; sourceTree = "<group>"; };
 		FAA574021DA70D9D007CCBA2 /* ManageListsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManageListsTableViewController.swift; path = Event/ManageListsTableViewController.swift; sourceTree = "<group>"; };
 		FABCE9801DAC06E500DEB1DF /* ListItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListItemTableViewCell.swift; path = ../CustomListItemCells/CustomListItemCells/ListItemTableViewCell.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 		FAEF1B0C1DA8463300F2E64E /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				FA1B021A1DAD44DC00CF8F78 /* EditEventViewController.swift */,
 				FAA573FA1DA6ACC7007CCBA2 /* EventViewController.swift */,
 				FAA574021DA70D9D007CCBA2 /* ManageListsTableViewController.swift */,
 				FABCE9851DAC13DC00DEB1DF /* Event Detail Segmented */,
@@ -260,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAA573FB1DA6ACC8007CCBA2 /* EventViewController.swift in Sources */,
+				FA1B021B1DAD44DC00CF8F78 /* EditEventViewController.swift in Sources */,
 				FADEA3E21DA59014000A46C3 /* Event+CoreDataProperties.swift in Sources */,
 				FADEA3DE1DA59014000A46C3 /* Guest+CoreDataProperties.swift in Sources */,
 				FACF38C01DA84C9400513642 /* InnerContentViewDelegate.swift in Sources */,

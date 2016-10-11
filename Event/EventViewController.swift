@@ -37,7 +37,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         addEventAlertController.addAction(cancel)
         addEventAlertController.addAction(add)
         
-        self.present(addEventAlertController, animated: true, completion: nil)
+       // self.present(addEventAlertController, animated: true, completion: nil)
         
         
     }
