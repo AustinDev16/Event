@@ -44,7 +44,8 @@ class eventDetail_DetailViewController: UIViewController {
     func updateView(){
         guard let event = innerContentViewDelegate?.event else { return }
         eventName.text = event.name
-        dateLabel.text = String(describing: event.date)
+        let date = event.date as Date
+        dateLabel.text = EventController.dateFormatter.string(from: date)
         locationLabel.text = event.location
         descriptionLabel.text = event.detailDescription
         

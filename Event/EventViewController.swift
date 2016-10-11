@@ -31,6 +31,13 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
  
     // MARK: - Table view data source
 
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Upcoming events (\(EventController.sharedController.events.count))"
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -43,12 +50,12 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
         let event = EventController.sharedController.events[indexPath.row]
         
+        let date = event.date as Date
         cell.textLabel?.text = event.name
-        cell.detailTextLabel?.text = "\(event.detailDescription) \(event.date)"
+        cell.detailTextLabel?.text = "\(EventController.dateFormatter.string(from: date))"
         return cell
     }
     
-
 
     
     // Override to support editing the table view.
