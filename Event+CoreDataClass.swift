@@ -14,8 +14,8 @@ public class Event: NSManagedObject {
 
     convenience init(name: String,
                      date: NSDate = NSDate(),
-                     location: String = "",
-                     detailDescription: String = "",
+                     location: String,
+                     detailDescription: String,
                      eventID: String = NSUUID().uuidString,
                      hostID: String = "",
                      context: NSManagedObjectContext = CoreDataStack.context) {

@@ -11,36 +11,7 @@ import UIKit
 class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
-    @IBAction func newEventTapped(_ sender: AnyObject) {
-        
-        let addEventAlertController = UIAlertController(title: "Event", message: "Fill out event details", preferredStyle: .alert)
-        
-        addEventAlertController.addTextField { (textField) in
-            textField.placeholder = "Event name"
-        }
-        
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        let add = UIAlertAction(title: "Create event", style: .default) { (_) in
-            
-            
-            guard let textField = addEventAlertController.textFields?.first,
-               let nameText = textField.text,
-            nameText.characters.count > 0 else { return }
-            textField.resignFirstResponder()
-            EventController.sharedController.addEvent(name: nameText)
-            
-            self.tableView.reloadData()
-        }
-        
-        
-        addEventAlertController.addAction(cancel)
-        addEventAlertController.addAction(add)
-        
-       // self.present(addEventAlertController, animated: true, completion: nil)
-        
-        
-    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -51,6 +22,10 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         self.title = "Events"
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.tableView.reloadData()
     }
 
  

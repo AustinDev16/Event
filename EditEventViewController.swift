@@ -11,6 +11,8 @@ import UIKit
 class EditEventViewController: UIViewController {
     var event: Event?
     
+    private let descriptionPlaceHolder: String = "Add a description."
+    
     // MARK: - Outlets
     
     @IBOutlet weak var eventNameField: UITextField!
@@ -34,6 +36,7 @@ class EditEventViewController: UIViewController {
             datePicker.date = event.date as Date
         } else {
             self.title = "New Event"
+            descriptionField.text = self.descriptionPlaceHolder
         }
     }
     
@@ -53,8 +56,20 @@ class EditEventViewController: UIViewController {
             // Update Existing
         } else {
             // Create new
+            guard let name = eventNameField.text,
+            name.characters.count > 0,
+            let location = locationField.text,
+            location.characters.count > 0,
+            var detailDescription = descriptionField.text else { return }
+            
+            if detailDescription == self.descriptionPlaceHolder {
+                detailDescription = ""
+            }
+            
+            let date = datePicker.date as NSDate
             
             
+            EventController.sharedController.addEvent(name: name, date: date, location: location, detailDescription: detailDescription)
         }
         
         

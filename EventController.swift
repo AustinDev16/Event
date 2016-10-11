@@ -15,10 +15,10 @@ class EventController {
         
         if events.count ==  0 {
             
-            EventController.sharedController.addEvent(name: "Picnic")
-            let selectedEvent = EventController.sharedController.events[0]
-            EventController.sharedController.addGuest(userName: "Bill", event: selectedEvent)
-
+//            EventController.sharedController.addEvent(name: "Picnic")
+//            let selectedEvent = EventController.sharedController.events[0]
+//            EventController.sharedController.addGuest(userName: "Bill", event: selectedEvent)
+//
             
         }
         
@@ -46,12 +46,13 @@ class EventController {
         } catch {
             return []
         }
+        
     }
     
     // private Functions
     
-    func addEvent(name: String){
-        let _ = Event(name: name)
+    func addEvent(name: String, date: NSDate, location: String, detailDescription: String){
+        let _ = Event(name: name, date: date, location: location, detailDescription: detailDescription)
        
         
         PersistenceController.sharedController.saveToPersistedStorage()

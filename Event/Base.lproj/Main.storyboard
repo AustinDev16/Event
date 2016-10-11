@@ -86,7 +86,6 @@
                     <navigationItem key="navigationItem" title="Title" id="DQT-0B-ARl">
                         <barButtonItem key="rightBarButtonItem" title="New Event" id="Ljz-EA-LyS">
                             <connections>
-                                <action selector="newEventTapped:" destination="8Ji-CD-S4W" id="ziu-4Y-SjT"/>
                                 <segue destination="kpC-R9-XxH" kind="presentation" id="5sH-pW-QAE"/>
                             </connections>
                         </barButtonItem>

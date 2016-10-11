@@ -49,60 +49,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
     }
     
-    func modelTests(){
-        // create a user
-        
-        // create an event
-        
-        EventController.sharedController.addEvent(name: "Event 1")
-        
-        // create list(s)
-        let event = EventController.sharedController.events[1]
-        ChecklistController.sharedController.createNewCheckList(name: "To Do", event: event)
-        
-        ChecklistController.sharedController.createNewCheckList(name: "To Bring", event: event)
-        
-        // add item(s) to a checklist
-        let checklist = event.checklists[0] as! Checklist
-        
-        let newItem = ListItem(name: "Call caterer", responsibleParty: "Austin", checklist: checklist, event: event)
-        ChecklistController.sharedController.addItemToList(listItem: newItem, checklist: checklist)
-        
-        let newItem2 = ListItem(name: "Mow lawn", responsibleParty: "Austin", checklist: checklist, event: event)
-        ChecklistController.sharedController.addItemToList(listItem: newItem2, checklist: checklist)
-        
-        let newItem3 = ListItem(name: "Pick up dry cleaning", responsibleParty: "Austin", checklist: checklist, event: event)
-        ChecklistController.sharedController.addItemToList(listItem: newItem3, checklist: checklist)
-        
-        
-        
-        let checklist2 = event.checklists[1] as! Checklist
-        
-        let newItem4 = ListItem(name: "Potato Salad", responsibleParty: "Austin", checklist: checklist2, event: event)
-        ChecklistController.sharedController.addItemToList(listItem: newItem4, checklist: checklist2)
-        
-        
-        // invite others to event
-        
-        
-        
-        // complete a task
-        
-        // reassign a task
-        
-        // delete event
-        
-        
-        
-        // delete checklist
-        
-        // delete listItem
-        
-        
-        
-        
-    }
-
 
 
 
