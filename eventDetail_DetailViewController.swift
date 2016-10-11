@@ -46,7 +46,7 @@ class eventDetail_DetailViewController: UIViewController {
         eventName.text = event.name
         let date = event.date as Date
         dateLabel.text = EventController.dateFormatter.string(from: date)
-        locationLabel.text = event.location
+        locationLabel.text = "@ \(event.location)"
         descriptionLabel.text = event.detailDescription
         
     }

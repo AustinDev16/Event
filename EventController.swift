@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 
+
 class EventController {
     
     func createMockData(){
@@ -28,12 +29,13 @@ class EventController {
     // MARK: - Public properties
     static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
+        dateFormatter.dateStyle = .medium
         dateFormatter.timeStyle = .short
         dateFormatter.doesRelativeDateFormatting = true
         return dateFormatter
     }()
     
+
     // MARK: - Public functions
     static let sharedController = EventController()
     
