@@ -178,7 +178,7 @@
                                 </segments>
                             </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Prc-ag-fjz">
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -287,7 +287,6 @@
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vjD-n0-D4s">
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mockMap" translatesAutoresizingMaskIntoConstraints="NO" id="4gp-VX-RPb"/>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="eventName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r3e-Hw-nkw">
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                         <nil key="textColor"/>
@@ -386,7 +385,4 @@
             <point key="canvasLocation" x="3460" y="671.51424287856082"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="mockMap" width="1622" height="1320"/>
-    </resources>
 </document>

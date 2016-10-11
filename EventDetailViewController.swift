@@ -82,6 +82,8 @@ class EventDetailViewController: UIViewController, InnerContentViewDelegate {
         setUpSegmentedControl()
         self.definesPresentationContext = true
         
+        self.innerContentView.backgroundColor = UIColor.white
+        
         self.title = event?.name
         updateInnerContentView()
         setUpBarButtons()

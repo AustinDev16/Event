@@ -204,9 +204,9 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
         let event = innerContentViewDelegate?.event,
         let checklist = event.checklists[button.tag] as? Checklist else {return}
         
-        let deleteAlertController = UIAlertController(title: "Are you sure?", message: "Deleting will erase this list and all of it's items.", preferredStyle: .actionSheet)
+        let deleteAlertController = UIAlertController(title: nil, message: "Erasing this list will delete all of it's items.", preferredStyle: .actionSheet)
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        let delete = UIAlertAction(title: "Delete", style: .destructive) { (_) in
+        let delete = UIAlertAction(title: "Delete checklist", style: .destructive) { (_) in
             ChecklistController.sharedController.deleteCheckList(checklist: checklist, event: event)
             self.tableView.reloadData()
         }
