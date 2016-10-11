@@ -24,4 +24,24 @@ class UserController {
         guard let user = fetchedUser.first else { return nil }
         return user
     }
+    
+    func hasAccount() -> Bool {
+        return self.hostUser != nil
+    }
+    
+    func createNewAccount(){
+        
+    }
+    
+    func modifyCurrentAccount(){
+        
+    }
+    
+    func deleteAccount(){
+        
+    }
+    
+    func logoutOfAccount(){
+        
+    }
 }
