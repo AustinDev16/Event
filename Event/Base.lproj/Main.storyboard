@@ -27,6 +27,25 @@
             <point key="canvasLocation" x="1569" y="1095"/>
         </scene>
         <!--Title-->
+        <scene sceneID="xbM-Av-qQX">
+            <objects>
+                <viewController id="Kgz-PM-0va" customClass="EditAccountViewController" customModule="Event" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tEc-Kf-8m4"/>
+                        <viewControllerLayoutGuide type="bottom" id="nlu-yU-zXU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Jez-hy-Mpb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="Hbh-xv-Ny3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z0V-pd-hOe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3258.4000000000001" y="1758.1709145427287"/>
+        </scene>
+        <!--Title-->
         <scene sceneID="xgK-PR-C2l">
             <objects>
                 <viewController id="8Ji-CD-S4W" customClass="EventViewController" customModule="Event" customModuleProvider="target" sceneMemberID="viewController">
@@ -400,6 +419,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j6P-mQ-Xlv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3460" y="671.51424287856082"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="orn-tt-vC2">
+            <objects>
+                <navigationController storyboardIdentifier="editAccountNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="LDM-JH-EJ1" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="A6a-lf-DAg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Kgz-PM-0va" kind="relationship" relationship="rootViewController" id="zLB-Hc-Jjo"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="klk-Lp-YEA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2317.5999999999999" y="1757.2713643178413"/>
         </scene>
     </scenes>
 </document>

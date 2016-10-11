@@ -14,18 +14,33 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        checkForLoggedInUser()
         
         self.title = "Events"
     }
     
     override func viewDidAppear(_ animated: Bool) {
         self.tableView.reloadData()
+    }
+    
+    // MARK: - User Login 
+    func checkForLoggedInUser(){
+        if (UserController.sharedController.hasAccount() == false){
+            // direct to account page to setup an account
+            print("Launching setup account page")
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            guard let navigationController = storyboard.instantiateViewController(withIdentifier: "editAccountNavigationController") as? UINavigationController else { return }
+            
+            
+            self.present(navigationController, animated: true, completion: nil)
+            
+            //  let accountVC = navigationController.viewControllers.first as? EditAccountViewController
+        } else {
+            // updates from cloud to account
+        }
+
     }
 
  

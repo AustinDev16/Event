@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import CoreData
 
 class UserController {
@@ -30,6 +31,16 @@ class UserController {
     }
     
     func createNewAccount(){
+//        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+//        guard let navigationController = storyboard.instantiateViewController(withIdentifier: "editAccountNavigationController") as? UINavigationController else { return }
+//        
+//        .rootViewController?.present(navigationController, animated: true, completion: nil)
+//        
+//        //  let accountVC = navigationController.viewControllers.first as? EditAccountViewController
+        
+        
+        
+        
         
     }
     
