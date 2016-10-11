@@ -14,6 +14,7 @@ class eventDetail_DetailViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var hostedByLabel: UILabel!
     
     weak var innerContentViewDelegate: InnerContentViewDelegate?
     
@@ -44,6 +45,7 @@ class eventDetail_DetailViewController: UIViewController {
     func updateView(){
         guard let event = innerContentViewDelegate?.event else { return }
         eventName.text = event.name
+        hostedByLabel.text = "Hosted by \(event.hostID)"
         let date = event.date as Date
         dateLabel.text = EventController.dateFormatter.string(from: date)
         locationLabel.text = "@ \(event.location)"
