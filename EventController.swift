@@ -72,12 +72,20 @@ class EventController {
         PersistenceController.sharedController.saveToPersistedStorage()
     }
     
-    func addGuest(userName: String,
+    func addGuest(newGuest: DiscoverableUser,
                   event: Event){
-        
+        let userName = newGuest.userName
         
         let newGuest = Guest(userName: userName, eventID: event.eventID, event: event)
         event.addToGuests(newGuest)
+        
+        PersistenceController.sharedController.saveToPersistedStorage()
+    }
+    
+    func unInviteGuest(guest: Guest, event: Event){
+        
+        event.removeFromGuests(guest)
+        guest.managedObjectContext?.delete(guest)
         
         PersistenceController.sharedController.saveToPersistedStorage()
     }
