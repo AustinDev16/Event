@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditAccountViewController: UIViewController {
+class EditAccountViewController: UIViewController, UITextFieldDelegate {
     
     var user: User?
     let instructionLabel = UILabel()
@@ -22,7 +22,7 @@ class EditAccountViewController: UIViewController {
         instructionLabel.translatesAutoresizingMaskIntoConstraints = false
         instructionLabel.numberOfLines = 0
         instructionLabel.textAlignment = .justified
-        instructionLabel.text = "Invite friends to events, be invited to events, and sync your events across your other iOS devices by creating an account."
+        instructionLabel.text = "Invite friends to events. Sync events across other iOS devices. All with one account."
         self.view.addSubview(instructionLabel)
         
         let instructionLabelTop = NSLayoutConstraint(item: instructionLabel, attribute: .top, relatedBy: .equal, toItem: self.topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 8)
@@ -41,6 +41,48 @@ class EditAccountViewController: UIViewController {
         let nameLabelLeading = NSLayoutConstraint(item: nameLabel, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leadingMargin, multiplier: 1.0, constant: 0)
         let nameLabelTrailing = NSLayoutConstraint(item: nameLabel, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailingMargin, multiplier: 1.0, constant: 0)
         self.view.addConstraints([nameLabelTop, nameLabelLeading, nameLabelTrailing])
+        
+        // name text field
+        nameTextField.translatesAutoresizingMaskIntoConstraints = false
+        nameTextField.placeholder = "Screen name"
+        nameTextField.keyboardAppearance = .dark
+        nameTextField.borderStyle = .roundedRect
+        nameTextField.returnKeyType = .done
+        nameTextField.delegate = self
+        self.view.addSubview(nameTextField)
+        
+        let nameTFTop = NSLayoutConstraint(item: nameTextField, attribute: .top, relatedBy: .equal, toItem: nameLabel, attribute: .bottom, multiplier: 1.0, constant: 8.0)
+        let nameTFLeading = NSLayoutConstraint(item: nameTextField, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leadingMargin, multiplier: 1.0, constant: 0)
+        let nameTFTrailing = NSLayoutConstraint(item: nameTextField, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailingMargin, multiplier: 1.0, constant: 0)
+        self.view.addConstraints([nameTFTop, nameTFLeading, nameTFTrailing])
+        
+        // phone label
+        phoneNumberLabel.translatesAutoresizingMaskIntoConstraints = false
+        phoneNumberLabel.text = "Add your phone number.\nOther users will only see the last 4 digits when they search for you."
+        phoneNumberLabel.numberOfLines = 0
+        self.view.addSubview(phoneNumberLabel)
+        
+        let phoneLabelTop = NSLayoutConstraint(item: phoneNumberLabel, attribute: .top, relatedBy: .equal, toItem: nameTextField, attribute: .bottom, multiplier: 1.0, constant: 8.0)
+        let phoneLabelLeading = NSLayoutConstraint(item: phoneNumberLabel, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leadingMargin, multiplier: 1.0, constant: 0.0)
+        let phoneLabelTrailing = NSLayoutConstraint(item: phoneNumberLabel, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailingMargin, multiplier: 1.0, constant: 0)
+        self.view.addConstraints([phoneLabelTop, phoneLabelLeading, phoneLabelTrailing])
+        
+        //phone number field
+        phoneNumberTextField.translatesAutoresizingMaskIntoConstraints = false
+        phoneNumberTextField.placeholder = "Tap to add number"
+        phoneNumberTextField.keyboardType = .numberPad
+        phoneNumberTextField.returnKeyType = .done
+        phoneNumberTextField.delegate = self
+        phoneNumberTextField.keyboardAppearance = .dark
+        phoneNumberTextField.textAlignment = .center
+        self.view.addSubview(phoneNumberTextField)
+        
+        let phoneNumberTFTop = NSLayoutConstraint(item: phoneNumberTextField, attribute: .top, relatedBy: .equal, toItem: phoneNumberLabel, attribute: .bottom, multiplier: 1.0, constant: 8.0)
+        let phoneNumberTFLeading = NSLayoutConstraint(item: phoneNumberTextField, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leadingMargin, multiplier: 1.0, constant: 0.0)
+        let phoneNumberTFTrailing = NSLayoutConstraint(item: phoneNumberTextField, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailingMargin, multiplier: 1.0, constant: 0)
+        self.view.addConstraints([phoneNumberTFTop, phoneNumberTFLeading, phoneNumberTFTrailing])
+        
+        
     }
     
     
@@ -59,6 +101,13 @@ class EditAccountViewController: UIViewController {
         } else {
             self.title = "New Account"
         }
+    }
+    
+    // MARK: - TextField Delegate methods
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    
+        textField.resignFirstResponder()
+        return true
     }
     
     // MARK: - NavigationBar
