@@ -21,6 +21,7 @@ class GuestController {
         let filteredGuests = GuestController.guestsInCloud.filter {
         $0.userName.lowercased().contains(name.lowercased())
         }
+        
         return filteredGuests
     }
 }

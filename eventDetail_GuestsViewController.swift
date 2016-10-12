@@ -8,8 +8,10 @@
 
 import UIKit
 
-class eventDetail_GuestsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class eventDetail_GuestsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
     weak var innerContentViewDelegate: InnerContentViewDelegate?
+    
+    var searchController: UISearchController?
     
     
     var guests: [Guest] {
@@ -33,7 +35,30 @@ class eventDetail_GuestsViewController: UIViewController, UITableViewDelegate, U
         self.view.backgroundColor = UIColor.brown
         
         NotificationCenter.default.addObserver(self, selector: #selector(guestListUpdated), name: NSNotification.Name(rawValue: "guestListUpdated"), object: nil)
+        setupSearchController()
+    }
+    
+    // MARK: Search Results Methods
+    
+    func setupSearchController(){
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let resultsController = storyboard.instantiateViewController(withIdentifier: "inviteGuestsSearchController")
+        searchController = UISearchController(searchResultsController: resultsController)
         
+        guard let searchController = searchController else { return }
+        searchController.searchResultsUpdater = self
+        
+        searchController.hidesNavigationBarDuringPresentation = true
+        searchController.searchBar.placeholder = "Search for a friend"
+        self.definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let name = searchController.searchBar.text,
+            let resultsController = searchController.searchResultsController as? InviteGuestSearchTableViewController else { return}
+        resultsController.filteredResults = GuestController.searchForGuest(name: name)
+        resultsController.tableView.reloadData()
     }
     
     func guestListUpdated(){

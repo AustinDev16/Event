@@ -33,6 +33,7 @@
 		FAE549341DAE9B2400CBF542 /* InviteGuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE549331DAE9B2400CBF542 /* InviteGuestViewController.swift */; };
 		FAE549361DAE9CDC00CBF542 /* DiscoverableUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE549351DAE9CDC00CBF542 /* DiscoverableUser.swift */; };
 		FAE549381DAEA1D600CBF542 /* GuestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE549371DAEA1D600CBF542 /* GuestController.swift */; };
+		FAE5493A1DAEA54C00CBF542 /* InviteGuestSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE549391DAEA54C00CBF542 /* InviteGuestSearchTableViewController.swift */; };
 		FAE8AE0D1DA54BC3000F1A34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE8AE0C1DA54BC3000F1A34 /* AppDelegate.swift */; };
 		FAE8AE121DA54BC3000F1A34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE8AE101DA54BC3000F1A34 /* Main.storyboard */; };
 		FAE8AE141DA54BC3000F1A34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE8AE131DA54BC3000F1A34 /* Assets.xcassets */; };
@@ -70,6 +71,7 @@
 		FAE549331DAE9B2400CBF542 /* InviteGuestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteGuestViewController.swift; sourceTree = "<group>"; };
 		FAE549351DAE9CDC00CBF542 /* DiscoverableUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverableUser.swift; sourceTree = "<group>"; };
 		FAE549371DAEA1D600CBF542 /* GuestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuestController.swift; sourceTree = "<group>"; };
+		FAE549391DAEA54C00CBF542 /* InviteGuestSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteGuestSearchTableViewController.swift; sourceTree = "<group>"; };
 		FAE8AE091DA54BC3000F1A34 /* Event.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Event.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAE8AE0C1DA54BC3000F1A34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAE8AE111DA54BC3000F1A34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				FAEF1B061DA839EA00F2E64E /* eventDetail_DetailViewController.swift */,
 				FAEF1B081DA83A0000F2E64E /* eventDetail_ListsViewController.swift */,
 				FAEF1B0A1DA83A0C00F2E64E /* eventDetail_GuestsViewController.swift */,
+				FAE549391DAEA54C00CBF542 /* InviteGuestSearchTableViewController.swift */,
 			);
 			name = "Event Detail Segmented";
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				FADEA3DB1DA59014000A46C3 /* User+CoreDataClass.swift in Sources */,
 				FADEA3DC1DA59014000A46C3 /* User+CoreDataProperties.swift in Sources */,
 				FAEF1B091DA83A0000F2E64E /* eventDetail_ListsViewController.swift in Sources */,
+				FAE5493A1DAEA54C00CBF542 /* InviteGuestSearchTableViewController.swift in Sources */,
 				FADEA3DF1DA59014000A46C3 /* Checklist+CoreDataClass.swift in Sources */,
 				FADEA3EA1DA595DD000A46C3 /* EventController.swift in Sources */,
 				FA1B021F1DAD949F00CF8F78 /* EditAccountViewController.swift in Sources */,
