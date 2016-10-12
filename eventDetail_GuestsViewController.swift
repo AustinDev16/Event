@@ -8,7 +8,7 @@
 
 import UIKit
 
-class eventDetail_GuestsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
+class eventDetail_GuestsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate {
     weak var innerContentViewDelegate: InnerContentViewDelegate?
     
     var searchController: UISearchController?
@@ -47,10 +47,14 @@ class eventDetail_GuestsViewController: UIViewController, UITableViewDelegate, U
         
         guard let searchController = searchController else { return }
         searchController.searchResultsUpdater = self
+        searchController.delegate = self
         
         searchController.hidesNavigationBarDuringPresentation = true
+        searchController.dimsBackgroundDuringPresentation = true
         searchController.searchBar.placeholder = "Search for a friend"
+        searchController.searchBar.delegate = self
         self.definesPresentationContext = true
+       
         tableView.tableHeaderView = searchController.searchBar
     }
     
@@ -61,6 +65,11 @@ class eventDetail_GuestsViewController: UIViewController, UITableViewDelegate, U
         resultsController.tableView.reloadData()
     }
     
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        print("cancel tapped")
+    }
+    
+    //MARK: - OTHER methods
     func guestListUpdated(){
         self.tableView.reloadData()
     }
