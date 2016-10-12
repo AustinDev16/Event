@@ -30,22 +30,22 @@ class UserController {
         return self.hostUser != nil
     }
     
-    func createNewAccount(){
-//        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-//        guard let navigationController = storyboard.instantiateViewController(withIdentifier: "editAccountNavigationController") as? UINavigationController else { return }
-//        
-//        .rootViewController?.present(navigationController, animated: true, completion: nil)
-//        
-//        //  let accountVC = navigationController.viewControllers.first as? EditAccountViewController
+    func createNewAccount(name: String, phoneNumber: String){
+
         
+        let _ = User(name: name, phoneNumber: phoneNumber)
+        
+        PersistenceController.sharedController.saveToPersistedStorage()
         
         
         
         
     }
     
-    func modifyCurrentAccount(){
-        
+    func modifyCurrentAccount(user: User, name: String, phoneNumber: String){
+        user.name = name
+        user.phoneNumber = phoneNumber
+        PersistenceController.sharedController.saveToPersistedStorage()
     }
     
     func deleteAccount(){

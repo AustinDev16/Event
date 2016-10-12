@@ -98,6 +98,7 @@ class EditAccountViewController: UIViewController, UITextFieldDelegate {
         if let user = self.user {
             self.title = "Edit Account"
             nameLabel.text = user.name
+            phoneNumberTextField.text = String(user.phoneNumber)
         } else {
             self.title = "New Account"
         }
@@ -120,6 +121,24 @@ class EditAccountViewController: UIViewController, UITextFieldDelegate {
     }
     
     func createNewAccount(){
+        guard let name = nameTextField.text,
+            let phoneNumber = phoneNumberTextField.text else {return}
+        
+        if name.characters.count == 0 || phoneNumber.characters.count != 10 {
+            let characterAlert = UIAlertController(title: "Warning:", message: "Make sure you entered a name and 10 digit phone number.", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+            characterAlert.addAction(ok)
+            self.present(characterAlert, animated: true, completion: nil)
+        }
+        if let user = self.user {
+            // update User account
+            UserController.sharedController.modifyCurrentAccount(user: user, name: name, phoneNumber: phoneNumber)
+        } else {
+            // create new account
+            UserController.sharedController.createNewAccount(name: name, phoneNumber: phoneNumber)
+            
+            
+        }
         
     }
     

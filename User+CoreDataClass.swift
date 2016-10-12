@@ -13,13 +13,13 @@ import CoreData
 public class User: NSManagedObject {
     
     convenience init(name: String,
-                     phoneNumber: Int,
+                     phoneNumber: String,
                      userID: String = NSUUID().uuidString,
                      context: NSManagedObjectContext = CoreDataStack.context) {
         self.init(context: context)
         
         self.name = name
-        self.phoneNumber = Int16(phoneNumber)
+        self.phoneNumber = phoneNumber
         self.userID = userID
     }
 
