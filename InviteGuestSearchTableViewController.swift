@@ -9,6 +9,8 @@
 import UIKit
 
 class InviteGuestSearchTableViewController: UITableViewController {
+    
+    weak var inviteGuestDelegate: InviteGuestDelegate?
     var filteredResults: [DiscoverableUser] = []
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +37,8 @@ class InviteGuestSearchTableViewController: UITableViewController {
         let guest = filteredResults[indexPath.row]
         
         cell.updateWithDiscoverableGuest(user: guest)
+        cell.discoverableUser = guest
+        cell.inviteGuestDelegate = self.inviteGuestDelegate
 //        // Configure the cell...
         
         return cell

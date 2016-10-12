@@ -82,7 +82,7 @@ class EventController {
         PersistenceController.sharedController.saveToPersistedStorage()
     }
     
-    func unInviteGuest(guest: Guest, event: Event){
+    func removeGuest(guest: Guest, event: Event){
         
         event.removeFromGuests(guest)
         guest.managedObjectContext?.delete(guest)

@@ -13,6 +13,8 @@ class DiscoverableUserTableViewCell: UITableViewCell {
     var nameLabel = UILabel()
     var phoneNumberLabel = UILabel()
     var inviteButton = UIButton(type: .custom)
+    weak var inviteGuestDelegate: InviteGuestDelegate?
+    var discoverableUser: DiscoverableUser?
     
     func updateWithDiscoverableGuest(user: DiscoverableUser){
         addSubViews()
@@ -54,9 +56,7 @@ class DiscoverableUserTableViewCell: UITableViewCell {
     }
     
     func inviteButtonTapped(){
-        print("invite tapped")
-        
-        inviteButton.setTitle("Invited!", for: .normal)
+        inviteGuestDelegate?.inviteGuestButtonTapped(cell: self)
     }
     
     

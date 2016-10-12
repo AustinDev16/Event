@@ -8,7 +8,9 @@
 
 import UIKit
 
-class eventDetail_GuestsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate {
+class eventDetail_GuestsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, InviteGuestDelegate, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate {
+    
+    
     weak var innerContentViewDelegate: InnerContentViewDelegate?
     
     var searchController: UISearchController?
@@ -38,6 +40,7 @@ class eventDetail_GuestsViewController: UIViewController, UITableViewDelegate, U
         setupSearchController()
     }
     
+    
     // MARK: Search Results Methods
     
     func setupSearchController(){
@@ -62,11 +65,23 @@ class eventDetail_GuestsViewController: UIViewController, UITableViewDelegate, U
         guard let name = searchController.searchBar.text,
             let resultsController = searchController.searchResultsController as? InviteGuestSearchTableViewController else { return}
         resultsController.filteredResults = GuestController.searchForGuest(name: name)
+        resultsController.inviteGuestDelegate = self
         resultsController.tableView.reloadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         print("cancel tapped")
+    }
+    
+    // MARK: - InviteGuestDelegate
+    func inviteGuestButtonTapped(cell: DiscoverableUserTableViewCell) {
+        guard let event = innerContentViewDelegate?.event,
+        let user = cell.discoverableUser else { return }
+        EventController.sharedController.addGuest(newGuest: user, event: event)
+        
+        cell.inviteButton.setTitle("Invited!", for: .normal)
+        
+        self.tableView.reloadData()
     }
     
     //MARK: - OTHER methods
@@ -129,6 +144,31 @@ class eventDetail_GuestsViewController: UIViewController, UITableViewDelegate, U
         case 0: return "Attending (\(confirmedGuests.count))"
         case 1: return "Invited (\(unConfirmedGuests.count))"
         default: return ""
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "Uninvite"
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            guard let event = self.innerContentViewDelegate?.event else {return}
+            var guest: Guest
+            switch indexPath.section {
+            case 0:
+                guest = self.confirmedGuests[indexPath.row]
+            case 1:
+                guest = self.unConfirmedGuests[indexPath.row]
+            default:
+                return
+            }
+            EventController.sharedController.removeGuest(guest: guest, event: event)
+            
+
+            //tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.reloadData()
+            
         }
     }
 
