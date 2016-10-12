@@ -31,9 +31,10 @@ class InviteGuestSearchTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "inviteGuestCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "inviteGuestCell", for: indexPath) as? DiscoverableUserTableViewCell else { return UITableViewCell() }
         let guest = filteredResults[indexPath.row]
-        cell.textLabel?.text = guest.userName
+        
+        cell.updateWithDiscoverableGuest(user: guest)
 //        // Configure the cell...
         
         return cell
