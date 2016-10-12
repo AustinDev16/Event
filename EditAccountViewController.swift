@@ -97,7 +97,7 @@ class EditAccountViewController: UIViewController, UITextFieldDelegate {
     func setupViews(){
         if let user = self.user {
             self.title = "Edit Account"
-            nameLabel.text = user.name
+            nameTextField.text = user.name
             phoneNumberTextField.text = String(user.phoneNumber)
         } else {
             self.title = "New Account"
@@ -140,9 +140,15 @@ class EditAccountViewController: UIViewController, UITextFieldDelegate {
             
         }
         
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
+        
     }
     
     func cancelNewAccountTapped(){
+        
+        if (self.user != nil) {
+            self.presentingViewController?.dismiss(animated: true, completion: nil)
+        } else {
         let cancelAlert = UIAlertController(title: "Are you sure?", message: "You can set up or edit your account later by tapping My Account. You won't be able to invite friends or sync to the cloud without an account.", preferredStyle: .actionSheet)
         let stayOnPage = UIAlertAction(title: "Keep setting up my account", style: .default, handler: nil)
         let setUpLater = UIAlertAction(title: "Set up later", style: .destructive) { (_) in
@@ -155,7 +161,7 @@ class EditAccountViewController: UIViewController, UITextFieldDelegate {
         
         self.present(cancelAlert, animated: true, completion: nil)
     }
-    
+    }
     /*
      // MARK: - Navigation
      

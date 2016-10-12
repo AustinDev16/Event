@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--My Account-->
+        <!--Title-->
         <scene sceneID="2Qb-G3-NKL">
             <objects>
-                <viewController id="tx2-Gs-GVU" sceneMemberID="viewController">
+                <viewController id="tx2-Gs-GVU" customClass="MyAccountViewController" customModule="Event" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zIM-DY-xzg"/>
                         <viewControllerLayoutGuide type="bottom" id="u23-Qr-m74"/>
@@ -18,13 +18,74 @@
                     <view key="view" contentMode="scaleToFill" id="Q6a-gh-rCe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="KyZ-H2-a3J">
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="sYv-sm-0yW">
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Screen Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNp-7s-3F7">
+                                                <frame key="frameInset" minX="60" width="108" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Phone Number:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fsy-WK-YR2">
+                                                <frame key="frameInset" minX="48" minY="37" width="120" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="UserID:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDM-lO-t9Z">
+                                                <frame key="frameInset" minX="111" minY="73" width="57" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="SJR-6v-12K">
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" ambiguous="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H0m-lI-rn8">
+                                                <frame key="frameInset" width="42" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whI-1B-Hns">
+                                                <frame key="frameInset" minY="37" width="42" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMg-tw-25q">
+                                                <frame key="frameInset" minY="73" width="42" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="u23-Qr-m74" firstAttribute="top" relation="greaterThanOrEqual" secondItem="KyZ-H2-a3J" secondAttribute="bottom" id="5Ep-av-EGo"/>
+                            <constraint firstItem="KyZ-H2-a3J" firstAttribute="top" secondItem="zIM-DY-xzg" secondAttribute="bottom" constant="16" id="7aS-Jj-zPo"/>
+                            <constraint firstItem="KyZ-H2-a3J" firstAttribute="leading" secondItem="Q6a-gh-rCe" secondAttribute="leadingMargin" id="UmR-Tb-vts"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KyZ-H2-a3J" secondAttribute="trailing" id="kGx-Es-Kme"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My Account" id="Uzz-F3-Qxm"/>
+                    <navigationItem key="navigationItem" title="Title" id="mSC-b6-rNg"/>
+                    <connections>
+                        <outlet property="phoneNumberLabel" destination="whI-1B-Hns" id="8Ki-Vu-a6J"/>
+                        <outlet property="screenNameLabel" destination="H0m-lI-rn8" id="etp-yn-vAa"/>
+                        <outlet property="userIDLabel" destination="LMg-tw-25q" id="rmq-0e-FUL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lO7-va-eZd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1569" y="1095"/>
+            <point key="canvasLocation" x="2508" y="1094.3028485757122"/>
         </scene>
         <!--Title-->
         <scene sceneID="xbM-Av-qQX">
@@ -172,7 +233,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8XB-HU-cnc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4399.1999999999998" y="671.51424287856082"/>
+            <point key="canvasLocation" x="5338.3999999999996" y="671.51424287856082"/>
         </scene>
         <!--Event Detail View Controller-->
         <scene sceneID="IFl-UQ-04i">
@@ -376,7 +437,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="fVv-ho-FPu" kind="relationship" relationship="viewControllers" id="Hh6-fa-pEu"/>
-                        <segue destination="tx2-Gs-GVU" kind="relationship" relationship="viewControllers" id="18v-X7-g8K"/>
+                        <segue destination="ecA-DR-lmg" kind="relationship" relationship="viewControllers" id="18v-X7-g8K"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0v1-EP-Lyw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -418,7 +479,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j6P-mQ-Xlv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3460" y="671.51424287856082"/>
+            <point key="canvasLocation" x="4399.1999999999998" y="671.51424287856082"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="orn-tt-vC2">
@@ -437,6 +498,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="klk-Lp-YEA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2317.5999999999999" y="1757.2713643178413"/>
+        </scene>
+        <!--My Account-->
+        <scene sceneID="ouG-AA-CEN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ecA-DR-lmg" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="My Account" id="Uzz-F3-Qxm"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rkR-60-Yfz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="tx2-Gs-GVU" kind="relationship" relationship="rootViewController" id="rHi-Dq-PhU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tRW-zy-hlj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1568.8" y="1094.3028485757122"/>
         </scene>
     </scenes>
 </document>
