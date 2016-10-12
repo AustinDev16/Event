@@ -139,7 +139,7 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
     
     // MARK: - Header views
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40.0
+        return 30.0
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -153,7 +153,7 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
         let title = checklists[section].name
         let view = UIView()
         view.bounds = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 30)
-        view.backgroundColor = UIColor.cyan
+        view.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
         
         // Title Label
         let titleLabel = UILabel()
@@ -161,11 +161,11 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
         titleLabel.text = title
         view.addSubview(titleLabel)
         
-        let titleLabelBottom = NSLayoutConstraint(item: titleLabel, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: 0)
+        let titleLabelCenterY = NSLayoutConstraint(item: titleLabel, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1.0, constant: 0)
         let titleLabelLeading = NSLayoutConstraint(item: titleLabel, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leadingMargin, multiplier: 1.0, constant: 0.0)
         let titleLabelTrailing = NSLayoutConstraint(item: titleLabel, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailingMargin, multiplier: 1.0, constant: 0.0)
         
-        view.addConstraints([titleLabelBottom, titleLabelLeading, titleLabelTrailing])
+        view.addConstraints([titleLabelCenterY, titleLabelLeading, titleLabelTrailing])
         
         // Add Button
         let addButton = UIButton(type: .custom)
@@ -176,10 +176,10 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
         addButton.addTarget(self, action: #selector(self.addListItemButtonTapped), for: .touchUpInside)
         view.addSubview(addButton)
         
-        let addButtonBottom = NSLayoutConstraint(item: addButton, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0.0)
+        let addButtonCenterY = NSLayoutConstraint(item: addButton, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1.0, constant: 0.0)
         let addButtonTrailing = NSLayoutConstraint(item: addButton, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailingMargin, multiplier: 1.0, constant: 0)
         let addButtonWidth = NSLayoutConstraint(item: addButton, attribute: .width, relatedBy: .greaterThanOrEqual, toItem: addButton, attribute: .height, multiplier: 1.0, constant: 0)
-        view.addConstraints([addButtonBottom, addButtonTrailing, addButtonWidth])
+        view.addConstraints([addButtonCenterY, addButtonTrailing, addButtonWidth])
         
         // Delete button
         let trashButton = UIButton()
@@ -190,10 +190,10 @@ class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
         trashButton.addTarget(self, action: #selector(self.deleteCheckListTapped(sender:)), for: .touchUpInside)
         view.addSubview(trashButton)
         
-        let trashButtonBottom = NSLayoutConstraint(item: trashButton, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1.0, constant: 0)
+        let trashButtonCenterY = NSLayoutConstraint(item: trashButton, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1.0, constant: 0)
         let trashButtonTrailing = NSLayoutConstraint(item: trashButton, attribute: .trailing, relatedBy: .equal, toItem: addButton, attribute: .leadingMargin, multiplier: 1.0, constant: -20.0)
         let trashButtonWidth = NSLayoutConstraint(item: trashButton, attribute: .width, relatedBy: .greaterThanOrEqual, toItem: trashButton, attribute: .height, multiplier: 1.0, constant: 0)
-        view.addConstraints([trashButtonBottom, trashButtonTrailing, trashButtonWidth])
+        view.addConstraints([trashButtonCenterY, trashButtonTrailing, trashButtonWidth])
         
         return view
     }
