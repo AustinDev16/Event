@@ -249,7 +249,7 @@
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oUn-Ch-qhD">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="173" id="Bgl-TQ-3T4"/>
+                                    <constraint firstAttribute="width" constant="300" id="Bgl-TQ-3T4"/>
                                 </constraints>
                                 <segments>
                                     <segment title="Detail"/>

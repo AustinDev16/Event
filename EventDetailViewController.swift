@@ -102,6 +102,7 @@ class EventDetailViewController: UIViewController, InnerContentViewDelegate {
         
         segmentedControl.selectedSegmentIndex = 0
         
+        
         for viewController in self.innerContentViewControllers {
             addViewControllerAsChild(viewController: viewController)
         }
