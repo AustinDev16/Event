@@ -12,14 +12,14 @@ class EventDetailViewController: UIViewController, InnerContentViewDelegate {
     
     var event: Event?
     var editEventButton = UIBarButtonItem()
-    var inviteGuestsButton = UIBarButtonItem()
+    var groupGuestsButton = UIBarButtonItem()
     var newListButton = UIBarButtonItem()
     
     func editEventButtonTapped(){
         
     }
     
-    func inviteGuestsButtonTapped(){
+    func groupsGuestsButtonTapped(){
     }
     
     func newListButtonTapped(){
@@ -32,10 +32,10 @@ class EventDetailViewController: UIViewController, InnerContentViewDelegate {
         editEventButton.target = detailViewController
         editEventButton.action = #selector(editEventButtonTapped)
         
-        inviteGuestsButton.title = "Invite"
-        inviteGuestsButton.style = .plain
-        inviteGuestsButton.target = guestsViewController
-        inviteGuestsButton.action = #selector(inviteGuestsButtonTapped)
+        groupGuestsButton.title = "Groups"
+        groupGuestsButton.style = .plain
+        groupGuestsButton.target = guestsViewController
+        groupGuestsButton.action = #selector(groupsGuestsButtonTapped)
         
         newListButton.title = "New List"
         newListButton.style = .plain
@@ -156,7 +156,7 @@ class EventDetailViewController: UIViewController, InnerContentViewDelegate {
         case 1:
             self.navigationItem.rightBarButtonItem = newListButton
         case 2:
-            self.navigationItem.rightBarButtonItem = inviteGuestsButton
+            self.navigationItem.rightBarButtonItem = nil//groupGuestsButton
         default:
             return
         }

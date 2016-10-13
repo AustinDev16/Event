@@ -54,7 +54,7 @@ class eventDetail_GuestsViewController: UIViewController, UITableViewDelegate, U
         
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = true
-        searchController.searchBar.placeholder = "Search for a friend"
+        searchController.searchBar.placeholder = "Invite a friend"
         searchController.searchBar.delegate = self
         self.definesPresentationContext = true
        
