@@ -11,6 +11,9 @@
 		FA1B021D1DAD8C3200CF8F78 /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B021C1DAD8C3200CF8F78 /* UserController.swift */; };
 		FA1B021F1DAD949F00CF8F78 /* EditAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B021E1DAD949F00CF8F78 /* EditAccountViewController.swift */; };
 		FA1B02211DADC91000CF8F78 /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B02201DADC91000CF8F78 /* MyAccountViewController.swift */; };
+		FA8824D21DB007C900FCF870 /* CloudKitSyncController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8824D11DB007C900FCF870 /* CloudKitSyncController.swift */; };
+		FA8824D41DB0081000FCF870 /* CloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8824D31DB0081000FCF870 /* CloudKitManager.swift */; };
+		FA8824D81DB01B7500FCF870 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA8824D71DB01B7500FCF870 /* CloudKit.framework */; };
 		FAA573FB1DA6ACC8007CCBA2 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA573FA1DA6ACC7007CCBA2 /* EventViewController.swift */; };
 		FABCE9811DAC06E500DEB1DF /* ListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABCE9801DAC06E500DEB1DF /* ListItemTableViewCell.swift */; };
 		FABCE9841DAC074300DEB1DF /* ListItemDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABCE9831DAC074300DEB1DF /* ListItemDelegate.swift */; };
@@ -51,6 +54,10 @@
 		FA1B021C1DAD8C3200CF8F78 /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		FA1B021E1DAD949F00CF8F78 /* EditAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAccountViewController.swift; sourceTree = "<group>"; };
 		FA1B02201DADC91000CF8F78 /* MyAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
+		FA8824D11DB007C900FCF870 /* CloudKitSyncController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitSyncController.swift; sourceTree = "<group>"; };
+		FA8824D31DB0081000FCF870 /* CloudKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitManager.swift; sourceTree = "<group>"; };
+		FA8824D51DB01B6A00FCF870 /* Event.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Event.entitlements; sourceTree = "<group>"; };
+		FA8824D71DB01B7500FCF870 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		FAA573FA1DA6ACC7007CCBA2 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventViewController.swift; path = Event/EventViewController.swift; sourceTree = "<group>"; };
 		FABCE9801DAC06E500DEB1DF /* ListItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListItemTableViewCell.swift; path = ../CustomListItemCells/CustomListItemCells/ListItemTableViewCell.swift; sourceTree = "<group>"; };
 		FABCE9831DAC074300DEB1DF /* ListItemDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListItemDelegate.swift; path = ../CustomListItemCells/CustomListItemCells/ListItemDelegate.swift; sourceTree = "<group>"; };
@@ -93,12 +100,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA8824D81DB01B7500FCF870 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA8824D61DB01B7500FCF870 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FA8824D71DB01B7500FCF870 /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FABCE9821DAC06F500DEB1DF /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +161,7 @@
 		FADEA3E61DA593BA000A46C3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FA8824D31DB0081000FCF870 /* CloudKitManager.swift */,
 				FAE5493D1DAECB8A00CBF542 /* InviteGuestDelegate.swift */,
 				FABCE9831DAC074300DEB1DF /* ListItemDelegate.swift */,
 				FACF38BF1DA84C9400513642 /* InnerContentViewDelegate.swift */,
@@ -157,6 +174,7 @@
 		FADEA3EB1DA5A055000A46C3 /* Model Controller */ = {
 			isa = PBXGroup;
 			children = (
+				FA8824D11DB007C900FCF870 /* CloudKitSyncController.swift */,
 				FAE549371DAEA1D600CBF542 /* GuestController.swift */,
 				FA1B021C1DAD8C3200CF8F78 /* UserController.swift */,
 				FADEA3EC1DA5A0D0000A46C3 /* PersistenceController.swift */,
@@ -172,6 +190,7 @@
 			children = (
 				FAE8AE0B1DA54BC3000F1A34 /* Event */,
 				FAE8AE0A1DA54BC3000F1A34 /* Products */,
+				FA8824D61DB01B7500FCF870 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -186,6 +205,7 @@
 		FAE8AE0B1DA54BC3000F1A34 /* Event */ = {
 			isa = PBXGroup;
 			children = (
+				FA8824D51DB01B6A00FCF870 /* Event.entitlements */,
 				FABCE9821DAC06F500DEB1DF /* View */,
 				FAEF1B0C1DA8463300F2E64E /* View Controller */,
 				FADEA3EB1DA5A055000A46C3 /* Model Controller */,
@@ -247,6 +267,14 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = QYV5ZZB7LD;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -309,8 +337,10 @@
 				FADEA3ED1DA5A0D0000A46C3 /* PersistenceController.swift in Sources */,
 				FAEF1B071DA839EA00F2E64E /* EventDetail_DetailViewController.swift in Sources */,
 				FABCE9811DAC06E500DEB1DF /* ListItemTableViewCell.swift in Sources */,
+				FA8824D21DB007C900FCF870 /* CloudKitSyncController.swift in Sources */,
 				FADEA3DB1DA59014000A46C3 /* User+CoreDataClass.swift in Sources */,
 				FADEA3DC1DA59014000A46C3 /* User+CoreDataProperties.swift in Sources */,
+				FA8824D41DB0081000FCF870 /* CloudKitManager.swift in Sources */,
 				FAEF1B091DA83A0000F2E64E /* EventDetail_ListsViewController.swift in Sources */,
 				FAE5493A1DAEA54C00CBF542 /* InviteGuestSearchTableViewController.swift in Sources */,
 				FADEA3DF1DA59014000A46C3 /* Checklist+CoreDataClass.swift in Sources */,
@@ -443,6 +473,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Event/Event.entitlements;
 				DEVELOPMENT_TEAM = QYV5ZZB7LD;
 				INFOPLIST_FILE = Event/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -456,6 +487,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Event/Event.entitlements;
 				DEVELOPMENT_TEAM = QYV5ZZB7LD;
 				INFOPLIST_FILE = Event/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
