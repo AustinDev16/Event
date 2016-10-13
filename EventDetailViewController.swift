@@ -50,24 +50,24 @@ class EventDetailViewController: UIViewController, InnerContentViewDelegate {
     
     // MARK: - innerContentView Properties
     
-    lazy var detailViewController: eventDetail_DetailViewController = {
+    lazy var detailViewController: EventDetail_DetailViewController = {
        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "eventDetail_Detail") as! eventDetail_DetailViewController
+        let viewController = storyboard.instantiateViewController(withIdentifier: "eventDetail_Detail") as! EventDetail_DetailViewController
         
         viewController.innerContentViewDelegate = self
         return viewController
     }()
     
-    lazy var listsViewController: eventDetail_ListsViewController = {
+    lazy var listsViewController: EventDetail_ListsViewController = {
        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "eventDetail_Lists") as! eventDetail_ListsViewController
+        let viewController = storyboard.instantiateViewController(withIdentifier: "eventDetail_Lists") as! EventDetail_ListsViewController
         viewController.innerContentViewDelegate = self
         return viewController
     }()
     
-    lazy var guestsViewController: eventDetail_GuestsViewController = {
+    lazy var guestsViewController: EventDetail_GuestsViewController = {
        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "eventDetail_Guests") as! eventDetail_GuestsViewController
+        let viewController = storyboard.instantiateViewController(withIdentifier: "eventDetail_Guests") as! EventDetail_GuestsViewController
         viewController.innerContentViewDelegate = self
         return viewController
     }()

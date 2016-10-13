@@ -282,7 +282,7 @@
         <!--Event Detail Lists View Controller-->
         <scene sceneID="Fwq-ak-q2t">
             <objects>
-                <viewController storyboardIdentifier="eventDetail_Lists" id="PKi-Gu-VCf" customClass="eventDetail_ListsViewController" customModule="Event" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="eventDetail_Lists" id="PKi-Gu-VCf" customClass="EventDetail_ListsViewController" customModule="Event" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="SW9-5P-XYX"/>
                         <viewControllerLayoutGuide type="bottom" id="UoA-ZU-Igr"/>
@@ -300,7 +300,7 @@
         <!--Event Detail Guests View Controller-->
         <scene sceneID="IZl-PW-G0r">
             <objects>
-                <viewController storyboardIdentifier="eventDetail_Guests" id="LnU-8G-X5b" customClass="eventDetail_GuestsViewController" customModule="Event" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="eventDetail_Guests" id="LnU-8G-X5b" customClass="EventDetail_GuestsViewController" customModule="Event" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ASS-hN-k4V"/>
                         <viewControllerLayoutGuide type="bottom" id="KkY-gY-g8K"/>
@@ -365,7 +365,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VCM-lS-bvI" id="qa3-H7-hPG">
-                                    <frame key="frameInset" width="375" height="43"/>
+                                    <frame key="frameInset" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -383,7 +383,7 @@
         <!--Event Detail Detail View Controller-->
         <scene sceneID="kCR-FU-8MZ">
             <objects>
-                <viewController storyboardIdentifier="eventDetail_Detail" id="EQr-t0-oVr" customClass="eventDetail_DetailViewController" customModule="Event" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="eventDetail_Detail" id="EQr-t0-oVr" customClass="EventDetail_DetailViewController" customModule="Event" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ahy-rK-cHG"/>
                         <viewControllerLayoutGuide type="bottom" id="fFK-wx-V9g"/>

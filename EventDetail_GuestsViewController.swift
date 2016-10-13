@@ -8,7 +8,7 @@
 
 import UIKit
 
-class eventDetail_GuestsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, InviteGuestDelegate, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate {
+class EventDetail_GuestsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, InviteGuestDelegate, UISearchResultsUpdating, UISearchControllerDelegate, UISearchBarDelegate {
     
     
     weak var innerContentViewDelegate: InnerContentViewDelegate?

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class eventDetail_ListsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,  ListItemDelegate {
+class EventDetail_ListsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,  ListItemDelegate {
     
     
     let tableView = UITableView()

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class eventDetail_DetailViewController: UIViewController {
+class EventDetail_DetailViewController: UIViewController {
     // MARK: - Outlets
     @IBOutlet weak var eventName: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
