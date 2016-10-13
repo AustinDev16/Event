@@ -111,11 +111,16 @@ class EventDetailViewController: UIViewController, InnerContentViewDelegate {
     func segmentSelectionChanged(sender: UISegmentedControl){
         updateInnerContentView()
         updateNavigationBarButtons()
+        
     }
     
     func updateInnerContentView(){
         let index = segmentedControl.selectedSegmentIndex
         
+        if guestsViewController.searchController?.isActive == true {
+           guestsViewController.searchController?.dismiss(animated: false, completion: nil)
+            guestsViewController.searchController?.isActive = false
+        }
         
         for viewController in self.innerContentViewControllers {
             viewController.view.isHidden = true

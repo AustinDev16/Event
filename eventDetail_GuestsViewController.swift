@@ -52,7 +52,7 @@ class eventDetail_GuestsViewController: UIViewController, UITableViewDelegate, U
         searchController.searchResultsUpdater = self
         searchController.delegate = self
         
-        searchController.hidesNavigationBarDuringPresentation = true
+        searchController.hidesNavigationBarDuringPresentation = false
         searchController.dimsBackgroundDuringPresentation = true
         searchController.searchBar.placeholder = "Search for a friend"
         searchController.searchBar.delegate = self
@@ -66,6 +66,7 @@ class eventDetail_GuestsViewController: UIViewController, UITableViewDelegate, U
             let resultsController = searchController.searchResultsController as? InviteGuestSearchTableViewController else { return}
         resultsController.filteredResults = GuestController.searchForGuest(name: name)
         resultsController.inviteGuestDelegate = self
+        
         resultsController.tableView.reloadData()
     }
     
