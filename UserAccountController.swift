@@ -64,8 +64,8 @@ class UserAccountController {
         UserAccountController.sharedController.getLoggedInUserID { (success) in
             if success {
                 
-                
-                 CloudKitManager.sharedController.fetchRecordsWithType(User.recordType, recordFetchedBlock: nil, completion: { (records, error) in
+                let userPredicate = NSPredicate(format: "\(User.kCloudKitUserID) == %@", UserAccountController.sharedController.iCloudUserID!)
+                CloudKitManager.sharedController.fetchRecordsWithType(User.recordType, predicate: userPredicate,recordFetchedBlock: nil, completion: { (records, error) in
                     
                     DispatchQueue.main.async {
                         if error != nil {

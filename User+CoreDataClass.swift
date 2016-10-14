@@ -29,12 +29,16 @@ public class User: NSManagedObject {
     // MARK: - CloudKit
     
     static var recordType: String = "userAccount"
+    static var kDisplayName: String = "displayName"
+    static var kPhoneNumber: String = "phoneNumber"
+    static var kUserID: String = "userID"
+    static var kCloudKitUserID: String = "cloudKitUserID"
     
     convenience init?(record: CKRecord){
-        guard let name = record["displayName"] as? String,
-        let phoneNumber = record["phoneNumber"] as? String,
-        let userID = record["userID"] as? String,
-        let cloudKitUserID = record["cloudKitUserID"] as? String else { return nil }
+        guard let name = record[User.kDisplayName] as? String,
+        let phoneNumber = record[User.kPhoneNumber] as? String,
+        let userID = record[User.kUserID] as? String,
+        let cloudKitUserID = record[User.kCloudKitUserID] as? String else { return nil }
         
         self.init(name: name, phoneNumber: phoneNumber, userID: userID, cloudKitUserID: cloudKitUserID)
         
