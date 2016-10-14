@@ -132,10 +132,10 @@ class EditAccountViewController: UIViewController, UITextFieldDelegate {
         }
         if let user = self.user {
             // update User account
-            UserController.sharedController.modifyCurrentAccount(user: user, name: name, phoneNumber: phoneNumber)
+            UserAccountController.sharedController.modifyCurrentAccount(user: user, name: name, phoneNumber: phoneNumber)
         } else {
             // create new account
-            UserController.sharedController.createNewAccount(name: name, phoneNumber: phoneNumber)
+            UserAccountController.sharedController.createNewAccount(name: name, phoneNumber: phoneNumber)
             
             
         }

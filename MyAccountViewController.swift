@@ -15,7 +15,7 @@ class MyAccountViewController: UIViewController {
     @IBOutlet weak var userIDLabel: UILabel!
     
     var user: User? {
-        return UserController.sharedController.hostUser
+        return UserAccountController.sharedController.hostUser
     }
     
     override func viewDidLoad() {
@@ -34,7 +34,7 @@ class MyAccountViewController: UIViewController {
     }
     
     func updateViews(){
-        if (UserController.sharedController.hasAccount() == false){
+        if (UserAccountController.sharedController.hasAccount() == false){
             
         } else {
             if let user = self.user {

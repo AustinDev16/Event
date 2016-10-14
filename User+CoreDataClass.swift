@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import CloudKit
 
 @objc(User)
 public class User: NSManagedObject {
@@ -15,12 +16,18 @@ public class User: NSManagedObject {
     convenience init(name: String,
                      phoneNumber: String,
                      userID: String = NSUUID().uuidString,
+                     cloudKitUserID: String,
                      context: NSManagedObjectContext = CoreDataStack.context) {
         self.init(context: context)
         
         self.name = name
         self.phoneNumber = phoneNumber
         self.userID = userID
+        self.cloudKitUserID = cloudKitUserID
     }
+    
+    static var recordType: String = "userAccount"
+    
+    var ckRecord: CKRecord?
 
 }
