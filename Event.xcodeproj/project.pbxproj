@@ -33,7 +33,6 @@
 		FADEA3EA1DA595DD000A46C3 /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3E91DA595DD000A46C3 /* EventController.swift */; };
 		FADEA3ED1DA5A0D0000A46C3 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3EC1DA5A0D0000A46C3 /* PersistenceController.swift */; };
 		FADEA3EF1DA5A0EC000A46C3 /* CheckListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3EE1DA5A0EC000A46C3 /* CheckListController.swift */; };
-		FAE549341DAE9B2400CBF542 /* InviteGuestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE549331DAE9B2400CBF542 /* InviteGuestViewController.swift */; };
 		FAE549361DAE9CDC00CBF542 /* DiscoverableUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE549351DAE9CDC00CBF542 /* DiscoverableUser.swift */; };
 		FAE549381DAEA1D600CBF542 /* GuestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE549371DAEA1D600CBF542 /* GuestController.swift */; };
 		FAE5493A1DAEA54C00CBF542 /* InviteGuestSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE549391DAEA54C00CBF542 /* InviteGuestSearchTableViewController.swift */; };
@@ -77,7 +76,6 @@
 		FADEA3E91DA595DD000A46C3 /* EventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventController.swift; sourceTree = "<group>"; };
 		FADEA3EC1DA5A0D0000A46C3 /* PersistenceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		FADEA3EE1DA5A0EC000A46C3 /* CheckListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckListController.swift; sourceTree = "<group>"; };
-		FAE549331DAE9B2400CBF542 /* InviteGuestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteGuestViewController.swift; sourceTree = "<group>"; };
 		FAE549351DAE9CDC00CBF542 /* DiscoverableUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverableUser.swift; sourceTree = "<group>"; };
 		FAE549371DAEA1D600CBF542 /* GuestController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuestController.swift; sourceTree = "<group>"; };
 		FAE549391DAEA54C00CBF542 /* InviteGuestSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteGuestSearchTableViewController.swift; sourceTree = "<group>"; };
@@ -222,7 +220,6 @@
 		FAEF1B0C1DA8463300F2E64E /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
-				FAE549331DAE9B2400CBF542 /* InviteGuestViewController.swift */,
 				FA1B02201DADC91000CF8F78 /* MyAccountViewController.swift */,
 				FA1B021E1DAD949F00CF8F78 /* EditAccountViewController.swift */,
 				FA1B021A1DAD44DC00CF8F78 /* EditEventViewController.swift */,
@@ -321,7 +318,6 @@
 				FADEA3DE1DA59014000A46C3 /* Guest+CoreDataProperties.swift in Sources */,
 				FACF38C01DA84C9400513642 /* InnerContentViewDelegate.swift in Sources */,
 				FABCE9841DAC074300DEB1DF /* ListItemDelegate.swift in Sources */,
-				FAE549341DAE9B2400CBF542 /* InviteGuestViewController.swift in Sources */,
 				FADEA3EF1DA5A0EC000A46C3 /* CheckListController.swift in Sources */,
 				FAE5493C1DAEC33200CBF542 /* DiscoverableUserTableViewCell.swift in Sources */,
 				FADEA3E31DA59014000A46C3 /* ListItem+CoreDataClass.swift in Sources */,
