@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import CloudKit
 
 @objc(Event)
 public class Event: NSManagedObject {
@@ -27,5 +28,27 @@ public class Event: NSManagedObject {
         self.detailDescription = detailDescription
         self.eventID = eventID
         self.hostID = hostID
+    }
+    
+    static let recordType = "Event"
+    static let kName = "name"
+    static let kDate = "date"
+    static let kLocation = "location"
+    static let kDetailDescription = "detailDescription"
+    static let kEventID = "eventID"
+    static let kHostID = "hostID"
+    
+    convenience init?(record: CKRecord){
+        guard let name = record[Event.kName] as? String,
+        let date = record[Event.kDate] as? NSDate,
+        let location = record[Event.kLocation] as? String,
+        let detailDescription = record[Event.kDetailDescription] as? String,
+        let eventID = record[Event.kEventID] as? String,
+            let hostID = record[Event.kHostID] as? String else { return nil }
+        
+        self.init(name: name, date: date, location: location, detailDescription: detailDescription, eventID: eventID, hostID: hostID)
+        self.ckRecordID = record.recordID.recordName
+        
+        
     }
 }

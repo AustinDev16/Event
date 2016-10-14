@@ -29,7 +29,6 @@ class UserAccountController {
         } catch {
             fetchedUser = []
         }
-        
         guard let user = fetchedUser.first else { return nil }
         return user
     }
@@ -137,14 +136,6 @@ class UserAccountController {
                 }
             }
             }, completion: nil)
-        
-    }
-    
-    func deleteAccount(){
-        
-    }
-    
-    func logoutOfAccount(){
         
     }
 }

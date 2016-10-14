@@ -38,6 +38,8 @@
 		FAE5493A1DAEA54C00CBF542 /* InviteGuestSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE549391DAEA54C00CBF542 /* InviteGuestSearchTableViewController.swift */; };
 		FAE5493C1DAEC33200CBF542 /* DiscoverableUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5493B1DAEC33200CBF542 /* DiscoverableUserTableViewCell.swift */; };
 		FAE5493E1DAECB8A00CBF542 /* InviteGuestDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE5493D1DAECB8A00CBF542 /* InviteGuestDelegate.swift */; };
+		FAE853291DB18FBB00081A4F /* EventHandle+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE853271DB18FBB00081A4F /* EventHandle+CoreDataClass.swift */; };
+		FAE8532A1DB18FBB00081A4F /* EventHandle+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE853281DB18FBB00081A4F /* EventHandle+CoreDataProperties.swift */; };
 		FAE8AE0D1DA54BC3000F1A34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE8AE0C1DA54BC3000F1A34 /* AppDelegate.swift */; };
 		FAE8AE121DA54BC3000F1A34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE8AE101DA54BC3000F1A34 /* Main.storyboard */; };
 		FAE8AE141DA54BC3000F1A34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAE8AE131DA54BC3000F1A34 /* Assets.xcassets */; };
@@ -82,6 +84,8 @@
 		FAE549391DAEA54C00CBF542 /* InviteGuestSearchTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteGuestSearchTableViewController.swift; sourceTree = "<group>"; };
 		FAE5493B1DAEC33200CBF542 /* DiscoverableUserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverableUserTableViewCell.swift; sourceTree = "<group>"; };
 		FAE5493D1DAECB8A00CBF542 /* InviteGuestDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteGuestDelegate.swift; sourceTree = "<group>"; };
+		FAE853271DB18FBB00081A4F /* EventHandle+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EventHandle+CoreDataClass.swift"; sourceTree = "<group>"; };
+		FAE853281DB18FBB00081A4F /* EventHandle+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EventHandle+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		FAE8AE091DA54BC3000F1A34 /* Event.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Event.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAE8AE0C1DA54BC3000F1A34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAE8AE111DA54BC3000F1A34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -141,8 +145,10 @@
 		FADEA3E51DA5901F000A46C3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FAE549351DAE9CDC00CBF542 /* DiscoverableUser.swift */,
 				FADEA3C11DA54EC8000A46C3 /* EventModel.xcdatamodeld */,
+				FAE549351DAE9CDC00CBF542 /* DiscoverableUser.swift */,
+				FAE853271DB18FBB00081A4F /* EventHandle+CoreDataClass.swift */,
+				FAE853281DB18FBB00081A4F /* EventHandle+CoreDataProperties.swift */,
 				FADEA3D11DA59014000A46C3 /* User+CoreDataClass.swift */,
 				FADEA3D21DA59014000A46C3 /* User+CoreDataProperties.swift */,
 				FADEA3D31DA59014000A46C3 /* Guest+CoreDataClass.swift */,
@@ -332,6 +338,7 @@
 				FADEA3C31DA54EC8000A46C3 /* EventModel.xcdatamodeld in Sources */,
 				FAE549381DAEA1D600CBF542 /* GuestController.swift in Sources */,
 				FADEA3E01DA59014000A46C3 /* Checklist+CoreDataProperties.swift in Sources */,
+				FAE8532A1DB18FBB00081A4F /* EventHandle+CoreDataProperties.swift in Sources */,
 				FADEA3DD1DA59014000A46C3 /* Guest+CoreDataClass.swift in Sources */,
 				FADEA3ED1DA5A0D0000A46C3 /* PersistenceController.swift in Sources */,
 				FAEF1B071DA839EA00F2E64E /* EventDetail_DetailViewController.swift in Sources */,
@@ -341,6 +348,7 @@
 				FADEA3DC1DA59014000A46C3 /* User+CoreDataProperties.swift in Sources */,
 				FAF5D4C61DB1505C00F761E4 /* CloudKitSyncable.swift in Sources */,
 				FA8824D41DB0081000FCF870 /* CloudKitManager.swift in Sources */,
+				FAE853291DB18FBB00081A4F /* EventHandle+CoreDataClass.swift in Sources */,
 				FAEF1B091DA83A0000F2E64E /* EventDetail_ListsViewController.swift in Sources */,
 				FAE5493A1DAEA54C00CBF542 /* InviteGuestSearchTableViewController.swift in Sources */,
 				FADEA3DF1DA59014000A46C3 /* Checklist+CoreDataClass.swift in Sources */,
