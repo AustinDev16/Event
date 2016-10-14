@@ -26,7 +26,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // MARK: - User Login 
     func checkForLoggedInUser(){
-        if (UserAccountController.sharedController.hasAccount() == false){
+        if (UserAccountController.sharedController.hasPersistedAccount() == false){
             // direct to account page to setup an account
             print("Launching setup account page")
             

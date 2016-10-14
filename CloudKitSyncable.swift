@@ -19,4 +19,17 @@ extension CKRecord {
         
         self["cloudKitUserID"] = user.cloudKitUserID as CKRecordValue?
     }
+    
+    convenience init(updatedUserWithRecordID: User){
+        let recordID = CKRecordID(recordName: updatedUserWithRecordID.ckRecordID!)
+        self.init(recordType: User.recordType, recordID: recordID)
+        
+        self["displayName"] = updatedUserWithRecordID.name as CKRecordValue?
+        self["phoneNumber"] = updatedUserWithRecordID.phoneNumber as CKRecordValue?
+        self["userID"] = updatedUserWithRecordID.userID as CKRecordValue?
+        
+        self["cloudKitUserID"] = updatedUserWithRecordID.cloudKitUserID as CKRecordValue?
+        
+        
+    }
 }

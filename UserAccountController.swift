@@ -16,7 +16,7 @@ class UserAccountController {
     
     init(){
         getLoggedInUserID()
-        getAccountRecord()
+        getAccountCKRecord()
     }
     
     
@@ -34,7 +34,7 @@ class UserAccountController {
         return user
     }
     
-    func hasAccount() -> Bool {
+    func hasPersistedAccount() -> Bool {
         return self.hostUser != nil
     }
     
@@ -50,14 +50,17 @@ class UserAccountController {
                 guard let record = record else { return  }
               
                 self.iCloudUserID = record.recordID.recordName
+                print("getLoggedInUserID() \(record.recordID.recordName) ")
+                
+                UserAccountController.sharedController.getAccountCKRecord()
             }
         }
     }
     
-    func getAccountRecord(){
+    func getAccountCKRecord(){
         
         guard let hostUser = hostUser,
-        let ckRecordString = hostUser.ckRecordID else { return }
+            let ckRecordString = hostUser.ckRecordID else { print("No ckrecordid on hostUser"); return }
         let ckRecordID = CKRecordID(recordName: ckRecordString)
         
         CloudKitManager.sharedController.fetchRecordWithID(ckRecordID) { (record, error) in
@@ -66,7 +69,7 @@ class UserAccountController {
                     print(" Error getting user record from CloudKit: \(error)")
                 }
                 if let record = record {
-                    hostUser.ckRecord = record
+                   print("Successfully fetched accountCKRecord")
                 }
             }
         }
@@ -91,7 +94,6 @@ class UserAccountController {
                 }
                 guard let record = record else { return }
                 newUser.ckRecordID = record.recordID.recordName
-                newUser.ckRecord = record
                 PersistenceController.sharedController.saveToPersistedStorage()
             }
         }
@@ -101,22 +103,19 @@ class UserAccountController {
         user.name = name
         user.phoneNumber = phoneNumber
         
-        guard let record = user.ckRecord else { return }
-        record["displayName"] = user.name as CKRecordValue?
-        record["phoneNumber"] = user.phoneNumber as CKRecordValue?
+        let modifiedRecord = CKRecord(updatedUserWithRecordID: user)
         
-        user.ckRecord = nil
         PersistenceController.sharedController.saveToPersistedStorage()
         
         // Modify Cloud Kit record
-        CloudKitManager.sharedController.modifyRecords([record], perRecordCompletion: { (record, error) in
+        CloudKitManager.sharedController.modifyRecords([modifiedRecord], perRecordCompletion: { (record, error) in
             DispatchQueue.main.async {
                 if error != nil {
                     print("Error modifying the account: \(error?.localizedDescription)")
+                    // put the record in the offline queue
                 }
                 if let record = record {
-                    user.ckRecord = record
-                    PersistenceController.sharedController.saveToPersistedStorage()
+                    print("Successfully updated account info")
                 }
             }
             }, completion: nil)

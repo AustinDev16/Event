@@ -34,7 +34,7 @@ class MyAccountViewController: UIViewController {
     }
     
     func updateViews(){
-        if (UserAccountController.sharedController.hasAccount() == false){
+        if (UserAccountController.sharedController.hasPersistedAccount() == false){
             
         } else {
             if let user = self.user {

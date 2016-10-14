@@ -27,7 +27,5 @@ public class User: NSManagedObject {
     }
     
     static var recordType: String = "userAccount"
-    
-    var ckRecord: CKRecord?
 
 }
