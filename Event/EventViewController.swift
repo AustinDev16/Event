@@ -18,6 +18,9 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         checkForLoggedInUser()
         
         self.title = "Events"
+        
+        // Notifications
+        NotificationCenter.default.addObserver(self, selector: #selector(self.tableView.reloadData), name: NSNotification.Name(rawValue: "newEventSaved"), object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -8,7 +8,7 @@
 
 import Foundation
 import CoreData
-
+import CloudKit
 
 class EventController {
     
@@ -66,10 +66,24 @@ class EventController {
     // private Functions
     
     func addEvent(name: String, date: NSDate, location: String, detailDescription: String){
-        let _ = Event(name: name, date: date, location: location, detailDescription: detailDescription)
-       
+        let newEvent = Event(name: name, date: date, location: location, detailDescription: detailDescription)
         
+        UserAccountController.sharedController.addEventToUser(event: newEvent)
+                
         PersistenceController.sharedController.saveToPersistedStorage()
+        
+        // Save new event to cloud
+        let newRecord = CKRecord(event: newEvent)
+        CloudKitManager.sharedController.saveRecord(newRecord) { (record, error) in
+            DispatchQueue.main.async {
+                if error != nil {
+                    print ("Error saving new event to cloud")
+                }
+                if let record = record {
+                    newEvent.ckRecordID = record.recordID.recordName
+                }
+            }
+        }
     }
     
     func addGuest(newGuest: DiscoverableUser,

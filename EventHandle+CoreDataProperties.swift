@@ -17,6 +17,7 @@ extension EventHandle {
     }
 
     @NSManaged public var eventID: String
- 
+    @NSManaged public var eventType: String
+    @NSManaged public var user: User?
 
 }

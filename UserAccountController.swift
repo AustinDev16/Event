@@ -39,6 +39,40 @@ class UserAccountController {
     
     var iCloudUserID: String?
     
+    
+    // MARK: - User Functions
+    
+    
+    
+    func addEventToUser(event: Event){
+        
+        let eventHandle = EventHandle(event: event, eventType: .createdByUser)
+        UserAccountController.sharedController.hostUser?.addToEventHandles(eventHandle)
+        PersistenceController.sharedController.saveToPersistedStorage()
+        
+        // Modify Account Record and push to cloud
+        guard let user = self.hostUser else { return }
+        
+        
+        let recordToModify = CKRecord(updatedUserWithRecordID: user)
+        
+        CloudKitManager.sharedController.modifyRecords([recordToModify], perRecordCompletion: nil) { (records, error) in
+            if error != nil {
+                print("Error saving updated userAccount")
+            }
+            
+        }
+
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    // MARK: Account Functions
     func getLoggedInUserID(completion: @escaping (_ success: Bool) -> Void) {
         CloudKitManager.sharedController.fetchLoggedInUserRecord { (record, error) in
             DispatchQueue.main.async {

@@ -12,9 +12,18 @@ import CoreData
 
 public class EventHandle: NSManagedObject {
     
-    convenience init(event: Event, context: NSManagedObjectContext = CoreDataStack.context){
+    convenience init(event: Event, eventType: EventType, context: NSManagedObjectContext = CoreDataStack.context){
         self.init(context: context)
         self.eventID = event.eventID
+        self.user = UserAccountController.sharedController.hostUser
+        self.eventType = eventType.rawValue
+        
     }
 
+}
+
+public enum EventType: String {
+    case createdByUser
+    case acceptedFromInvite
+    case pendingInvite
 }

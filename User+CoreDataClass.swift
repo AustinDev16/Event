@@ -34,6 +34,8 @@ public class User: NSManagedObject {
     static let kUserID: String = "userID"
     static let kCloudKitUserID: String = "cloudKitUserID"
     
+    static let kEventsUserCreated = "eventsUserCreated"
+    
     convenience init?(record: CKRecord){
         guard let name = record[User.kDisplayName] as? String,
         let phoneNumber = record[User.kPhoneNumber] as? String,
@@ -41,6 +43,7 @@ public class User: NSManagedObject {
         let cloudKitUserID = record[User.kCloudKitUserID] as? String else { return nil }
         
         self.init(name: name, phoneNumber: phoneNumber, userID: userID, cloudKitUserID: cloudKitUserID)
+        self.ckRecordID = record.recordID.recordName
         
     }
 

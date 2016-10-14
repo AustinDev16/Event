@@ -20,6 +20,8 @@
     </entity>
     <entity name="EventHandle" representedClassName=".EventHandle" syncable="YES">
         <attribute name="eventID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="eventType" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="eventHandles" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="Guest" representedClassName="Guest" syncable="YES">
         <attribute name="eventID" attributeType="String" syncable="YES"/>
@@ -42,16 +44,14 @@
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="phoneNumber" attributeType="String" syncable="YES"/>
         <attribute name="userID" attributeType="String" syncable="YES"/>
-        <relationship name="eventsAcceptedFromInvititation" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="EventHandle" syncable="YES"/>
-        <relationship name="eventsCreatedByUser" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="EventHandle" syncable="YES"/>
-        <relationship name="eventsPendingAcceptance" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="EventHandle" syncable="YES"/>
+        <relationship name="eventHandles" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="EventHandle" inverseName="user" inverseEntity="EventHandle" syncable="YES"/>
     </entity>
     <elements>
         <element name="Checklist" positionX="-135" positionY="-423" width="128" height="120"/>
         <element name="Event" positionX="-369" positionY="-414" width="128" height="180"/>
         <element name="Guest" positionX="-153" positionY="-166" width="128" height="118"/>
         <element name="ListItem" positionX="63" positionY="-403" width="128" height="133"/>
-        <element name="User" positionX="-353" positionY="-538" width="128" height="165"/>
-        <element name="EventHandle" positionX="-162" positionY="-387" width="128" height="60"/>
+        <element name="User" positionX="-396" positionY="-642" width="128" height="30"/>
+        <element name="EventHandle" positionX="-65" positionY="-519" width="128" height="30"/>
     </elements>
 </model>

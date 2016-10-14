@@ -18,7 +18,7 @@ public class Event: NSManagedObject {
                      location: String,
                      detailDescription: String,
                      eventID: String = NSUUID().uuidString,
-                     hostID: String = "",
+                     hostID: String? = UserAccountController.sharedController.hostUser?.userID,
                      context: NSManagedObjectContext = CoreDataStack.context) {
         self.init(context: context)
         
@@ -27,7 +27,7 @@ public class Event: NSManagedObject {
         self.location = location
         self.detailDescription = detailDescription
         self.eventID = eventID
-        self.hostID = hostID
+        self.hostID = hostID ?? ""
     }
     
     static let recordType = "Event"
