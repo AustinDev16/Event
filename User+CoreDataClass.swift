@@ -26,6 +26,18 @@ public class User: NSManagedObject {
         self.cloudKitUserID = cloudKitUserID
     }
     
+    // MARK: - CloudKit
+    
     static var recordType: String = "userAccount"
+    
+    convenience init?(record: CKRecord){
+        guard let name = record["displayName"] as? String,
+        let phoneNumber = record["phoneNumber"] as? String,
+        let userID = record["userID"] as? String,
+        let cloudKitUserID = record["cloudKitUserID"] as? String else { return nil }
+        
+        self.init(name: name, phoneNumber: phoneNumber, userID: userID, cloudKitUserID: cloudKitUserID)
+        
+    }
 
 }

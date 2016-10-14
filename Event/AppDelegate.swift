@@ -16,7 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        print("Has active account: \(UserAccountController.sharedController.hasPersistedAccount())")
         print(EventController.sharedController.events.count)
         EventController.sharedController.createMockData()
         return true

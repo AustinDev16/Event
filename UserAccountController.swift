@@ -15,8 +15,8 @@ class UserAccountController {
     static let sharedController = UserAccountController()
     
     init(){
-        getLoggedInUserID()
-        getAccountCKRecord()
+        //getLoggedInUserID()
+        //getAccountCKRecord()
     }
     
     
@@ -40,37 +40,55 @@ class UserAccountController {
     
     var iCloudUserID: String?
     
-    func getLoggedInUserID() {
+    func getLoggedInUserID(completion: @escaping (_ success: Bool) -> Void) {
         CloudKitManager.sharedController.fetchLoggedInUserRecord { (record, error) in
             DispatchQueue.main.async {
                 
                 if error != nil {
                     print("error fetching logged in user record")
+                    completion(false)
                 }
                 guard let record = record else { return  }
               
                 self.iCloudUserID = record.recordID.recordName
                 print("getLoggedInUserID() \(record.recordID.recordName) ")
+                completion(true)
                 
-                UserAccountController.sharedController.getAccountCKRecord()
             }
         }
     }
     
-    func getAccountCKRecord(){
+    
+    func getUserAccountFromCloud(completion: @escaping (_ success: Bool) -> Void) {
         
-        guard let hostUser = hostUser,
-            let ckRecordString = hostUser.ckRecordID else { print("No ckrecordid on hostUser"); return }
-        let ckRecordID = CKRecordID(recordName: ckRecordString)
-        
-        CloudKitManager.sharedController.fetchRecordWithID(ckRecordID) { (record, error) in
-            DispatchQueue.main.async {
-                if error != nil {
-                    print(" Error getting user record from CloudKit: \(error)")
-                }
-                if let record = record {
-                   print("Successfully fetched accountCKRecord")
-                }
+        UserAccountController.sharedController.getLoggedInUserID { (success) in
+            if success {
+                
+                
+                 CloudKitManager.sharedController.fetchRecordsWithType(User.recordType, recordFetchedBlock: nil, completion: { (records, error) in
+                    
+                    DispatchQueue.main.async {
+                        if error != nil {
+                            print("Could retrieve userAccount from cloud \(error?.localizedDescription)")
+                            completion(false)
+                        }
+                        
+                        if let records = records {
+                            guard let userRecord = records.first else { completion(false); return }
+                            
+                            guard let _ = User(record: userRecord) else { completion(false); return }
+                            PersistenceController.sharedController.saveToPersistedStorage()
+                            
+                            completion(true)
+                        } else {
+                            completion(false)
+                        }
+                    }
+                 })
+                
+            } else {
+                print("Error getting account from cloud because there was no iCloud account.")
+                completion(false)
             }
         }
     }
@@ -114,7 +132,7 @@ class UserAccountController {
                     print("Error modifying the account: \(error?.localizedDescription)")
                     // put the record in the offline queue
                 }
-                if let record = record {
+                if record != nil {
                     print("Successfully updated account info")
                 }
             }

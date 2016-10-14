@@ -26,21 +26,29 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // MARK: - User Login 
     func checkForLoggedInUser(){
+        
         if (UserAccountController.sharedController.hasPersistedAccount() == false){
-            // direct to account page to setup an account
-            print("Launching setup account page")
             
-            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            guard let navigationController = storyboard.instantiateViewController(withIdentifier: "editAccountNavigationController") as? UINavigationController else { return }
-            
-            
-            self.present(navigationController, animated: true, completion: nil)
-            
+            UserAccountController.sharedController.getUserAccountFromCloud(completion: { (success) in
+                if success {
+                    // pulled down account from cloud
+                    print("Imported account from iCloud")
+                } else {
+                    // direct to account page to setup an account
+                    print("Launching setup account page")
+                    
+                    let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                    guard let navigationController = storyboard.instantiateViewController(withIdentifier: "editAccountNavigationController") as? UINavigationController else { return }
+                    self.present(navigationController, animated: true, completion: nil)
+                    
+                    
+                }
+            })
             //  let accountVC = navigationController.viewControllers.first as? EditAccountViewController
         } else {
             // updates from cloud to account
         }
-
+        
     }
 
  
