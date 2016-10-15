@@ -21,7 +21,12 @@ class EventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
         setupTableView()
         tableView.reloadData()
         // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(newChecklistsSaved), name: NSNotification.Name(rawValue: "newChecklistSaved"), object: nil)
         
+    }
+    
+    func newChecklistsSaved(){
+        self.tableView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {

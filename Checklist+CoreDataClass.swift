@@ -38,6 +38,7 @@ public class Checklist: NSManagedObject {
         let event = EventController.sharedController.findEvent(forID: eventID) else { return nil }
         
         self.init(name: name, checklistID: checklistID, event: event)
+        self.ckRecordID = record.recordID.recordName
     }
 
 }

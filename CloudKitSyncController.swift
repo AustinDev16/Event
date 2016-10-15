@@ -36,7 +36,10 @@ class CloudKitSyncController {
                     guard let eventRecords = eventRecords else { return }
                     
                     for eventRecord in eventRecords {
-                         let _ = Event(record: eventRecord)
+                        if let newEvent = Event(record: eventRecord) {
+                            CloudKitSyncController.shared.getChecklists(forEvent: newEvent)
+                        }
+                        
                     }
                     
                     PersistenceController.sharedController.saveToPersistedStorage()
@@ -51,5 +54,34 @@ class CloudKitSyncController {
         
         
         // MARK: - Events the User has been invited to
+    }
+    
+    func getChecklists(forEvent: Event){
+        
+        let predicate = NSPredicate(format: "eventID == %@", forEvent.eventID)
+        CloudKitManager.sharedController.fetchRecordsWithType(Checklist.recordType, predicate: predicate, recordFetchedBlock: nil) { (records, error) in
+            DispatchQueue.main.async {
+                if error != nil {
+                    print("Error fetching checklist for event \(forEvent.name): \(error?.localizedDescription)")
+                }
+                if let records = records {
+                    for record in records {
+                        guard let newChecklist = Checklist(record: record) else { return }
+                        PersistenceController.sharedController.saveToPersistedStorage()
+                        let notification = Notification(name: Notification.Name(rawValue: "newChecklistSaved"))
+                        NotificationCenter.default.post(notification)
+                        CloudKitSyncController.shared.getListItems(forChecklist: newChecklist)
+                    }
+                }
+            }
+        }
+        
+        
+    }
+    
+    func getListItems(forChecklist: Checklist){
+        
+        
+        
     }
 }
