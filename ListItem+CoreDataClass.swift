@@ -52,6 +52,7 @@ public class ListItem: NSManagedObject {
         self.checklistID = checklistID
         self.eventID = eventID
         self.checklist = checklist
+        self.ckRecordID = record.recordID.recordName
         
     }
     

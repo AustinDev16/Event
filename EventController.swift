@@ -119,6 +119,8 @@ class EventController {
     }
     
     func deleteEvent(event: Event){
+        
+        CloudKitSyncController.shared.deleteEvent(event: event)
         event.managedObjectContext?.delete(event)
         PersistenceController.sharedController.saveToPersistedStorage()
         

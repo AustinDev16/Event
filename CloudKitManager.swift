@@ -179,7 +179,7 @@ class CloudKitManager {
     func deleteRecordsWithID(_ recordIDs: [CKRecordID], completion: ((_ records: [CKRecord]?, _ recordIDs: [CKRecordID]?, _ error: NSError?) -> Void)?) {
         
         let operation = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: recordIDs)
-        operation.savePolicy = .ifServerRecordUnchanged
+        operation.savePolicy = .allKeys
         
         operation.modifyRecordsCompletionBlock = { (records, recordIDs, error) -> Void in
             

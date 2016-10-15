@@ -99,4 +99,74 @@ class CloudKitSyncController {
         }
         
     }
+    
+    func deleteEvent(event: Event){
+        var recordsToDelete: [CKRecordID]  = []
+        var recordIDS: [String?] = []
+        // Event
+        recordIDS.append(event.ckRecordID)
+        
+        // Update user account
+        if let user = UserAccountController.sharedController.hostUser {
+            let eventHandles = user.eventHandles.flatMap{$0 as? EventHandle}
+            let handleToDelete = eventHandles.filter{$0.eventID == event.eventID}
+            if let handle = handleToDelete.first {
+                user.removeFromEventHandles(handle)
+                PersistenceController.sharedController.saveToPersistedStorage()
+                let updatedUserRecord = CKRecord(updatedUserWithRecordID: user)
+                CloudKitManager.sharedController.modifyRecords([updatedUserRecord], perRecordCompletion: nil, completion: { (records, error) in
+                    DispatchQueue.main.async {
+                        if error != nil {
+                            print("error updating user account event handles")
+                        }
+                    }
+                })
+            }
+        }
+        
+        // All children
+        let checklists = event.checklists.flatMap{ $0 as? Checklist }
+        for checklist in checklists {
+            recordIDS.append(checklist.ckRecordID)
+            let listItems = checklist.listItems.flatMap{$0 as? ListItem }
+            for listItem in listItems {
+                recordIDS.append(listItem.ckRecordID)
+            }
+        }
+        
+        // Create recordIDs
+        for recordID in recordIDS{
+            if let recordID = recordID {
+                let newrecordID = CKRecordID(recordName: recordID)
+                recordsToDelete.append(newrecordID)
+            }
+        }
+        
+        for recordToDelete in recordsToDelete {
+            CloudKitManager.sharedController.deleteRecordWithID(recordToDelete, completion: { (recordID, error) in
+                DispatchQueue.main.async{
+                    if error != nil {
+                        print("Error deleting. \(error?.localizedDescription)")
+                    } else {
+                        print("Success deleting: \(recordToDelete.recordName)")
+                    }
+                }
+            })
+            
+            
+        }
+        
+        
+        
+        
+//        CloudKitManager.sharedController.deleteRecordsWithID(recordsToDelete) { (records, recordIDs, error) in
+//            DispatchQueue.main.async {
+//                if error != nil {
+//                    print("Error deleting event and all children")
+//                } else {
+//                    print("Success deleting event.")
+//                }
+//            }
+//        }
+    }
 }
