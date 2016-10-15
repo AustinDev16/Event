@@ -58,7 +58,7 @@ class UserAccountController {
         
         CloudKitManager.sharedController.modifyRecords([recordToModify], perRecordCompletion: nil) { (records, error) in
             if error != nil {
-                print("Error saving updated userAccount")
+                print("Error saving updated userAccount \(error?.localizedDescription)")
             }
             
         }

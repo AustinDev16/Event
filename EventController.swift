@@ -40,14 +40,7 @@ class EventController {
     static let sharedController = EventController()
     
     // MARK: - Properties
-//    let request: NSFetchRequest<Event> = Event.fetchRequest()
-//    let moc = CoreDataStack.context
-//    
-//    do {
-//    return try moc.fetch(request)
-//    } catch {
-//    return []
-//    }
+
     
     var events: [Event] {
         let request: NSFetchRequest<Event> = Event.fetchRequest()
@@ -63,7 +56,22 @@ class EventController {
         
     }
     
-    // private Functions
+    // MARK: - CLoudKitHelper Functions
+    
+    func generateHostUsersEventHandlesArray() -> [String] {
+        guard let user = UserAccountController.sharedController.hostUser else { return [] }
+        
+        var eventHandlesArray: [String] = []
+        for eventHandle in user.eventHandles {
+            guard let handle = eventHandle as? EventHandle else { return [] }
+            let eventID = handle.eventID
+            let eventType = handle.eventType
+            eventHandlesArray.append("\(eventID)$\(eventType)")
+        }
+        return eventHandlesArray
+    }
+    
+    // MARK: - private Functions
     
     func addEvent(name: String, date: NSDate, location: String, detailDescription: String){
         let newEvent = Event(name: name, date: date, location: location, detailDescription: detailDescription)

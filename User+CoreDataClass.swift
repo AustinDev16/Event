@@ -34,7 +34,7 @@ public class User: NSManagedObject {
     static let kUserID: String = "userID"
     static let kCloudKitUserID: String = "cloudKitUserID"
     
-    static let kEventsUserCreated = "eventsUserCreated"
+    static let kEventHandles = "eventHandles"
     
     convenience init?(record: CKRecord){
         guard let name = record[User.kDisplayName] as? String,

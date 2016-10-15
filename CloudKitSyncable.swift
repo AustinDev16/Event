@@ -18,7 +18,8 @@ extension CKRecord {
         self[User.kPhoneNumber] = user.phoneNumber as CKRecordValue?
         self[User.kUserID] = user.userID as CKRecordValue?
         self[User.kCloudKitUserID] = user.cloudKitUserID as CKRecordValue?
-        self[User.kEventsUserCreated] = [] as CKRecordValue?
+        let eventsArray = EventController.sharedController.generateHostUsersEventHandlesArray()
+        self[User.kEventHandles] = eventsArray as CKRecordValue?
     }
     
     convenience init(updatedUserWithRecordID: User){
@@ -30,8 +31,8 @@ extension CKRecord {
         self[User.kUserID] = updatedUserWithRecordID.userID as CKRecordValue?
         self[User.kCloudKitUserID] = updatedUserWithRecordID.cloudKitUserID as CKRecordValue?
         
-        let eventsArray = updatedUserWithRecordID.eventHandles.flatMap { $0 as? String }
-        self[User.kEventsUserCreated] = eventsArray as CKRecordValue?
+        let eventsArray = EventController.sharedController.generateHostUsersEventHandlesArray()
+        self[User.kEventHandles] = eventsArray as CKRecordValue?
     }
     
     // MARK: - Event
