@@ -19,6 +19,15 @@ public class EventHandle: NSManagedObject {
         self.eventType = eventType.rawValue
         
     }
+    
+    convenience init(eventID: String, eventType: String, context: NSManagedObjectContext = CoreDataStack.context){
+        self.init(context: context)
+        
+        self.eventID = eventID
+        self.eventType = eventType
+        self.user = UserAccountController.sharedController.hostUser
+
+    }
 
 }
 

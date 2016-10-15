@@ -16,11 +16,16 @@ class CloudKitSyncController {
     func getEventsFromUserAccount(){
         guard let user = UserAccountController.sharedController.hostUser else { return }
         
-        let allEventHandles = user.eventHandles.flatMap { $0 as? String }
-        let eventsUserCreated = allEventHandles.filter { $0 == EventType.createdByUser.rawValue }
+        let allEventHandles = user.eventHandles.flatMap { $0 as? EventHandle }
+        
+        // MARK: - events Created by USER
+        let eventsUserCreated = allEventHandles.filter { $0.eventType == EventType.createdByUser.rawValue }
+        
+        
+        
         for event in eventsUserCreated {
             
-            let predicate = NSPredicate(format: "eventID == %@", event)
+            let predicate = NSPredicate(format: "eventID == %@", event.eventID)
             CloudKitManager.sharedController.fetchRecordsWithType(Event.recordType, predicate: predicate, recordFetchedBlock: nil, completion: { (eventRecords, error) in
                 DispatchQueue.main.async {
                     
@@ -40,5 +45,11 @@ class CloudKitSyncController {
                 }
             })
         }
+        
+        
+        // MARK: - Events the User is Invited To
+        
+        
+        // MARK: - Events the User has been invited to
     }
 }

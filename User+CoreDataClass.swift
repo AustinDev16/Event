@@ -40,10 +40,16 @@ public class User: NSManagedObject {
         guard let name = record[User.kDisplayName] as? String,
         let phoneNumber = record[User.kPhoneNumber] as? String,
         let userID = record[User.kUserID] as? String,
-        let cloudKitUserID = record[User.kCloudKitUserID] as? String else { return nil }
+        let cloudKitUserID = record[User.kCloudKitUserID] as? String,
+        let eventHandles = record[User.kEventHandles] as? [String] else { return nil }
         
         self.init(name: name, phoneNumber: phoneNumber, userID: userID, cloudKitUserID: cloudKitUserID)
         self.ckRecordID = record.recordID.recordName
+        for handle in eventHandles {
+            let components = handle.components(separatedBy: "$")
+            let constructedHandle = EventHandle(eventID: components[0], eventType: components[1])
+            self.addToEventHandles(constructedHandle)
+        }
         
     }
 

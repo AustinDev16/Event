@@ -20,7 +20,11 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.title = "Events"
         
         // Notifications
-        NotificationCenter.default.addObserver(self, selector: #selector(self.tableView.reloadData), name: NSNotification.Name(rawValue: "newEventSaved"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.eventsUpdated), name: NSNotification.Name(rawValue: "newEventSaved"), object: nil)
+    }
+    
+    func eventsUpdated(){
+        self.tableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -34,8 +38,14 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             
             UserAccountController.sharedController.getUserAccountFromCloud(completion: { (success) in
                 if success {
-                    // pulled down account from cloud
-                    print("Imported account from iCloud")
+                    // pulled down User account from cloud
+
+                    print("Imported userAccount from iCloud")
+                    
+                    // Pull events that belong to the user
+                    
+                    print("Pulling user created events")
+                    CloudKitSyncController.shared.getEventsFromUserAccount()
                 } else {
                     // direct to account page to setup an account
                     print("Launching setup account page")
