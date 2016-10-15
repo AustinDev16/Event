@@ -33,6 +33,7 @@
     </entity>
     <entity name="ListItem" representedClassName="ListItem" syncable="YES">
         <attribute name="checklistID" attributeType="String" syncable="YES"/>
+        <attribute name="ckRecordID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eventID" attributeType="String" syncable="YES"/>
         <attribute name="isComplete" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
@@ -52,7 +53,7 @@
         <element name="Event" positionX="-369" positionY="-414" width="128" height="180"/>
         <element name="EventHandle" positionX="-65" positionY="-519" width="128" height="30"/>
         <element name="Guest" positionX="-153" positionY="-166" width="128" height="118"/>
-        <element name="ListItem" positionX="63" positionY="-403" width="128" height="133"/>
+        <element name="ListItem" positionX="63" positionY="-403" width="128" height="150"/>
         <element name="User" positionX="-396" positionY="-642" width="128" height="30"/>
     </elements>
 </model>

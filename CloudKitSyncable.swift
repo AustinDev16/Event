@@ -78,4 +78,25 @@ extension CKRecord {
         self[Checklist.kEventID] = updatedChecklistWithRecordID.eventID as CKRecordValue?
     }
     
+    // MARK: - ListItem
+    convenience init(listItem: ListItem) {
+        self.init(recordType: ListItem.recordType)
+        
+        self[ListItem.kName] = listItem.name as CKRecordValue?
+        self[ListItem.kIsComplete] = listItem.isComplete as CKRecordValue?
+        self[ListItem.kEventID] = listItem.eventID as CKRecordValue?
+        self[ListItem.kChecklistID] = listItem.checklistID as CKRecordValue?
+        self[ListItem.kResponsibleParty] = listItem.responsibleParty as CKRecordValue?
+    }
+    
+    convenience init(updatedListItemWithRecordID: ListItem) {
+        self.init(recordType: ListItem.recordType)
+        
+        self[ListItem.kName] = updatedListItemWithRecordID.name as CKRecordValue?
+        self[ListItem.kIsComplete] = updatedListItemWithRecordID.isComplete as CKRecordValue?
+        self[ListItem.kEventID] = updatedListItemWithRecordID.eventID as CKRecordValue?
+        self[ListItem.kChecklistID] = updatedListItemWithRecordID.checklistID as CKRecordValue?
+        self[ListItem.kResponsibleParty] = updatedListItemWithRecordID.responsibleParty as CKRecordValue?
+    }
+    
 }

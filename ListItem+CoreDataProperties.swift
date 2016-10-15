@@ -22,5 +22,5 @@ extension ListItem {
     @NSManaged public var checklistID: String
     @NSManaged public var eventID: String
     @NSManaged public var checklist: Checklist
-
+    @NSManaged public var ckRecordID: String?
 }

@@ -14,7 +14,12 @@ class ChecklistController {
     // MARK: - public
     static let sharedController = ChecklistController()
     
-    
+    // MARK: - CloudKit helper
+    func findChecklist(forID: String, eventID: String) -> Checklist? {
+        guard let event = EventController.sharedController.findEvent(forID: eventID) else { return nil }
+        let checklists = event.checklists.flatMap{$0 as? Checklist }
+        return  checklists.filter{$0.checklistID == forID}.first
+    }
     // MARK: - Checklist functions
     
     func createNewCheckList(name: String,
@@ -51,21 +56,39 @@ class ChecklistController {
     
     // MARK: - ListItem functions
     
-    func addItemToList(name: String, responsibleParty: String = "Austin", checklist: Checklist, event: Event){
+    func addItemToList(name: String, responsibleParty: String = "none", checklist: Checklist, event: Event){
         
         let newItem = ListItem(name: name, responsibleParty: responsibleParty, checklist: checklist, event: event)
         
         checklist.addToListItems(newItem)
         
         PersistenceController.sharedController.saveToPersistedStorage()
-    }
-    
-    func addItemToList(listItem: ListItem, checklist: Checklist){
-    
-        checklist.addToListItems(listItem)
         
-        PersistenceController.sharedController.saveToPersistedStorage()
+        // Save to cloudkit
+        let newRecord = CKRecord(listItem: newItem)
+        CloudKitManager.sharedController.saveRecord(newRecord) { (record, error) in
+            DispatchQueue.main.async {
+                if error != nil {
+                    print("Error saving listItem: \(error?.localizedDescription)")
+                }
+                if let record = record {
+                    print("Success saving new list item")
+                    newItem.ckRecordID = record.recordID.recordName
+                    PersistenceController.sharedController.saveToPersistedStorage()
+                }
+                
+            }
+        }
+        
+        
     }
+    
+//    func addItemToList(listItem: ListItem, checklist: Checklist){
+//    
+//        checklist.addToListItems(listItem)
+//        
+//        PersistenceController.sharedController.saveToPersistedStorage()
+//    }
     
     func removeItemFromList(listItem: ListItem, checklist: Checklist){
         checklist.removeFromListItems(listItem)
