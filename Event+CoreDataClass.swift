@@ -39,6 +39,7 @@ public class Event: NSManagedObject {
     static let kHostID = "hostID"
     
     convenience init?(record: CKRecord){
+        if record.recordType != Event.recordType { return nil }
         guard let name = record[Event.kName] as? String,
         let date = record[Event.kDate] as? NSDate,
         let location = record[Event.kLocation] as? String,
