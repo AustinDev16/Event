@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CloudKit
 
 class ChecklistController {
     
@@ -22,6 +23,22 @@ class ChecklistController {
         let newChecklist = Checklist(name: name, event: event)
         event.addToChecklists(newChecklist)
         PersistenceController.sharedController.saveToPersistedStorage()
+        
+        // CloudKit Saving
+        let newRecord = CKRecord(checklist: newChecklist)
+        
+        CloudKitManager.sharedController.saveRecord(newRecord) { (record, error) in
+            DispatchQueue.main.async {
+                if error != nil {
+                    print("Error saving new checklist to cloud")
+                }
+                if let record = record {
+                    print ("Success saving checklist to cloud")
+                    newChecklist.ckRecordID = record.recordID.recordName
+                    PersistenceController.sharedController.saveToPersistedStorage()
+                }
+            }
+        }
     }
     
     func deleteCheckList(checklist: Checklist, event: Event){

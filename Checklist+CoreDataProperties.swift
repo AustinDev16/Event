@@ -21,6 +21,7 @@ extension Checklist {
     @NSManaged public var eventID: String
     @NSManaged public var listItems: NSOrderedSet
     @NSManaged public var event: Event
+    @NSManaged public var ckRecordID: String?
 
 }
 

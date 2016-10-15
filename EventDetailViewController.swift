@@ -96,7 +96,7 @@ class EventDetailViewController: UIViewController, InnerContentViewDelegate {
         segmentedControl.removeAllSegments()
         segmentedControl.insertSegment(withTitle: "Details", at: 0, animated: false)
         segmentedControl.insertSegment(withTitle: "Lists", at: 1, animated: false)
-        segmentedControl.insertSegment(withTitle: "Guests", at: 2, animated: false)
+        //segmentedControl.insertSegment(withTitle: "Guests", at: 2, animated: false)
         
         segmentedControl.addTarget(self, action: #selector(segmentSelectionChanged(sender:)), for: .valueChanged)
         

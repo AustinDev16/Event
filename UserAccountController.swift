@@ -41,7 +41,18 @@ class UserAccountController {
     
     
     // MARK: - User Functions
-    
+    var eventIDDictionary: [String: Event?] {
+        guard let user = self.hostUser else { return [:] }
+        var dictionary: [String: Event?] = [:]
+        for eventHandle in user.eventHandles {
+            guard let eventHandle = eventHandle as? EventHandle else { return [:] }
+            let event = EventController.sharedController.events.filter { $0.eventID == eventHandle.eventID }.first
+            
+            dictionary[eventHandle.eventID] = event
+            
+        }
+        return dictionary
+    }
     
     
     func addEventToUser(event: Event){

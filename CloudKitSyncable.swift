@@ -60,4 +60,22 @@ extension CKRecord {
         
     }
     
+    // MARK: - Checklist
+    convenience init(checklist: Checklist) {
+        self.init(recordType: Checklist.recordType)
+        
+        self[Checklist.kName] = checklist.name as CKRecordValue?
+        self[Checklist.kChecklistID] = checklist.checklistID as CKRecordValue?
+        self[Checklist.kEventID] = checklist.eventID as CKRecordValue?
+    }
+    
+    convenience init(updatedChecklistWithRecordID: Checklist) {
+        let recordID = CKRecordID(recordName: updatedChecklistWithRecordID.ckRecordID!)
+        self.init(recordType: Checklist.recordType, recordID: recordID)
+        
+        self[Checklist.kName] = updatedChecklistWithRecordID.name as CKRecordValue?
+        self[Checklist.kChecklistID] = updatedChecklistWithRecordID.checklistID as CKRecordValue?
+        self[Checklist.kEventID] = updatedChecklistWithRecordID.eventID as CKRecordValue?
+    }
+    
 }

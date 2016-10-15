@@ -71,6 +71,12 @@ class EventController {
         return eventHandlesArray
     }
     
+    func findEvent(forID: String) -> Event? {
+        let dictionary = UserAccountController.sharedController.eventIDDictionary
+        
+        return dictionary[forID] ?? nil
+
+    }
     // MARK: - private Functions
     
     func addEvent(name: String, date: NSDate, location: String, detailDescription: String){
