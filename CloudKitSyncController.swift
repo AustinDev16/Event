@@ -80,8 +80,23 @@ class CloudKitSyncController {
     }
     
     func getListItems(forChecklist: Checklist){
-        
-        
+        let predicate = NSPredicate(format: "checklistID == %@", forChecklist.checklistID)
+        CloudKitManager.sharedController.fetchRecordsWithType(ListItem.recordType, predicate: predicate, recordFetchedBlock: { (record) in
+            DispatchQueue.main.async {
+                if let newListItem = ListItem(record: record) {
+                    forChecklist.addToListItems(newListItem)
+                    PersistenceController.sharedController.saveToPersistedStorage()
+                    let notification = Notification(name: Notification.Name(rawValue:"newItemListSaved" ))
+                    NotificationCenter.default.post(notification)
+                }
+            }
+            }) { (_, error) in
+                DispatchQueue.main.async {
+                if error != nil {
+                    print("Error fetching listItems: \(error?.localizedDescription)")
+                }
+                }
+        }
         
     }
 }
