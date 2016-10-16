@@ -12,7 +12,7 @@ class MyAccountViewController: UIViewController {
 
     @IBOutlet weak var screenNameLabel: UILabel!
     @IBOutlet weak var phoneNumberLabel: UILabel!
-    @IBOutlet weak var userIDLabel: UILabel!
+
     
     var user: User? {
         return UserAccountController.sharedController.hostUser
@@ -40,8 +40,7 @@ class MyAccountViewController: UIViewController {
             if let user = self.user {
                 screenNameLabel.text = user.name
                 phoneNumberLabel.text = user.phoneNumber
-                userIDLabel.text = user.userID
-                
+                               
                 let editButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editButtonTapped))
                 self.navigationItem.rightBarButtonItem = editButton
             }
