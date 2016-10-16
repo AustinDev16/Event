@@ -56,6 +56,14 @@ class EventController {
         
     }
     
+    var eventIDs: [String] {
+        var array: [String] = []
+        for event in self.events {
+            array.append(event.eventID)
+        }
+        return array
+    }
+    
     // MARK: - CLoudKitHelper Functions
     
     func generateHostUsersEventHandlesArray() -> [String] {

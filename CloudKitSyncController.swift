@@ -196,21 +196,148 @@ class CloudKitSyncController {
                     }
                 }
             })
-            
-            
+        }
+    }
+    
+    func performFullSync(){
+        CloudKitSyncController.shared.performEventLevelSync { (success) in
+            if success {
+                // get recordIds for all Checklists and list items
+                
+                let checklistIDs = ChecklistController.sharedController.checklistRecordIDs()
+                var checklistReferences: [CKReference] = []
+                for ID in checklistIDs{
+                    let record = CKRecord(recordType: Checklist.recordType, recordID: ID)
+                    let reference = CKReference(record: record, action: .none)
+                    checklistReferences.append(reference)
+                }
+                let predicate = NSPredicate(format: "NOT(recordID IN %@)", checklistReferences)
+                CloudKitManager.sharedController.fetchRecordsWithType(Checklist.recordType, predicate: predicate, recordFetchedBlock: nil, completion: { (records, error) in
+                    DispatchQueue.main.async {
+                        if error != nil {
+                            print("error fetching new checklists")
+                        }
+                        if let records = records{
+                            for record in records {
+                                let _ = Checklist(record: record)
+                                PersistenceController.sharedController.saveToPersistedStorage()
+                                let notification = Notification(name: Notification.Name(rawValue: "newChecklistSaved"))
+                                NotificationCenter.default.post(notification)
+                            }
+                            
+                        }
+                        // Go get the list items
+                            let listItemIDs = ChecklistController.sharedController.listItemRecordIDs()
+                            var listItemReferences: [CKReference] = []
+                            for ID in listItemIDs {
+                                let record = CKRecord(recordType: ListItem.recordType, recordID: ID)
+                                let reference = CKReference(record: record, action: .none)
+                                listItemReferences.append(reference)
+                            }
+                            let predicate = NSPredicate(format: "NOT(recordID IN %@)", listItemReferences)
+                            CloudKitManager.sharedController.fetchRecordsWithType(ListItem.recordType, predicate: predicate, recordFetchedBlock: nil, completion: { (records, error) in
+                                DispatchQueue.main.async {
+                                    if error != nil {
+                                        print("Error getting new list items: \(error?.localizedDescription)")
+                                    }
+                                    if let records = records{
+                                        for record in records{
+                                            let _ = ListItem(record: record)
+                                            PersistenceController.sharedController.saveToPersistedStorage()
+                                            let notification = Notification(name: Notification.Name(rawValue: "newListItemSaved"))
+                                            NotificationCenter.default.post(notification)
+                                        }
+                                    }
+                                }//end dispatch of listitems
+                            })
+                        
+                        //}
+                    } // end dispatch of Checklists
+                })
+            } else {
+                print("Error")
+            }
         }
         
+    }
+    
+    
+    
+    func performEventLevelSync(completion: @escaping (Bool) -> Void){
         
+        CloudKitSyncController.shared.fetchNewUserAccountRecord { (success) in
+            if success {
+                // Check which events are saved and which ones need to be deleted
+                guard let user = UserAccountController.sharedController.hostUser else { return }
+                let eventHandles = user.eventHandles.flatMap{$0 as? EventHandle }
+                var eventsToKeep: [Event] = []
+                for event in EventController.sharedController.events{
+                    for eventHandle in eventHandles{
+                        if event.eventID == eventHandle.eventID {
+                            eventsToKeep.append(event)
+                        }
+                    }
+                }
+                let eventsToDelete = EventController.sharedController.events.filter{!eventsToKeep.contains($0)}
+                for eventToDelete in eventsToDelete {
+                    EventController.sharedController.deleteEvent(event: eventToDelete)
+                }
+                var eventIDsToDownload: [String] = []
+                for eventHandle in eventHandles{
+                    if !EventController.sharedController.eventIDs.contains(eventHandle.eventID) {
+                       eventIDsToDownload.append(eventHandle.eventID)
+                    }
+                }
+                // Download records
+                for eventID in eventIDsToDownload{
+                    let predicate = NSPredicate(format: "eventID == %@", eventID)
+                CloudKitManager.sharedController.fetchRecordsWithType(Event.recordType, predicate: predicate, recordFetchedBlock: nil, completion: { (records, error) in
+                    DispatchQueue.main.async {
+                        if error != nil {
+                            print("Error fetching new events \(error?.localizedDescription)")
+                            completion(false)
+                        }
+                        if let records = records {
+                            for record in records {
+                                if let newEvent = Event(record: record) {
+                                    PersistenceController.sharedController.saveToPersistedStorage()
+                                    let notification = Notification(name: NSNotification.Name(rawValue: "newEventSaved"), object: nil)
+                                    NotificationCenter.default.post(notification)
+                                    //CloudKitSyncController.shared.getChecklists(forEvent: newEvent)
+                                }
+                            }
+                        }
+                    }
+                })
+             
+                }
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }
+       
         
-        
-//        CloudKitManager.sharedController.deleteRecordsWithID(recordsToDelete) { (records, recordIDs, error) in
-//            DispatchQueue.main.async {
-//                if error != nil {
-//                    print("Error deleting event and all children")
-//                } else {
-//                    print("Success deleting event.")
-//                }
-//            }
-//        }
+    }
+    
+    func fetchNewUserAccountRecord(completion: @escaping (Bool) -> Void){
+        // Update userAccount
+        guard let user = UserAccountController.sharedController.hostUser,
+            let recordIDString = user.ckRecordID else { return }
+        let userRecordID = CKRecordID(recordName: recordIDString)
+        CloudKitManager.sharedController.fetchRecordWithID(userRecordID) { (record, error) in
+            DispatchQueue.main.async {
+                if error != nil {
+                    print("Error fetching userAccount record")
+                    completion(false)
+                }
+                if let record = record {
+                    
+                    guard let updatedUser = User(record: record) else { return }
+                    UserAccountController.sharedController.updateCurrentAccountFromSync(updatedUser: updatedUser)
+                    completion(true)
+                }
+            }
+        }
     }
 }

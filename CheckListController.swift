@@ -8,17 +8,33 @@
 
 import Foundation
 import CloudKit
+import CoreData
 
 class ChecklistController {
     
     // MARK: - public
     static let sharedController = ChecklistController()
     
+    
     // MARK: - CloudKit helper
     func findChecklist(forID: String, eventID: String) -> Checklist? {
         guard let event = EventController.sharedController.findEvent(forID: eventID) else { return nil }
         let checklists = event.checklists.flatMap{$0 as? Checklist }
         return  checklists.filter{$0.checklistID == forID}.first
+    }
+    
+    var allListItems: [ListItem] {
+        let request: NSFetchRequest<ListItem> = ListItem.fetchRequest()
+//        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+//        request.sortDescriptors = [sortDescriptor]
+        let moc = CoreDataStack.context
+        
+        do {
+            return try moc.fetch(request)
+        } catch {
+            return []
+        }
+        
     }
     // MARK: - Checklist functions
     
@@ -112,6 +128,31 @@ class ChecklistController {
         listItem.isComplete = !listItem.isComplete
         
         PersistenceController.sharedController.saveToPersistedStorage()
+    }
+    
+    func checklistRecordIDs() -> [CKRecordID] {
+        var checklists: [Checklist] = []
+        var recordIDs: [CKRecordID] = []
+        for event in EventController.sharedController.events{
+            let newChecklists = event.checklists.flatMap{ $0 as? Checklist }
+            checklists += newChecklists
+        }
+        for checklist in checklists {
+            if let recordIDString = checklist.ckRecordID {
+            recordIDs.append(CKRecordID(recordName: recordIDString))
+            }
+        }
+        return recordIDs
+    }
+    
+    func listItemRecordIDs() -> [CKRecordID]{
+        var recordIDs: [CKRecordID] = []
+        for listItem in ChecklistController.sharedController.allListItems{
+            if let recordIDString = listItem.ckRecordID {
+                recordIDs.append(CKRecordID(recordName: recordIDString))
+            }
+        }
+        return recordIDs
     }
     
 

@@ -183,4 +183,29 @@ class UserAccountController {
             }, completion: nil)
         
     }
+    
+    func updateCurrentAccountFromSync(updatedUser: User){
+        guard let currentUser = UserAccountController.sharedController.hostUser else { return }
+        if currentUser.cloudKitUserID != updatedUser.cloudKitUserID || currentUser.ckRecordID! != updatedUser.ckRecordID! { print("Wrong user record"); return}
+        if currentUser.name != updatedUser.name {
+            currentUser.name = updatedUser.name
+        }
+        if currentUser.phoneNumber != updatedUser.phoneNumber {
+            currentUser.phoneNumber = updatedUser.phoneNumber
+        }
+        
+        let currentEventHandles = currentUser.eventHandles.flatMap{ $0 as? EventHandle }
+        let updatedEventHandles = updatedUser.eventHandles.flatMap{ $0 as? EventHandle }
+       
+        
+        for event in currentEventHandles {
+            currentUser.removeFromEventHandles(event)
+        }
+        for event in updatedEventHandles {
+            currentUser.addToEventHandles(event)
+        }
+
+        updatedUser.managedObjectContext?.delete(updatedUser)
+        PersistenceController.sharedController.saveToPersistedStorage()
+    }
 }
