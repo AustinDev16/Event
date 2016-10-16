@@ -48,6 +48,7 @@ class ChecklistController {
     
     func deleteCheckList(checklist: Checklist, event: Event){
         
+        CloudKitSyncController.shared.deleteChecklist(checklist: checklist, event: event)
         event.removeFromChecklists(checklist)
         checklist.managedObjectContext?.delete(checklist)
         PersistenceController.sharedController.saveToPersistedStorage()
@@ -91,7 +92,10 @@ class ChecklistController {
 //    }
     
     func removeItemFromList(listItem: ListItem, checklist: Checklist){
+        
+        CloudKitSyncController.shared.deleteListItem(listItem: listItem)
         checklist.removeFromListItems(listItem)
+        
         
         PersistenceController.sharedController.saveToPersistedStorage()
     }

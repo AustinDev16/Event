@@ -100,6 +100,50 @@ class CloudKitSyncController {
         
     }
     
+    func deleteListItem(listItem: ListItem){
+        guard let recordName = listItem.ckRecordID else { return }
+        let newRecordID = CKRecordID(recordName: recordName)
+        CloudKitManager.sharedController.deleteRecordWithID(newRecordID) { (recordID, error) in
+            DispatchQueue.main.async {
+                if error != nil {
+                    print("Error deleting list item: \(error?.localizedDescription)")
+                } else {
+                    print("Success deleting \(recordID?.recordName)")
+                }
+            }
+        }
+    }
+    
+    func deleteChecklist(checklist: Checklist, event: Event){
+        var recordsToDelete: [CKRecordID]  = []
+        var recordIDS: [String?] = []
+        recordIDS.append(checklist.ckRecordID)
+        
+        let listItems = checklist.listItems.flatMap{ $0 as? ListItem }
+        for listItem in listItems {
+            recordIDS.append(listItem.ckRecordID)
+        }
+        
+        for recordID in recordIDS {
+            if let recordID = recordID {
+                let newRecordID = CKRecordID(recordName: recordID)
+                recordsToDelete.append(newRecordID)
+            }
+        }
+        
+        for record in recordsToDelete{
+            CloudKitManager.sharedController.deleteRecordWithID(record, completion: { (recordID, error) in
+                DispatchQueue.main.async {
+                    if error != nil {
+                        print("Error deleting records \(error?.localizedDescription)")
+                    } else {
+                        print("Success deleting \(recordID?.recordName)")
+                    }
+                }
+            })
+        }
+    }
+    
     func deleteEvent(event: Event){
         var recordsToDelete: [CKRecordID]  = []
         var recordIDS: [String?] = []
