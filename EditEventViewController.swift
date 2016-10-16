@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditEventViewController: UIViewController {
+class EditEventViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
     var event: Event?
     
     private let descriptionPlaceHolder: String = "Add a description."
@@ -23,6 +23,11 @@ class EditEventViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        eventNameField.delegate = self
+        eventNameField.returnKeyType = .done
+        locationField.delegate = self
+        locationField.returnKeyType = .done
+        descriptionField.keyboardDismissMode = .interactive
        setupNavigationBar()
         updateView()
     }
@@ -51,6 +56,7 @@ class EditEventViewController: UIViewController {
     }
     
     func doneButtonTapped(){
+        view.endEditing(true)
         // Conditions for saving and editing
         guard let name = eventNameField.text,
             name.characters.count > 0,
@@ -84,8 +90,14 @@ class EditEventViewController: UIViewController {
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     func cancelButtonTapped(){
+        view.endEditing(true)
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
+    // MARK: Text field delegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
     
 }

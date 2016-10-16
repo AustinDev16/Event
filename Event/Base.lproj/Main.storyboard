@@ -202,7 +202,10 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Ksn-VJ-GYX">
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="Ksn-VJ-GYX">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="120" id="l7L-oE-lVL"/>
+                                        </constraints>
                                         <date key="date" timeIntervalSinceReferenceDate="497895543.811746">
                                             <!--2016-10-11 16:19:03 +0000-->
                                         </date>
@@ -210,7 +213,7 @@
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Add a description." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="E2Y-nQ-efl">
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
                                     </textView>
                                 </subviews>
                             </stackView>
