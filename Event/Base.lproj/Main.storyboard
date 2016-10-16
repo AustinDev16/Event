@@ -472,7 +472,7 @@
         <scene sceneID="upQ-Yh-xug">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fVv-ho-FPu" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Events" id="5vt-cO-aWp"/>
+                    <tabBarItem key="tabBarItem" title="Events" image="todayUnfilled" selectedImage="todayFilled" id="5vt-cO-aWp"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UdM-PD-cm8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -527,7 +527,7 @@
         <scene sceneID="ouG-AA-CEN">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ecA-DR-lmg" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My Account" id="Uzz-F3-Qxm"/>
+                    <tabBarItem key="tabBarItem" title="My Account" image="userUnfilled" selectedImage="userFilled" id="Uzz-F3-Qxm"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rkR-60-Yfz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -543,4 +543,10 @@
             <point key="canvasLocation" x="2521" y="742"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="todayFilled" width="25" height="25"/>
+        <image name="todayUnfilled" width="25" height="25"/>
+        <image name="userFilled" width="25" height="25"/>
+        <image name="userUnfilled" width="25" height="25"/>
+    </resources>
 </document>
