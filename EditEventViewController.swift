@@ -37,7 +37,11 @@ class EditEventViewController: UIViewController, UITextViewDelegate, UITextField
             self.title = "Edit Event"
             eventNameField.text = event.name
             locationField.text = event.location
+            if event.detailDescription.characters.count == 0 {
+                descriptionField.text = self.descriptionPlaceHolder
+            } else {
             descriptionField.text = event.detailDescription
+            }
             datePicker.date = event.date as Date
         } else {
             self.title = "New Event"

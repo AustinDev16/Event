@@ -45,11 +45,13 @@ class EventDetail_DetailViewController: UIViewController {
     func updateView(){
         guard let event = innerContentViewDelegate?.event else { return }
         eventName.text = event.name
-        hostedByLabel.text = "Hosted by \(event.hostID)"
+       let name = UserAccountController.sharedController.hostUser?.name ?? ""
+        hostedByLabel.text = "Hosted by \(name)"
         let date = event.date as Date
         dateLabel.text = EventController.dateFormatter.string(from: date)
         locationLabel.text = "@ \(event.location)"
         descriptionLabel.text = event.detailDescription
+        
         
     }
     override func didReceiveMemoryWarning() {
