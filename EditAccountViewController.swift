@@ -22,7 +22,7 @@ class EditAccountViewController: UIViewController, UITextFieldDelegate {
         instructionLabel.translatesAutoresizingMaskIntoConstraints = false
         instructionLabel.numberOfLines = 0
         instructionLabel.textAlignment = .justified
-        instructionLabel.text = "Invite friends to events. Sync events across other iOS devices. All with one account."
+        instructionLabel.text = "An account lets you invite friends to events and keep all your iOS devices up to date."
         self.view.addSubview(instructionLabel)
         
         let instructionLabelTop = NSLayoutConstraint(item: instructionLabel, attribute: .top, relatedBy: .equal, toItem: self.topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 8)
@@ -33,11 +33,11 @@ class EditAccountViewController: UIViewController, UITextFieldDelegate {
         
         // Name Label
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.text = "Pick a screen name.\nThis is how your friends will identify you."
+        nameLabel.text = "Choose a display name:"
         nameLabel.numberOfLines = 0
         self.view.addSubview(nameLabel)
         
-        let nameLabelTop = NSLayoutConstraint(item: nameLabel, attribute: .top, relatedBy: .equal, toItem: instructionLabel, attribute: .bottom, multiplier: 1.0, constant: 8.0)
+        let nameLabelTop = NSLayoutConstraint(item: nameLabel, attribute: .top, relatedBy: .equal, toItem: instructionLabel, attribute: .bottom, multiplier: 1.0, constant: 16.0)
         let nameLabelLeading = NSLayoutConstraint(item: nameLabel, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leadingMargin, multiplier: 1.0, constant: 0)
         let nameLabelTrailing = NSLayoutConstraint(item: nameLabel, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailingMargin, multiplier: 1.0, constant: 0)
         self.view.addConstraints([nameLabelTop, nameLabelLeading, nameLabelTrailing])
@@ -48,6 +48,7 @@ class EditAccountViewController: UIViewController, UITextFieldDelegate {
         nameTextField.keyboardAppearance = .dark
         nameTextField.borderStyle = .roundedRect
         nameTextField.returnKeyType = .done
+        nameTextField.textAlignment = .center
         nameTextField.delegate = self
         self.view.addSubview(nameTextField)
         
@@ -58,11 +59,11 @@ class EditAccountViewController: UIViewController, UITextFieldDelegate {
         
         // phone label
         phoneNumberLabel.translatesAutoresizingMaskIntoConstraints = false
-        phoneNumberLabel.text = "Add your phone number.\nOther users will only see the last 4 digits when they search for you."
+        phoneNumberLabel.text = "Add your phone number:"
         phoneNumberLabel.numberOfLines = 0
         self.view.addSubview(phoneNumberLabel)
         
-        let phoneLabelTop = NSLayoutConstraint(item: phoneNumberLabel, attribute: .top, relatedBy: .equal, toItem: nameTextField, attribute: .bottom, multiplier: 1.0, constant: 8.0)
+        let phoneLabelTop = NSLayoutConstraint(item: phoneNumberLabel, attribute: .top, relatedBy: .equal, toItem: nameTextField, attribute: .bottom, multiplier: 1.0, constant: 16.0)
         let phoneLabelLeading = NSLayoutConstraint(item: phoneNumberLabel, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leadingMargin, multiplier: 1.0, constant: 0.0)
         let phoneLabelTrailing = NSLayoutConstraint(item: phoneNumberLabel, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailingMargin, multiplier: 1.0, constant: 0)
         self.view.addConstraints([phoneLabelTop, phoneLabelLeading, phoneLabelTrailing])
@@ -121,6 +122,7 @@ class EditAccountViewController: UIViewController, UITextFieldDelegate {
     }
     
     func createNewAccount(){
+        view.endEditing(true)
         guard let name = nameTextField.text,
             let phoneNumber = phoneNumberTextField.text else {return}
         
@@ -145,7 +147,7 @@ class EditAccountViewController: UIViewController, UITextFieldDelegate {
     }
     
     func cancelNewAccountTapped(){
-        
+        view.endEditing(true)
         if (self.user != nil) {
             self.presentingViewController?.dismiss(animated: true, completion: nil)
         } else {
