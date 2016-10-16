@@ -67,12 +67,12 @@ class EditEventViewController: UIViewController {
         
         if let event = self.event {
             // Update Existing
-            event.name = name
-            event.location = location
-            event.detailDescription = detailDescription
-            event.date = date
+//            event.name = name
+//            event.location = location
+//            event.detailDescription = detailDescription
+//            event.date = date
             
-            EventController.sharedController.eventHasBeenModified()
+            EventController.sharedController.modifyEvent(name: name, location: location, detailDescription: detailDescription, date: date, eventToModify: event)
             
         } else {
             // Create new             
