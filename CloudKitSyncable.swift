@@ -90,7 +90,8 @@ extension CKRecord {
     }
     
     convenience init(updatedListItemWithRecordID: ListItem) {
-        self.init(recordType: ListItem.recordType)
+        let recordID = CKRecordID(recordName: updatedListItemWithRecordID.ckRecordID!)
+        self.init(recordType: ListItem.recordType, recordID: recordID)
         
         self[ListItem.kName] = updatedListItemWithRecordID.name as CKRecordValue?
         self[ListItem.kIsComplete] = updatedListItemWithRecordID.isComplete as CKRecordValue?

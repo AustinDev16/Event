@@ -128,6 +128,21 @@ class ChecklistController {
         listItem.isComplete = !listItem.isComplete
         
         PersistenceController.sharedController.saveToPersistedStorage()
+        
+        // Create Record to Modify
+        
+        let newRecord = CKRecord(updatedListItemWithRecordID: listItem)
+        CloudKitManager.sharedController.modifyRecords([newRecord], perRecordCompletion: nil) { (records, error) in
+            DispatchQueue.main.async {
+                if error != nil {
+                    print("Error modifying checklist: \(error?.localizedDescription)")
+                } else {
+                    print("Success updating the list item")
+                }
+                
+            }
+        }
+        
     }
     
     func checklistRecordIDs() -> [CKRecordID] {
