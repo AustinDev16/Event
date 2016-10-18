@@ -12,6 +12,9 @@ import CloudKit
 
 class CloudKitSyncController {
     static let shared = CloudKitSyncController()
+    var defaultZoneID: CKRecordZoneID {
+        return CKRecordZoneID(zoneName: "_defaultZone", ownerName: "__defaultOwner__")
+    }
     
     func getEventsFromUserAccount(){
         guard let user = UserAccountController.sharedController.hostUser else { return }
@@ -340,4 +343,49 @@ class CloudKitSyncController {
             }
         }
     }
+    
+    // MARK: - NEW Sync methods
+    func syncFromServerAnyChanges(){
+        
+        
+        let operation = CKFetchRecordZoneChangesOperation(recordZoneIDs: [self.defaultZoneID], optionsByRecordZoneID: nil)
+        operation.fetchAllChanges = true
+        operation.recordChangedBlock = { (record: CKRecord) in
+            DispatchQueue.main.async {
+                if record.recordType == Event.recordType{
+                    let event = EventController.sharedController.events.filter{$0.eventID == record.recordID.recordName}.first
+                    
+                    if let event = event, let newEvent = Event(record: record)  {
+                        event.name = newEvent.name
+                        event.date = newEvent.date
+                        event.location = newEvent.location
+                        event.detailDescription = newEvent.detailDescription
+                        newEvent.managedObjectContext?.delete(newEvent)
+                        PersistenceController.sharedController.saveToPersistedStorage()
+                        let notification = Notification(name: Notification.Name(rawValue: "newEventSaved"))
+                        NotificationCenter.default.post(notification)
+                    }
+                }
+            
+            
+            }
+        }
+        
+        CloudKitManager.sharedController.publicDatabase.add(operation)
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

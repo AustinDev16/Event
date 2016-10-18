@@ -26,6 +26,12 @@ class CloudKitManager {
         checkCloudKitAvailability()
     }
     
+    // MARK: - New Syncing
+    func fetchChangedRecordsForDefaultZone(){
+        
+       // CKContainer.default().publicCloudDatabase.add(<#T##operation: CKDatabaseOperation##CKDatabaseOperation#>)
+    }
+    
     // MARK: - User Info Discovery
     
     func fetchLoggedInUserRecord(_ completion: ((_ record: CKRecord?, _ error: NSError? ) -> Void)?) {

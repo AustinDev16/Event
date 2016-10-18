@@ -60,6 +60,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             //  let accountVC = navigationController.viewControllers.first as? EditAccountViewController
         } else {
             // updates from cloud to account
+            //CloudKitSyncController.shared.syncFromServerAnyChanges()
             CloudKitSyncController.shared.performFullSync()
         }
         

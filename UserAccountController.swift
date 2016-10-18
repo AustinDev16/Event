@@ -79,7 +79,7 @@ class UserAccountController {
     }
     
     
-    
+    var defaultZoneID: String?
     
     
     
@@ -95,6 +95,7 @@ class UserAccountController {
                 guard let record = record else { return  }
               
                 self.iCloudUserID = record.recordID.recordName
+               
                 print("getLoggedInUserID() \(record.recordID.recordName) ")
                 completion(true)
                 
