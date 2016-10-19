@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import EventKitUI
 
-class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, EKEventEditViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -126,6 +127,33 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     
     // MARK: - Navigation
+    
+    @IBAction func newEventTapped(_ sender: AnyObject) {
+        if CalendarController.shared.hasAccess {
+        let newEventVC = EKEventEditViewController()
+        newEventVC.eventStore = CalendarController.shared.eventStore
+        newEventVC.editViewDelegate = self
+        self.present(newEventVC, animated: true, completion: nil)
+        }
+    }
+    
+    func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
+        guard let calEvent = controller.event else { return }
+        switch action {
+        case .canceled:
+            break
+        case .deleted:break
+            // fill in 
+        case .saved:
+            // Create event to match
+            EventController.sharedController.addEvent(calEvent: calEvent)
+        }
+        controller.dismiss(animated: true, completion: nil)
+        
+    }
+    
+ 
+    
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

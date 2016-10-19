@@ -105,6 +105,7 @@ class EventController {
                 }
                 if let record = record {
                     newEvent.ckRecordID = record.recordID.recordName
+                    PersistenceController.sharedController.saveToPersistedStorage()
                 }
             }
         }
@@ -126,6 +127,7 @@ class EventController {
                 }
                 if let record = record {
                     newEvent.ckRecordID = record.recordID.recordName
+                    PersistenceController.sharedController.saveToPersistedStorage()
                 }
             }
         }
