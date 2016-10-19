@@ -130,10 +130,14 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBAction func newEventTapped(_ sender: AnyObject) {
         if CalendarController.shared.hasAccess {
-        let newEventVC = EKEventEditViewController()
-        newEventVC.eventStore = CalendarController.shared.eventStore
-        newEventVC.editViewDelegate = self
-        self.present(newEventVC, animated: true, completion: nil)
+            guard let eventStore = CalendarController.shared.eventStore else { return }
+            let tempEvent = EKEvent(eventStore: eventStore)
+            let newEventVC = EKEventEditViewController()
+            newEventVC.eventStore = eventStore
+            tempEvent.calendar = eventStore.defaultCalendarForNewEvents
+            newEventVC.event = tempEvent
+            newEventVC.editViewDelegate = self
+            self.present(newEventVC, animated: true, completion: nil)
         }
     }
     

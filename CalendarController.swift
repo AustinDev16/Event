@@ -12,13 +12,16 @@ import EventKit
 class CalendarController {
     static let shared = CalendarController()
     
-    var eventStore: EKEventStore {
-        return EKEventStore()
+    var eventStore: EKEventStore?
+    
+    func setUpEventStore(){
+        if eventStore == nil {
+            self.eventStore = EKEventStore()        }
     }
    
     var hasAccess: Bool {
-        var success: Bool = false
-        self.eventStore.requestAccess(to: .event) { (access, error) in
+        var success: Bool = true
+        CalendarController.shared.eventStore?.requestAccess(to: .event) { (access, error) in
             if error != nil {
                 print("Error requesting access: \(error?.localizedDescription)")
             }
@@ -34,11 +37,11 @@ class CalendarController {
     func deleteCalendarEvent(forEvent event: Event){
         if self.hasAccess{
             guard let calEventID = event.calEventID,
-            let calEventToDelete = self.eventStore.event(withIdentifier: calEventID)  else { return }
+            let calEventToDelete = self.eventStore?.event(withIdentifier: calEventID)  else { return }
             do {
-                try self.eventStore.remove(calEventToDelete, span: .thisEvent, commit: true)
+                try CalendarController.shared.eventStore?.remove(calEventToDelete, span: .thisEvent, commit: true)
             } catch {
-                print("Error deleting event")
+                print("Error deleting event \(error.localizedDescription)")
             }
             
         }
