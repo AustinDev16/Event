@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import EventKitUI
 
-class EventDetail_DetailViewController: UIViewController {
+class EventDetail_DetailViewController: UIViewController, EKEventEditViewDelegate {
     // MARK: - Outlets
     @IBOutlet weak var eventName: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
@@ -19,17 +20,39 @@ class EventDetail_DetailViewController: UIViewController {
     weak var innerContentViewDelegate: InnerContentViewDelegate?
     
     func editEventButtonTapped(){
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+//        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+//        
+//        guard let navigationController = storyboard.instantiateViewController(withIdentifier: "editEventNavigationController") as? UINavigationController,
+//        let editVC = navigationController.viewControllers.first as? EditEventViewController else { return }
+//        
+//        editVC.event = innerContentViewDelegate?.event
+//
+//        present(navigationController, animated: true, completion: nil)
         
-        guard let navigationController = storyboard.instantiateViewController(withIdentifier: "editEventNavigationController") as? UINavigationController,
-        let editVC = navigationController.viewControllers.first as? EditEventViewController else { return }
+        if CalendarController.shared.hasAccess{
+            guard let eventStore = CalendarController.shared.eventStore else { return }
+            let editEventVC = EKEventEditViewController()
+            editEventVC.eventStore = eventStore
+            editEventVC.editViewDelegate = self
+            editEventVC.event = innerContentViewDelegate?.event?.fetchedCalRecord()
+            self.present(editEventVC, animated: true, completion: nil)
+        }
         
-        editVC.event = innerContentViewDelegate?.event
-
-        present(navigationController, animated: true, completion: nil)
-            
     }
     
+    // MARK: - Edit Event delegate methods
+    func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
+        controller.dismiss(animated: true, completion: nil)
+        guard let calEvent = controller.event, let eventToModify = innerContentViewDelegate?.event else { return }
+        switch action {
+        case .canceled:
+            break
+        case .deleted:
+            break
+        case .saved:
+            EventController.sharedController.modifyEvent(calEvent: calEvent, eventToModify: eventToModify)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -180,5 +180,27 @@ class EventController {
         }
     }
     
+    func modifyEvent(calEvent: EKEvent, eventToModify: Event){
+        
+        eventToModify.name = calEvent.title
+        eventToModify.location = calEvent.location ?? ""
+        eventToModify.detailDescription = calEvent.notes ?? ""
+        eventToModify.date = calEvent.startDate as NSDate
+        eventToModify.calEventID = calEvent.eventIdentifier
+        
+        PersistenceController.sharedController.saveToPersistedStorage()
+        
+        let newRecord = CKRecord(updatedEventWithRecordID: eventToModify)
+        CloudKitManager.sharedController.modifyRecords([newRecord], perRecordCompletion: nil) { (records, error) in
+            DispatchQueue.main.async {
+                if error != nil {
+                    print("Error updating event: \(error?.localizedDescription)")
+                } else {
+                    print("Success updating record \(records?.first?.recordID.recordName)")
+                }
+            }
+        }
+    }
+    
 
 }

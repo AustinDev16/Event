@@ -18,4 +18,13 @@ extension Event {
         self.init(name: name, date: date, location: location, detailDescription: detailDescription)
         self.calEventID = calEvent.eventIdentifier
     }
+    
+    
+    func fetchedCalRecord() -> EKEvent? {
+        guard let eventStore = CalendarController.shared.eventStore,
+        let calRecordID = self.calEventID else { return nil }
+        return eventStore.event(withIdentifier: calRecordID)
+    }
 }
+
+
