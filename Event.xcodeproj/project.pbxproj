@@ -15,6 +15,8 @@
 		FA8824D41DB0081000FCF870 /* CloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8824D31DB0081000FCF870 /* CloudKitManager.swift */; };
 		FA8824D81DB01B7500FCF870 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA8824D71DB01B7500FCF870 /* CloudKit.framework */; };
 		FAA573FB1DA6ACC8007CCBA2 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA573FA1DA6ACC7007CCBA2 /* EventViewController.swift */; };
+		FAB0079D1DB805A00094307E /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0079C1DB805A00094307E /* CalendarController.swift */; };
+		FAB0079F1DB80B090094307E /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0079E1DB80B090094307E /* CalendarHelper.swift */; };
 		FABCE9811DAC06E500DEB1DF /* ListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABCE9801DAC06E500DEB1DF /* ListItemTableViewCell.swift */; };
 		FABCE9841DAC074300DEB1DF /* ListItemDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABCE9831DAC074300DEB1DF /* ListItemDelegate.swift */; };
 		FACF38C01DA84C9400513642 /* InnerContentViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF38BF1DA84C9400513642 /* InnerContentViewDelegate.swift */; };
@@ -61,6 +63,8 @@
 		FA8824D51DB01B6A00FCF870 /* Event.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Event.entitlements; sourceTree = "<group>"; };
 		FA8824D71DB01B7500FCF870 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		FAA573FA1DA6ACC7007CCBA2 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventViewController.swift; path = Event/EventViewController.swift; sourceTree = "<group>"; };
+		FAB0079C1DB805A00094307E /* CalendarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
+		FAB0079E1DB80B090094307E /* CalendarHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
 		FABCE9801DAC06E500DEB1DF /* ListItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListItemTableViewCell.swift; path = ../CustomListItemCells/CustomListItemCells/ListItemTableViewCell.swift; sourceTree = "<group>"; };
 		FABCE9831DAC074300DEB1DF /* ListItemDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListItemDelegate.swift; path = ../CustomListItemCells/CustomListItemCells/ListItemDelegate.swift; sourceTree = "<group>"; };
 		FACF38BF1DA84C9400513642 /* InnerContentViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InnerContentViewDelegate.swift; sourceTree = "<group>"; };
@@ -180,6 +184,8 @@
 		FADEA3EB1DA5A055000A46C3 /* Model Controller */ = {
 			isa = PBXGroup;
 			children = (
+				FAB0079C1DB805A00094307E /* CalendarController.swift */,
+				FAB0079E1DB80B090094307E /* CalendarHelper.swift */,
 				FA8824D11DB007C900FCF870 /* CloudKitSyncController.swift */,
 				FAE549371DAEA1D600CBF542 /* GuestController.swift */,
 				FA1B021C1DAD8C3200CF8F78 /* UserAccountController.swift */,
@@ -349,11 +355,13 @@
 				FAF5D4C61DB1505C00F761E4 /* CloudKitSyncable.swift in Sources */,
 				FA8824D41DB0081000FCF870 /* CloudKitManager.swift in Sources */,
 				FAE853291DB18FBB00081A4F /* EventHandle+CoreDataClass.swift in Sources */,
+				FAB0079F1DB80B090094307E /* CalendarHelper.swift in Sources */,
 				FAEF1B091DA83A0000F2E64E /* EventDetail_ListsViewController.swift in Sources */,
 				FAE5493A1DAEA54C00CBF542 /* InviteGuestSearchTableViewController.swift in Sources */,
 				FADEA3DF1DA59014000A46C3 /* Checklist+CoreDataClass.swift in Sources */,
 				FADEA3EA1DA595DD000A46C3 /* EventController.swift in Sources */,
 				FA1B021F1DAD949F00CF8F78 /* EditAccountViewController.swift in Sources */,
+				FAB0079D1DB805A00094307E /* CalendarController.swift in Sources */,
 				FAE5493E1DAECB8A00CBF542 /* InviteGuestDelegate.swift in Sources */,
 				FAEF1B051DA837B700F2E64E /* EventDetailViewController.swift in Sources */,
 				FAE8AE0D1DA54BC3000F1A34 /* AppDelegate.swift in Sources */,

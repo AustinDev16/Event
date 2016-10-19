@@ -37,6 +37,7 @@ public class Event: NSManagedObject {
     static let kDetailDescription = "detailDescription"
     static let kEventID = "eventID"
     static let kHostID = "hostID"
+    static let kCalEventID = "calEventID"
     
     convenience init?(record: CKRecord){
         if record.recordType != Event.recordType { return nil }
@@ -45,10 +46,12 @@ public class Event: NSManagedObject {
         let location = record[Event.kLocation] as? String,
         let detailDescription = record[Event.kDetailDescription] as? String,
         let eventID = record[Event.kEventID] as? String,
-            let hostID = record[Event.kHostID] as? String else { return nil }
+            let hostID = record[Event.kHostID] as? String,
+        let calEventID = record[Event.kCalEventID] as? String else { return nil }
         
         self.init(name: name, date: date, location: location, detailDescription: detailDescription, eventID: eventID, hostID: hostID)
         self.ckRecordID = record.recordID.recordName
+        self.calEventID = calEventID
         
         
     }

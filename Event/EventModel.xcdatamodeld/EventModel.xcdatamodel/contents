@@ -9,6 +9,7 @@
         <relationship name="listItems" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ListItem" inverseName="checklist" inverseEntity="ListItem" syncable="YES"/>
     </entity>
     <entity name="Event" representedClassName="Event" syncable="YES">
+        <attribute name="calEventID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ckRecordID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="detailDescription" attributeType="String" syncable="YES"/>
@@ -50,7 +51,7 @@
     </entity>
     <elements>
         <element name="Checklist" positionX="-135" positionY="-423" width="128" height="135"/>
-        <element name="Event" positionX="-369" positionY="-414" width="128" height="180"/>
+        <element name="Event" positionX="-369" positionY="-414" width="128" height="195"/>
         <element name="EventHandle" positionX="-65" positionY="-519" width="128" height="30"/>
         <element name="Guest" positionX="-153" positionY="-166" width="128" height="118"/>
         <element name="ListItem" positionX="63" positionY="-403" width="128" height="150"/>

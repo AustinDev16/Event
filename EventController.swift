@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 import CloudKit
+import EventKit
 
 class EventController {
     
@@ -87,11 +88,33 @@ class EventController {
     }
     // MARK: - private Functions
     
+    /// Adds event from a detailed list of parameters
     func addEvent(name: String, date: NSDate, location: String, detailDescription: String){
         let newEvent = Event(name: name, date: date, location: location, detailDescription: detailDescription)
         
         UserAccountController.sharedController.addEventToUser(event: newEvent)
                 
+        PersistenceController.sharedController.saveToPersistedStorage()
+        
+        // Save new event to cloud
+        let newRecord = CKRecord(event: newEvent)
+        CloudKitManager.sharedController.saveRecord(newRecord) { (record, error) in
+            DispatchQueue.main.async {
+                if error != nil {
+                    print ("Error saving new event to cloud")
+                }
+                if let record = record {
+                    newEvent.ckRecordID = record.recordID.recordName
+                }
+            }
+        }
+    }
+    
+    func addEvent(calEvent: EKEvent){
+        let newEvent = Event(calEvent: calEvent)
+        
+        UserAccountController.sharedController.addEventToUser(event: newEvent)
+        
         PersistenceController.sharedController.saveToPersistedStorage()
         
         // Save new event to cloud

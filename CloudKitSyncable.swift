@@ -45,6 +45,7 @@ extension CKRecord {
         self[Event.kLocation] = event.location as CKRecordValue?
         self[Event.kEventID] = event.eventID as CKRecordValue?
         self[Event.kHostID] = event.hostID as CKRecordValue?
+        self[Event.kCalEventID] = event.calEventID as CKRecordValue?
      }
     
     convenience init(updatedEventWithRecordID: Event){
@@ -57,6 +58,7 @@ extension CKRecord {
         self[Event.kLocation] = updatedEventWithRecordID.location as CKRecordValue?
         self[Event.kEventID] = updatedEventWithRecordID.eventID as CKRecordValue?
         self[Event.kHostID] = updatedEventWithRecordID.hostID as CKRecordValue?
+        self[Event.kCalEventID] = updatedEventWithRecordID.calEventID as CKRecordValue?
         
     }
     

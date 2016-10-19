@@ -25,6 +25,7 @@ extension Event {
     @NSManaged public var guests: NSOrderedSet
     @NSManaged public var checklists: NSOrderedSet
     @NSManaged public var ckRecordID: String?
+    @NSManaged public var calEventID: String?
 
 }
 
