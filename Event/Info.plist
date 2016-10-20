@@ -4,6 +4,8 @@
 <dict>
 	<key>NSCalendarsUsageDescription</key>
 	<string>PlanEvent uses your calendar to sync your events and checklists.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>PlanEvent uses your location when creating events to allow searching for addresses.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>

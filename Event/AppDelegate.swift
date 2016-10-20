@@ -8,6 +8,7 @@
 
 import UIKit
 import CloudKit
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print(EventController.sharedController.events.count)
         EventController.sharedController.createMockData()
+        let locMan = CLLocationManager()
+       locMan.requestWhenInUseAuthorization()
         
         CalendarController.shared.setUpEventStore()
         CalendarController.shared.eventStore?.requestAccess(to: .event, completion: { (granted, error) in
