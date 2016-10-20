@@ -15,7 +15,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+      
         checkForLoggedInUser()
         
         self.title = "Events"
@@ -24,11 +24,14 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         NotificationCenter.default.addObserver(self, selector: #selector(self.eventsUpdated), name: NSNotification.Name(rawValue: "newEventSaved"), object: nil)
     }
     
+
+    
     func eventsUpdated(){
         self.tableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        AppearanceController.customizeColors(viewController: self)
         self.tableView.reloadData()
     }
     

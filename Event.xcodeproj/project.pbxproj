@@ -17,6 +17,7 @@
 		FAA573FB1DA6ACC8007CCBA2 /* EventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA573FA1DA6ACC7007CCBA2 /* EventViewController.swift */; };
 		FAB0079D1DB805A00094307E /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0079C1DB805A00094307E /* CalendarController.swift */; };
 		FAB0079F1DB80B090094307E /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0079E1DB80B090094307E /* CalendarHelper.swift */; };
+		FAB007A11DB8439F0094307E /* AppearanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB007A01DB8439F0094307E /* AppearanceController.swift */; };
 		FABCE9811DAC06E500DEB1DF /* ListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABCE9801DAC06E500DEB1DF /* ListItemTableViewCell.swift */; };
 		FABCE9841DAC074300DEB1DF /* ListItemDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABCE9831DAC074300DEB1DF /* ListItemDelegate.swift */; };
 		FACF38C01DA84C9400513642 /* InnerContentViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF38BF1DA84C9400513642 /* InnerContentViewDelegate.swift */; };
@@ -65,6 +66,7 @@
 		FAA573FA1DA6ACC7007CCBA2 /* EventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EventViewController.swift; path = Event/EventViewController.swift; sourceTree = "<group>"; };
 		FAB0079C1DB805A00094307E /* CalendarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
 		FAB0079E1DB80B090094307E /* CalendarHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
+		FAB007A01DB8439F0094307E /* AppearanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceController.swift; sourceTree = "<group>"; };
 		FABCE9801DAC06E500DEB1DF /* ListItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListItemTableViewCell.swift; path = ../CustomListItemCells/CustomListItemCells/ListItemTableViewCell.swift; sourceTree = "<group>"; };
 		FABCE9831DAC074300DEB1DF /* ListItemDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListItemDelegate.swift; path = ../CustomListItemCells/CustomListItemCells/ListItemDelegate.swift; sourceTree = "<group>"; };
 		FACF38BF1DA84C9400513642 /* InnerContentViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InnerContentViewDelegate.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				FA1B021E1DAD949F00CF8F78 /* EditAccountViewController.swift */,
 				FA1B021A1DAD44DC00CF8F78 /* EditEventViewController.swift */,
 				FAA573FA1DA6ACC7007CCBA2 /* EventViewController.swift */,
+				FAB007A01DB8439F0094307E /* AppearanceController.swift */,
 				FABCE9851DAC13DC00DEB1DF /* Event Detail Segmented */,
 			);
 			name = "View Controller";
@@ -339,6 +342,7 @@
 				FADEA3E41DA59014000A46C3 /* ListItem+CoreDataProperties.swift in Sources */,
 				FA1B02211DADC91000CF8F78 /* MyAccountViewController.swift in Sources */,
 				FADEA3C51DA54F24000A46C3 /* CoreDataStack.swift in Sources */,
+				FAB007A11DB8439F0094307E /* AppearanceController.swift in Sources */,
 				FAE549361DAE9CDC00CBF542 /* DiscoverableUser.swift in Sources */,
 				FADEA3E11DA59014000A46C3 /* Event+CoreDataClass.swift in Sources */,
 				FADEA3C31DA54EC8000A46C3 /* EventModel.xcdatamodeld in Sources */,

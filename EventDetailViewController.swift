@@ -101,7 +101,8 @@ class EventDetailViewController: UIViewController, InnerContentViewDelegate {
         segmentedControl.addTarget(self, action: #selector(segmentSelectionChanged(sender:)), for: .valueChanged)
         
         segmentedControl.selectedSegmentIndex = 0
-        
+        segmentedControl.tintColor = AppearanceController.purpleColor
+        segmentedControl.tintAdjustmentMode = .automatic
         
         for viewController in self.innerContentViewControllers {
             addViewControllerAsChild(viewController: viewController)
