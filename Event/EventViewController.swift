@@ -32,8 +32,12 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         // Notifications
         NotificationCenter.default.addObserver(self, selector: #selector(self.eventsUpdated), name: NSNotification.Name(rawValue: "newEventSaved"), object: nil)
-        self.tableView.separatorColor = AppearanceController.purpleColor.withAlphaComponent(0.5)
+        self.tableView.separatorColor = AppearanceController.purpleColor.withAlphaComponent(0.1)
         self.tableView.separatorStyle = .singleLine
+        let view = UIView()
+        view.frame = self.tableView.frame
+        view.backgroundColor = AppearanceController.whiteColor
+        self.tableView.backgroundView = view
         
         
     }
@@ -47,9 +51,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidAppear(_ animated: Bool) {
         AppearanceController.customizeColors(viewController: self)
         self.tableView.reloadData()
-        let indexPath = IndexPath(row: 0, section: 1)
-        self.tableView.scrollToRow(at: indexPath, at: .none, animated: false)
-
+        
     }
     
     // MARK: - User Login 
@@ -98,9 +100,9 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         var headerString: String?
         switch section {
         case 0:
-            headerString = ("Past events")
-        case 1:
             headerString = ("Upcoming events")
+        case 1:
+            headerString = ("Past events")
         default:
             break
         }
@@ -111,9 +113,9 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // #warning Incomplete implementation, return the number of rows
         switch section{
         case 0:
-            return EventController.sharedController.pastEvents.count
-        case 1:
             return EventController.sharedController.upcomingEvents.count
+        case 1:
+            return EventController.sharedController.pastEvents.count
         default:
             return 0
         }
@@ -129,9 +131,9 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         var event: Event?
         switch indexPath.section{
         case 0:
-            event = EventController.sharedController.pastEvents[indexPath.row]
-        case 1:
             event = EventController.sharedController.upcomingEvents[indexPath.row]
+        case 1:
+            event = EventController.sharedController.pastEvents[indexPath.row]
         default:
             break
         }
@@ -140,7 +142,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let date = eventForCell.date as Date
         cell.textLabel?.text = eventForCell.name
         cell.detailTextLabel?.text = "\(EventController.dateFormatter.string(from: date))"
-
+        cell.backgroundColor = UIColor.clear
         return cell
     }
     
@@ -149,10 +151,19 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // Override to support editing the table view.
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            
-            let eventToDelete = EventController.sharedController.events[indexPath.row]
+            var eventToDelete: Event?
+            switch indexPath.section {
+            case 0:
+                eventToDelete = EventController.sharedController.upcomingEvents[indexPath.row]
+            case 1:
+                eventToDelete = EventController.sharedController.pastEvents[indexPath.row]
+            default:
+                break
+            }
+            if let eventToDelete = eventToDelete {
             EventController.sharedController.deleteEvent(event: eventToDelete)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            }
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
@@ -217,8 +228,17 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             guard let eventDetailVC = segue.destination as? EventDetailViewController,
             let cell = sender as? UITableViewCell,
             let index = tableView.indexPath(for: cell) else {return}
+            var events: [Event] = []
+            switch index.section{
+            case 0:
+                events = EventController.sharedController.upcomingEvents
+            case 1:
+                events = EventController.sharedController.pastEvents
+            default:
+                events = []
+            }
         
-            let selectedEvent = EventController.sharedController.events[index.row]
+            let selectedEvent = events[index.row]
             
             eventDetailVC.event = selectedEvent
         }

@@ -17,7 +17,12 @@ class AppearanceController {
     }
     
     static var tanColor: UIColor {
-        return UIColor(red: 255/255.0, green: 248/255.0, blue: 232/255.0, alpha: 1.0)
+        //return UIColor(red: 255/255.0, green: 248/255.0, blue: 232/255.0, alpha: 1.0)
+        return UIColor(red: 245/255.0, green: 245/255.0, blue: 230/255.0, alpha: 0.1)
+    }
+    
+    static var whiteColor: UIColor{
+        return UIColor(red: 253/255.0, green: 253/255.0, blue: 252/255.0, alpha: 1.0)
     }
     
     static func customizeColors(viewController: UIViewController){
