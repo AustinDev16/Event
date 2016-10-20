@@ -9,6 +9,16 @@
 import UIKit
 import EventKitUI
 
+extension UITableViewCell {
+    func prepareDisclosureIndicator(){
+        for case let button as UIButton in subviews {
+            let image = button.backgroundImage(for: .normal)?.withRenderingMode(.alwaysTemplate)
+            button.setBackgroundImage(image, for: .normal)
+            button.tintColor = AppearanceController.purpleColor
+        }
+    }
+}
+
 class EventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, EKEventEditViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
@@ -22,6 +32,10 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         // Notifications
         NotificationCenter.default.addObserver(self, selector: #selector(self.eventsUpdated), name: NSNotification.Name(rawValue: "newEventSaved"), object: nil)
+        self.tableView.separatorColor = AppearanceController.purpleColor.withAlphaComponent(0.5)
+        self.tableView.separatorStyle = .singleLine
+        
+        
     }
     
 
@@ -33,6 +47,9 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidAppear(_ animated: Bool) {
         AppearanceController.customizeColors(viewController: self)
         self.tableView.reloadData()
+        let indexPath = IndexPath(row: 0, section: 1)
+        self.tableView.scrollToRow(at: indexPath, at: .none, animated: false)
+
     }
     
     // MARK: - User Login 
@@ -74,27 +91,56 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // MARK: - Table view data source
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Upcoming events (\(EventController.sharedController.events.count))"
+        var headerString: String?
+        switch section {
+        case 0:
+            headerString = ("Past events")
+        case 1:
+            headerString = ("Upcoming events")
+        default:
+            break
+        }
+        return headerString
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return EventController.sharedController.events.count
+        switch section{
+        case 0:
+            return EventController.sharedController.pastEvents.count
+        case 1:
+            return EventController.sharedController.upcomingEvents.count
+        default:
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.prepareDisclosureIndicator()
     }
 
     
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell", for: indexPath)
-
-        let event = EventController.sharedController.events[indexPath.row]
+        var event: Event?
+        switch indexPath.section{
+        case 0:
+            event = EventController.sharedController.pastEvents[indexPath.row]
+        case 1:
+            event = EventController.sharedController.upcomingEvents[indexPath.row]
+        default:
+            break
+        }
+        guard let eventForCell = event else { return UITableViewCell() }
         
-        let date = event.date as Date
-        cell.textLabel?.text = event.name
+        let date = eventForCell.date as Date
+        cell.textLabel?.text = eventForCell.name
         cell.detailTextLabel?.text = "\(EventController.dateFormatter.string(from: date))"
+
         return cell
     }
     

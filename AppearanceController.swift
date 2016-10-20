@@ -26,6 +26,11 @@ class AppearanceController {
         UIBarButtonItem.appearance().tintColor = AppearanceController.purpleColor
         UINavigationBar.appearance().tintColor = AppearanceController.purpleColor
     }
+    
+    static func colorNavigationBar(){
+        UIBarButtonItem.appearance().tintColor = AppearanceController.purpleColor
+        UINavigationBar.appearance().tintColor = AppearanceController.purpleColor
+    }
 }
 
 extension EKEventEditViewController {

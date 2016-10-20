@@ -54,7 +54,14 @@ class EventController {
         } catch {
             return []
         }
-        
+    }
+    
+    var pastEvents: [Event]{
+        return events.filter{$0.date.timeIntervalSince1970 < NSDate().timeIntervalSince1970}
+    }
+    
+    var upcomingEvents: [Event]{
+        return events.filter{$0.date.timeIntervalSince1970 > NSDate().timeIntervalSince1970}
     }
     
     var eventIDs: [String] {
