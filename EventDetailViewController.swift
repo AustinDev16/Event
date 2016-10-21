@@ -28,7 +28,7 @@ class EventDetailViewController: UIViewController, InnerContentViewDelegate {
     // MARK: - Bar Button Setup
     
     func setUpBarButtons(){
-        editEventButton.title = "Edit Event"
+        editEventButton.title = "Edit"
         editEventButton.style = .plain
         editEventButton.target = detailViewController
         editEventButton.action = #selector(editEventBarButtonTapped)
