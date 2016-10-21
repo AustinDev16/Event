@@ -101,6 +101,12 @@ class EventDetailViewController: UIViewController, InnerContentViewDelegate {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if self.event == nil {
+           let _ = self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
  
     func setUpSegmentedControl(){
         segmentedControl.removeAllSegments()

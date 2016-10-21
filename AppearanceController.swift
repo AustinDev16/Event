@@ -46,4 +46,6 @@ extension EKEventEditViewController {
         CalendarController.shared.locManager.requestWhenInUseAuthorization()
 
     }
+    
+    
 }

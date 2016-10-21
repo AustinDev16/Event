@@ -14,7 +14,6 @@ class CalendarViewController: EKEventViewController, EKEventEditViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
     }
 
@@ -22,6 +21,8 @@ class CalendarViewController: EKEventViewController, EKEventEditViewDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
     
     func editEventBarButtonTapped(){
         if CalendarController.shared.hasAccess{
@@ -40,11 +41,16 @@ class CalendarViewController: EKEventViewController, EKEventEditViewDelegate {
         switch action {
         case .canceled:
             break
-        case .deleted:break
-            // Fill in
+        case .deleted:
+            if let event = innerContentViewDelegate?.event {
+                EventController.sharedController.deleteEvent(event: event, deletionType: .eventOnly)
+                innerContentViewDelegate?.event = nil
+            }
         case .saved:
-            // Create event to match
-            EventController.sharedController.addEvent(calEvent: calEvent)
+            // Modify existing event
+            if let event = innerContentViewDelegate?.event {
+            EventController.sharedController.modifyEvent(calEvent: calEvent, eventToModify: event)
+            }
         }
         controller.dismiss(animated: true, completion: nil)
         
