@@ -9,10 +9,14 @@
 import Foundation
 import EventKit
 
+
 class CalendarController {
     static let shared = CalendarController()
     
     var eventStore: EKEventStore?
+    var locManager: CLLocationManager {
+        return CLLocationManager()
+    }
     
     func setUpEventStore(){
         if eventStore == nil {

@@ -14,16 +14,17 @@ import CoreLocation
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var sharedStore: CalendarController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        self.sharedStore = CalendarController.shared
         
         AppearanceController.colorNavigationBar()
         print(EventController.sharedController.events.count)
         EventController.sharedController.createMockData()
-        let locMan = CLLocationManager()
-       locMan.requestWhenInUseAuthorization()
         
+        CalendarController.shared.locManager.requestWhenInUseAuthorization()
         CalendarController.shared.setUpEventStore()
         CalendarController.shared.eventStore?.requestAccess(to: .event, completion: { (granted, error) in
             

@@ -43,5 +43,7 @@ extension EKEventEditViewController {
     override open func viewWillAppear(_ animated: Bool) {
        
         self.navigationBar.barTintColor = AppearanceController.tanColor
+        CalendarController.shared.locManager.requestWhenInUseAuthorization()
+
     }
 }
