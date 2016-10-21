@@ -30,9 +30,14 @@ class AppearanceController {
         viewController.navigationController!.navigationBar.barTintColor = AppearanceController.tanColor
         UIBarButtonItem.appearance().tintColor = AppearanceController.purpleColor
         UINavigationBar.appearance().tintColor = AppearanceController.purpleColor
+        
+        
     }
     
     static func colorNavigationBar(){
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: UIBarPosition.any, barMetrics: UIBarMetrics.default)
+        UINavigationBar.appearance().shadowImage = UIImage()
+        UINavigationBar.appearance().isTranslucent = false
         UIBarButtonItem.appearance().tintColor = AppearanceController.purpleColor
         UINavigationBar.appearance().tintColor = AppearanceController.purpleColor
     }
