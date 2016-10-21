@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EventKitUI
 
 class EventDetailViewController: UIViewController, InnerContentViewDelegate {
     
@@ -15,7 +16,7 @@ class EventDetailViewController: UIViewController, InnerContentViewDelegate {
     var groupGuestsButton = UIBarButtonItem()
     var newListButton = UIBarButtonItem()
     
-    func editEventButtonTapped(){
+    func editEventBarButtonTapped(){
         
     }
     
@@ -30,7 +31,7 @@ class EventDetailViewController: UIViewController, InnerContentViewDelegate {
         editEventButton.title = "Edit Event"
         editEventButton.style = .plain
         editEventButton.target = detailViewController
-        editEventButton.action = #selector(editEventButtonTapped)
+        editEventButton.action = #selector(editEventBarButtonTapped)
         
         groupGuestsButton.title = "Groups"
         groupGuestsButton.style = .plain
@@ -50,11 +51,20 @@ class EventDetailViewController: UIViewController, InnerContentViewDelegate {
     
     // MARK: - innerContentView Properties
     
-    lazy var detailViewController: EventDetail_DetailViewController = {
-       let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "eventDetail_Detail") as! EventDetail_DetailViewController
-        
-        viewController.innerContentViewDelegate = self
+//    lazy var detailViewController: EventDetail_DetailViewController = {
+//       let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+//        let viewController = storyboard.instantiateViewController(withIdentifier: "eventDetail_Detail") as! EventDetail_DetailViewController
+//        
+//        viewController.innerContentViewDelegate = self
+//        return viewController
+//    }()
+    
+    lazy var detailViewController: CalendarViewController = {
+        let viewController = CalendarViewController()
+        if let event = self.event {
+            viewController.updateWithEvent(event: event)
+            viewController.innerContentViewDelegate = self
+        }
         return viewController
     }()
     
@@ -173,3 +183,4 @@ class EventDetailViewController: UIViewController, InnerContentViewDelegate {
     */
 
 }
+

@@ -11,6 +11,7 @@
 		FA1B021D1DAD8C3200CF8F78 /* UserAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B021C1DAD8C3200CF8F78 /* UserAccountController.swift */; };
 		FA1B021F1DAD949F00CF8F78 /* EditAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B021E1DAD949F00CF8F78 /* EditAccountViewController.swift */; };
 		FA1B02211DADC91000CF8F78 /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B02201DADC91000CF8F78 /* MyAccountViewController.swift */; };
+		FA2CA24A1DB9B29600FF9279 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2CA2491DB9B29600FF9279 /* CalendarViewController.swift */; };
 		FA8824D21DB007C900FCF870 /* CloudKitSyncController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8824D11DB007C900FCF870 /* CloudKitSyncController.swift */; };
 		FA8824D41DB0081000FCF870 /* CloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8824D31DB0081000FCF870 /* CloudKitManager.swift */; };
 		FA8824D81DB01B7500FCF870 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA8824D71DB01B7500FCF870 /* CloudKit.framework */; };
@@ -59,6 +60,7 @@
 		FA1B021C1DAD8C3200CF8F78 /* UserAccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccountController.swift; sourceTree = "<group>"; };
 		FA1B021E1DAD949F00CF8F78 /* EditAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAccountViewController.swift; sourceTree = "<group>"; };
 		FA1B02201DADC91000CF8F78 /* MyAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
+		FA2CA2491DB9B29600FF9279 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		FA8824D11DB007C900FCF870 /* CloudKitSyncController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitSyncController.swift; sourceTree = "<group>"; };
 		FA8824D31DB0081000FCF870 /* CloudKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitManager.swift; sourceTree = "<group>"; };
 		FA8824D51DB01B6A00FCF870 /* Event.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Event.entitlements; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				FAEF1B041DA837B700F2E64E /* EventDetailViewController.swift */,
+				FA2CA2491DB9B29600FF9279 /* CalendarViewController.swift */,
 				FAEF1B061DA839EA00F2E64E /* EventDetail_DetailViewController.swift */,
 				FAEF1B081DA83A0000F2E64E /* EventDetail_ListsViewController.swift */,
 				FAEF1B0A1DA83A0C00F2E64E /* EventDetail_GuestsViewController.swift */,
@@ -341,6 +344,7 @@
 				FADEA3E31DA59014000A46C3 /* ListItem+CoreDataClass.swift in Sources */,
 				FADEA3E41DA59014000A46C3 /* ListItem+CoreDataProperties.swift in Sources */,
 				FA1B02211DADC91000CF8F78 /* MyAccountViewController.swift in Sources */,
+				FA2CA24A1DB9B29600FF9279 /* CalendarViewController.swift in Sources */,
 				FADEA3C51DA54F24000A46C3 /* CoreDataStack.swift in Sources */,
 				FAB007A11DB8439F0094307E /* AppearanceController.swift in Sources */,
 				FAE549361DAE9CDC00CBF542 /* DiscoverableUser.swift in Sources */,
