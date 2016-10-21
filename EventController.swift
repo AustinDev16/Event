@@ -158,12 +158,25 @@ class EventController {
         PersistenceController.sharedController.saveToPersistedStorage()
     }
     
-    func deleteEvent(event: Event){
+    func deleteEvent(event: Event, deletionType: DeletionType){
         
-        CalendarController.shared.deleteCalendarEvent(forEvent: event)
-        CloudKitSyncController.shared.deleteEvent(event: event)
-        event.managedObjectContext?.delete(event)
-        PersistenceController.sharedController.saveToPersistedStorage()
+        switch deletionType{
+        case .eventOnly:
+            CloudKitSyncController.shared.deleteEvent(event: event)
+            event.managedObjectContext?.delete(event)
+            PersistenceController.sharedController.saveToPersistedStorage()
+        case .eventAndCalendar:
+            if CalendarController.shared.hasAccess{
+            CalendarController.shared.deleteCalendarEvent(forEvent: event)
+            CloudKitSyncController.shared.deleteEvent(event: event)
+            event.managedObjectContext?.delete(event)
+            PersistenceController.sharedController.saveToPersistedStorage()
+            } else {
+                print("Error deleting from calendar, permission denied")
+            }
+        }
+        
+        
         
     }
     
@@ -210,4 +223,9 @@ class EventController {
     }
     
 
+}
+
+enum DeletionType {
+    case eventOnly
+    case eventAndCalendar
 }

@@ -283,7 +283,7 @@ class CloudKitSyncController {
                 }
                 let eventsToDelete = EventController.sharedController.events.filter{!eventsToKeep.contains($0)}
                 for eventToDelete in eventsToDelete {
-                    EventController.sharedController.deleteEvent(event: eventToDelete)
+                    EventController.sharedController.deleteEvent(event: eventToDelete, deletionType: .eventOnly)
                 }
                 var eventIDsToDownload: [String] = []
                 for eventHandle in eventHandles{

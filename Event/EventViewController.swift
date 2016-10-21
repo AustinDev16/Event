@@ -160,10 +160,34 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
             default:
                 break
             }
-            if let eventToDelete = eventToDelete {
-            EventController.sharedController.deleteEvent(event: eventToDelete)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            }
+            
+            let deleteAction = UIAlertController(title: nil, message: "Events are synced to your calendar. Do you want to remove this event from your calendar?", preferredStyle: .actionSheet)
+            let calendarAction = UIAlertAction(title: "Remove calendar event", style: .destructive, handler: { (_) in
+                if let eventToDelete = eventToDelete{
+                EventController.sharedController.deleteEvent(event: eventToDelete, deletionType: .eventAndCalendar)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+            })
+            
+            let eventAction = UIAlertAction(title: "Remove from app only", style: .destructive, handler: { (_) in
+                if let eventToDelete = eventToDelete{
+                EventController.sharedController.deleteEvent(event: eventToDelete, deletionType: .eventOnly)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+            })
+            
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in
+                
+                self.tableView.setEditing(false, animated: true)
+            })
+            
+            deleteAction.addAction(calendarAction)
+            deleteAction.addAction(eventAction)
+            deleteAction.addAction(cancelAction)
+            
+            
+            self.present(deleteAction, animated: true, completion: nil)
+            
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    

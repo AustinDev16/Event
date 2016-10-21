@@ -48,7 +48,7 @@ class EventDetail_DetailViewController: UIViewController, EKEventEditViewDelegat
         case .canceled:
             break
         case .deleted:
-            EventController.sharedController.deleteEvent(event: eventToModify)
+            EventController.sharedController.deleteEvent(event: eventToModify, deletionType: .eventAndCalendar)
             // HANDLE segue back to home view.
             
         case .saved:
