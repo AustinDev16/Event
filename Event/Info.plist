@@ -2,10 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCalendarsUsageDescription</key>
-	<string>PlanEvent uses your calendar to sync your events and checklists.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>PlanEvent uses your location when creating events to allow searching for addresses.</string>
+	<key></key>
+	<string></string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -26,6 +24,14 @@
 	<string>2</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCalendarsUsageDescription</key>
+	<string>PlanEvent uses your calendar to sync your events and checklists.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>PlanEvent uses your contact list to aid integration with your calendar.</string>
+	<key>NSLocationUsageDescription</key>
+	<string>PlanEvent uses your location to be able to work with your calendar.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>PlanEvent uses your location when creating events to allow searching for addresses.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

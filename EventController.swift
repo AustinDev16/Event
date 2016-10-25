@@ -160,7 +160,7 @@ class EventController {
     
     func deleteEvent(event: Event, deletionType: DeletionType){
         
-        switch deletionType{
+        switch deletionType {
         case .eventOnly:
             CloudKitSyncController.shared.deleteEvent(event: event)
             event.managedObjectContext?.delete(event)

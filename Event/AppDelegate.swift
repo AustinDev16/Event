@@ -26,10 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         EventController.sharedController.createMockData()
         
         CalendarController.shared.locManager.requestWhenInUseAuthorization()
+        
         CalendarController.shared.setUpEventStore()
         CalendarController.shared.eventStore?.requestAccess(to: .event, completion: { (granted, error) in
             
         })
+        
         return true
     }
     

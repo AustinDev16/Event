@@ -12,6 +12,7 @@
 		FA1B021F1DAD949F00CF8F78 /* EditAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B021E1DAD949F00CF8F78 /* EditAccountViewController.swift */; };
 		FA1B02211DADC91000CF8F78 /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B02201DADC91000CF8F78 /* MyAccountViewController.swift */; };
 		FA2CA24A1DB9B29600FF9279 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2CA2491DB9B29600FF9279 /* CalendarViewController.swift */; };
+		FA5111871DBE982D00178D78 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5111861DBE982D00178D78 /* MapKit.framework */; };
 		FA8824D21DB007C900FCF870 /* CloudKitSyncController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8824D11DB007C900FCF870 /* CloudKitSyncController.swift */; };
 		FA8824D41DB0081000FCF870 /* CloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8824D31DB0081000FCF870 /* CloudKitManager.swift */; };
 		FA8824D81DB01B7500FCF870 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA8824D71DB01B7500FCF870 /* CloudKit.framework */; };
@@ -61,6 +62,7 @@
 		FA1B021E1DAD949F00CF8F78 /* EditAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAccountViewController.swift; sourceTree = "<group>"; };
 		FA1B02201DADC91000CF8F78 /* MyAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
 		FA2CA2491DB9B29600FF9279 /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		FA5111861DBE982D00178D78 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		FA8824D11DB007C900FCF870 /* CloudKitSyncController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitSyncController.swift; sourceTree = "<group>"; };
 		FA8824D31DB0081000FCF870 /* CloudKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitManager.swift; sourceTree = "<group>"; };
 		FA8824D51DB01B6A00FCF870 /* Event.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Event.entitlements; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA5111871DBE982D00178D78 /* MapKit.framework in Frameworks */,
 				FA8824D81DB01B7500FCF870 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -122,6 +125,7 @@
 		FA8824D61DB01B7500FCF870 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FA5111861DBE982D00178D78 /* MapKit.framework */,
 				FA8824D71DB01B7500FCF870 /* CloudKit.framework */,
 			);
 			name = Frameworks;
@@ -286,6 +290,9 @@
 						DevelopmentTeam = QYV5ZZB7LD;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
