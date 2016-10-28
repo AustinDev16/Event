@@ -7,6 +7,11 @@
 //
 
 import UIKit
+extension EventDetail_ListsViewController: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyle(for controller: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle {
+        return .none
+    }
+}
 
 class EventDetail_ListsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate,  ListItemDelegate {
     
@@ -55,6 +60,18 @@ class EventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
     
     
     func newListButtonTapped(){
+        if false {
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let navController = storyboard.instantiateViewController(withIdentifier: "addChecklistNavigationController") as! UINavigationController
+            navController.navigationBar.barTintColor = AppearanceController.tanColor
+            
+            
+              self.modalPresentationStyle = .custom
+            self.popoverPresentationController?.delegate = self
+            self.present(navController, animated: true, completion: nil)
+        
+        } else {
         let newListAlertController = UIAlertController(title: "New list", message: nil, preferredStyle: .alert)
         
         newListAlertController.addTextField { (textField) in
@@ -77,6 +94,7 @@ class EventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
         newListAlertController.addAction(cancel)
         newListAlertController.addAction(create)
         self.present(newListAlertController, animated: true, completion: nil)
+    }
     }
     
     // MARK: - List Item Delegate
@@ -229,6 +247,7 @@ class EventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
     }
     
     func addListItemButtonTapped(sender: Any){
+      
         guard let button = sender as? UIButton,
             let event = innerContentViewDelegate?.event,
             let checklist = event.checklists[button.tag] as? Checklist else {return}

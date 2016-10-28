@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA189C901DC2CE0800BFD419 /* AddNewListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA189C8F1DC2CE0800BFD419 /* AddNewListViewController.swift */; };
+		FA189C921DC2CF9B00BFD419 /* EditableListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA189C911DC2CF9B00BFD419 /* EditableListItemTableViewCell.swift */; };
 		FA1B021B1DAD44DC00CF8F78 /* EditEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B021A1DAD44DC00CF8F78 /* EditEventViewController.swift */; };
 		FA1B021D1DAD8C3200CF8F78 /* UserAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B021C1DAD8C3200CF8F78 /* UserAccountController.swift */; };
 		FA1B021F1DAD949F00CF8F78 /* EditAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1B021E1DAD949F00CF8F78 /* EditAccountViewController.swift */; };
@@ -57,6 +59,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA189C8F1DC2CE0800BFD419 /* AddNewListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewListViewController.swift; sourceTree = "<group>"; };
+		FA189C911DC2CF9B00BFD419 /* EditableListItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditableListItemTableViewCell.swift; sourceTree = "<group>"; };
 		FA1B021A1DAD44DC00CF8F78 /* EditEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditEventViewController.swift; sourceTree = "<group>"; };
 		FA1B021C1DAD8C3200CF8F78 /* UserAccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccountController.swift; sourceTree = "<group>"; };
 		FA1B021E1DAD949F00CF8F78 /* EditAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAccountViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +138,7 @@
 		FABCE9821DAC06F500DEB1DF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FA189C911DC2CF9B00BFD419 /* EditableListItemTableViewCell.swift */,
 				FAE8AE101DA54BC3000F1A34 /* Main.storyboard */,
 				FAE5493B1DAEC33200CBF542 /* DiscoverableUserTableViewCell.swift */,
 				FABCE9801DAC06E500DEB1DF /* ListItemTableViewCell.swift */,
@@ -145,6 +150,7 @@
 		FABCE9851DAC13DC00DEB1DF /* Event Detail Segmented */ = {
 			isa = PBXGroup;
 			children = (
+				FA189C8F1DC2CE0800BFD419 /* AddNewListViewController.swift */,
 				FAEF1B041DA837B700F2E64E /* EventDetailViewController.swift */,
 				FA2CA2491DB9B29600FF9279 /* CalendarViewController.swift */,
 				FAEF1B061DA839EA00F2E64E /* EventDetail_DetailViewController.swift */,
@@ -341,6 +347,7 @@
 			files = (
 				FA1B021D1DAD8C3200CF8F78 /* UserAccountController.swift in Sources */,
 				FAA573FB1DA6ACC8007CCBA2 /* EventViewController.swift in Sources */,
+				FA189C921DC2CF9B00BFD419 /* EditableListItemTableViewCell.swift in Sources */,
 				FA1B021B1DAD44DC00CF8F78 /* EditEventViewController.swift in Sources */,
 				FADEA3E21DA59014000A46C3 /* Event+CoreDataProperties.swift in Sources */,
 				FADEA3DE1DA59014000A46C3 /* Guest+CoreDataProperties.swift in Sources */,
@@ -352,6 +359,7 @@
 				FADEA3E41DA59014000A46C3 /* ListItem+CoreDataProperties.swift in Sources */,
 				FA1B02211DADC91000CF8F78 /* MyAccountViewController.swift in Sources */,
 				FA2CA24A1DB9B29600FF9279 /* CalendarViewController.swift in Sources */,
+				FA189C901DC2CE0800BFD419 /* AddNewListViewController.swift in Sources */,
 				FADEA3C51DA54F24000A46C3 /* CoreDataStack.swift in Sources */,
 				FAB007A11DB8439F0094307E /* AppearanceController.swift in Sources */,
 				FAE549361DAE9CDC00CBF542 /* DiscoverableUser.swift in Sources */,
