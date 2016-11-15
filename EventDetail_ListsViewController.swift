@@ -145,6 +145,7 @@ class EventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
         cell.updateWithItem(item: items[indexPath.row])
         cell.listItem = items[indexPath.row]
         cell.delegate = self
+        //print("Cell height \(cell.frame.height)") // default 44
         return cell
     }
     
