@@ -11,6 +11,8 @@ import EventKitUI
 
 class EventDetailViewController: UIViewController, InnerContentViewDelegate {
     
+    @IBOutlet weak var bottomViewConstraint: NSLayoutConstraint!
+    
     var event: Event?
     var editEventButton = UIBarButtonItem()
     var groupGuestsButton = UIBarButtonItem()
@@ -145,6 +147,12 @@ class EventDetailViewController: UIViewController, InnerContentViewDelegate {
         
         let selectedViewController = self.innerContentViewControllers[index]
         selectedViewController.view.isHidden = false
+        
+        // redraw bottom constraints
+        self.bottomViewConstraint.isActive = false
+        self.bottomViewConstraint = NSLayoutConstraint(item: self.innerContentView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0)
+        self.bottomViewConstraint.isActive = true
+
     }
     
     func addViewControllerAsChild(viewController: UIViewController){
@@ -157,7 +165,7 @@ class EventDetailViewController: UIViewController, InnerContentViewDelegate {
         
         // Configure child view
         viewController.view.frame = innerContentView.bounds
-        viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        //viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         // Notify Child ViewController
         

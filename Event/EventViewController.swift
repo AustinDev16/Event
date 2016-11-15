@@ -23,6 +23,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var tableViewBottomConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
       
@@ -51,6 +52,11 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidAppear(_ animated: Bool) {
         AppearanceController.customizeColors(viewController: self)
         self.tableView.reloadData()
+        
+        // Readjusts view bottom
+        self.tableViewBottomConstraint.isActive = false
+        self.tableViewBottomConstraint = NSLayoutConstraint(item: self.tableView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: 0)
+        self.tableViewBottomConstraint.isActive = true
         
     }
     

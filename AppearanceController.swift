@@ -47,6 +47,8 @@ extension EKEventEditViewController {
        
         self.navigationBar.barTintColor = AppearanceController.tanColor
         CalendarController.shared.locManager.requestWhenInUseAuthorization()
+        
+        self.toolbar.isHidden = true
 
     }
     

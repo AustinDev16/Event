@@ -15,6 +15,9 @@ class CalendarViewController: EKEventViewController, EKEventEditViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        //self.navigationController?.toolbar.isHidden = true
+        self.navigationController?.toolbar.removeFromSuperview()
+        
     }
 
     override func didReceiveMemoryWarning() {
