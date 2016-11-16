@@ -8,20 +8,6 @@
 
 import UIKit
 
-protocol NewListItemDelegate: class {
-    func addListItem(cell: EditableListItemTableViewCell)
-    func editListItem(cell: EditableListItemTableViewCell)
-    func reloadTableViewData()
-}
-class PendingListItem: Equatable {
-    var name: String
-    init(name: String){
-        self.name = name
-    }
-    static func ==(rhs: PendingListItem, lhs: PendingListItem) -> Bool {
-        return rhs.name == lhs.name
-    }
-}
 class AddNewListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, NewListItemDelegate {
     
     var event: Event?
@@ -151,7 +137,24 @@ class AddNewListViewController: UIViewController, UITableViewDelegate, UITableVi
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
-    
+}
 
+/*
+ // MARK: - Protocol: NewListItemDelegate
+ */
+protocol NewListItemDelegate: class {
+    func addListItem(cell: EditableListItemTableViewCell)
+    func editListItem(cell: EditableListItemTableViewCell)
+    func reloadTableViewData()
+}
 
+// MARK: - Supporting Classes
+class PendingListItem: Equatable {
+    var name: String
+    init(name: String){
+        self.name = name
+    }
+    static func ==(rhs: PendingListItem, lhs: PendingListItem) -> Bool {
+        return rhs.name == lhs.name
+    }
 }
