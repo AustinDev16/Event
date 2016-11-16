@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddNewListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AddNewListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
 
     @IBAction func createButtonTapped(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
@@ -17,6 +17,7 @@ class AddNewListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var listTitle: UITextField!
     @IBOutlet weak var tableView: UITableView!
+    let cancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonTapped))
     
     var listItems: [ListItem] = []
     
@@ -25,10 +26,36 @@ class AddNewListViewController: UIViewController, UITableViewDelegate, UITableVi
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        preferredContentSize = CGSize(width: 0, height: tableView.contentSize.height)
+        self.navigationItem.leftBarButtonItem = self.cancel
         
+        self.title = ""
+        self.listTitle.placeholder = "Add a title"
+        self.listTitle.delegate = self
+        self.listTitle.returnKeyType = .done        
         // Do any additional setup after loading the view.
     }
+    
+    func cancelButtonTapped(){
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: - TextField delegate methods
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let text = textField.text {
+            self.title = text
+        }
+        textField.resignFirstResponder()
+        return true
+    }
+    
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        
+//        if let text = textField.text {
+//            self.title = text
+//        }
+//        return true
+//    }
 
     // MARK: - TableView Delegate/Datasource
     func numberOfSections(in tableView: UITableView) -> Int {
