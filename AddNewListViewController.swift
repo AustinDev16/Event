@@ -60,6 +60,8 @@ class AddNewListViewController: UIViewController, UITableViewDelegate, UITableVi
         if self.title?.characters.count == 0 {
             self.createButton.isEnabled = false
         }
+        
+        self.listTitle.addTarget(self, action: #selector(updateTitleText), for: .editingChanged)
     }
     
     func cancelButtonTapped(){
@@ -67,6 +69,17 @@ class AddNewListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     // MARK: - TextField delegate methods
+    
+    func updateTitleText(_ textField: UITextField){
+        if let text = textField.text {
+            self.title = text
+            if self.title?.characters.count == 0 {
+                self.createButton.isEnabled = false
+            } else {
+                self.createButton.isEnabled = true
+            }
+        }
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let text = textField.text {
@@ -80,14 +93,6 @@ class AddNewListViewController: UIViewController, UITableViewDelegate, UITableVi
         textField.resignFirstResponder()
         return true
     }
-    
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        
-//        if let text = textField.text {
-//            self.title = text
-//        }
-//        return true
-//    }
 
     // MARK: - TableView Delegate/Datasource
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -111,6 +116,17 @@ class AddNewListViewController: UIViewController, UITableViewDelegate, UITableVi
         
         cell?.delegate = self
         return cell ?? UITableViewCell()
+    }
+    
+//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+////        if indexPath.row
+//    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            listItems.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
     }
     
 
