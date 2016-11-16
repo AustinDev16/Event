@@ -41,7 +41,7 @@ class AddNewListViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var createButton: UIBarButtonItem!
     @IBOutlet weak var listTitle: UITextField!
     @IBOutlet weak var tableView: UITableView!
-    let cancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonTapped))
+    
     
     var listItems: [PendingListItem] = []
     
@@ -50,7 +50,8 @@ class AddNewListViewController: UIViewController, UITableViewDelegate, UITableVi
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        self.navigationItem.leftBarButtonItem = self.cancel
+        let cancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonTapped))
+        self.navigationItem.leftBarButtonItem = cancel
         
         self.title = ""
         self.listTitle.placeholder = "Checklist name"
