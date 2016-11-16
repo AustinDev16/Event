@@ -14,6 +14,7 @@ class EditableListItemTableViewCell: UITableViewCell, UITextFieldDelegate {
     let addButton = UIButton(type: .custom)
     var listItem: ListItem?
     weak var delegate: NewListItemDelegate?
+    var listItemText: String?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,8 +27,8 @@ class EditableListItemTableViewCell: UITableViewCell, UITextFieldDelegate {
         // Configure the view for the selected state
     }
     
-    func updateWithPendingListItem(listItem: ListItem){
-        
+    func updateWithPendingListItem(listItem: String){
+        self.textField.text = listItem
     }
     
     func updateAsEditableCell(){
@@ -40,6 +41,7 @@ class EditableListItemTableViewCell: UITableViewCell, UITextFieldDelegate {
         textField.autocapitalizationType = .sentences
         textField.autocorrectionType = .yes
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.returnKeyType = .done
         
         self.contentView.addSubview(textField)
         
@@ -53,7 +55,10 @@ class EditableListItemTableViewCell: UITableViewCell, UITextFieldDelegate {
     // MARK: - TextField delegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // communicate new text back to model
-        
+        if let text = textField.text, text.characters.count > 0 {
+            self.listItemText = text
+            delegate?.addListItem(cell: self)
+        }
         // add a new blank cell to the row
         textField.resignFirstResponder()
         return true

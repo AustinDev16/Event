@@ -16,9 +16,13 @@ protocol NewListItemDelegate: class {
 
 class AddNewListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, NewListItemDelegate {
     
+    var event: Event?
+    
     // MARK: - NewListItemDelegate methods
     func addListItem(cell: EditableListItemTableViewCell) {
-    
+        guard let text = cell.listItemText else { return }
+        listItems.append(text)
+        self.tableView.reloadData()
     }
     
     func deleteListItem(cell: EditableListItemTableViewCell) {
@@ -39,7 +43,7 @@ class AddNewListViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var tableView: UITableView!
     let cancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonTapped))
     
-    var listItems: [ListItem] = []
+    var listItems: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
