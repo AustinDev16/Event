@@ -12,6 +12,8 @@ class EditableListItemTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     let textField = UITextField()
     let addButton = UIButton(type: .custom)
+    var listItem: ListItem?
+    weak var delegate: NewListItemDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -50,6 +52,9 @@ class EditableListItemTableViewCell: UITableViewCell, UITextFieldDelegate {
     
     // MARK: - TextField delegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // communicate new text back to model
+        
+        // add a new blank cell to the row
         textField.resignFirstResponder()
         return true
     }

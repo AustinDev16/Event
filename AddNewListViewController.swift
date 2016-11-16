@@ -8,7 +8,26 @@
 
 import UIKit
 
-class AddNewListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+protocol NewListItemDelegate: class {
+    func addListItem(cell: EditableListItemTableViewCell)
+    func deleteListItem(cell: EditableListItemTableViewCell)
+    func editListItem(cell: EditableListItemTableViewCell)
+}
+
+class AddNewListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, NewListItemDelegate {
+    
+    // MARK: - NewListItemDelegate methods
+    func addListItem(cell: EditableListItemTableViewCell) {
+    
+    }
+    
+    func deleteListItem(cell: EditableListItemTableViewCell) {
+        
+    }
+    
+    func editListItem(cell: EditableListItemTableViewCell) {
+        
+    }
 
     @IBAction func createButtonTapped(_ sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
@@ -30,7 +49,7 @@ class AddNewListViewController: UIViewController, UITableViewDelegate, UITableVi
         self.navigationItem.leftBarButtonItem = self.cancel
         
         self.title = ""
-        self.listTitle.placeholder = "Add a title"
+        self.listTitle.placeholder = "Checklist name"
         self.listTitle.delegate = self
         self.listTitle.returnKeyType = .done
         // Do any additional setup after loading the view.
@@ -85,6 +104,8 @@ class AddNewListViewController: UIViewController, UITableViewDelegate, UITableVi
             let listItem = listItems[indexPath.row]
             cell?.updateWithPendingListItem(listItem: listItem)
         }
+        
+        cell?.delegate = self
         return cell ?? UITableViewCell()
     }
     
