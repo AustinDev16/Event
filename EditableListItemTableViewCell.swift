@@ -11,10 +11,11 @@ import UIKit
 class EditableListItemTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     let textField = UITextField()
-    let addButton = UIButton(type: .custom)
-    var listItem: ListItem?
     weak var delegate: NewListItemDelegate?
     var listItemText: String?
+    var editedListItemText: String?
+    var isPlaceHolderCell: Bool = false
+    var pendingItem: PendingListItem?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,11 +28,13 @@ class EditableListItemTableViewCell: UITableViewCell, UITextFieldDelegate {
         // Configure the view for the selected state
     }
     
-    func updateWithPendingListItem(listItem: String){
-        self.textField.text = listItem
+    func updateWithPendingListItem(listItem: PendingListItem){
+        self.textField.text = listItem.name
     }
     
     func updateAsEditableCell(){
+        self.pendingItem = nil
+        self.textField.text = nil
         setUpEditableCell()
     }
     
@@ -55,10 +58,18 @@ class EditableListItemTableViewCell: UITableViewCell, UITextFieldDelegate {
     // MARK: - TextField delegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // communicate new text back to model
-        if let text = textField.text, text.characters.count > 0 {
-            self.listItemText = text
-            delegate?.addListItem(cell: self)
+        if isPlaceHolderCell {
+            if let text = textField.text, text.characters.count > 0 {
+                self.listItemText = text
+                delegate?.addListItem(cell: self)
+            }
+        } else {
+            if let text = textField.text, text.characters.count > 0 {
+                self.editedListItemText = text
+                delegate?.editListItem(cell: self)
+            }
         }
+        
         // add a new blank cell to the row
         textField.resignFirstResponder()
         return true

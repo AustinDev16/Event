@@ -10,10 +10,17 @@ import UIKit
 
 protocol NewListItemDelegate: class {
     func addListItem(cell: EditableListItemTableViewCell)
-    func deleteListItem(cell: EditableListItemTableViewCell)
     func editListItem(cell: EditableListItemTableViewCell)
 }
-
+class PendingListItem: Equatable {
+    var name: String
+    init(name: String){
+        self.name = name
+    }
+    static func ==(rhs: PendingListItem, lhs: PendingListItem) -> Bool {
+        return rhs.name == lhs.name
+    }
+}
 class AddNewListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, NewListItemDelegate {
     
     var event: Event?
@@ -21,15 +28,21 @@ class AddNewListViewController: UIViewController, UITableViewDelegate, UITableVi
     // MARK: - NewListItemDelegate methods
     func addListItem(cell: EditableListItemTableViewCell) {
         guard let text = cell.listItemText else { return }
-        listItems.append(text)
+        let newItem = PendingListItem(name: text)
+        listItems.append(newItem)
         self.tableView.reloadData()
     }
     
-    func deleteListItem(cell: EditableListItemTableViewCell) {
-        
-    }
-    
     func editListItem(cell: EditableListItemTableViewCell) {
+        guard let updatedText = cell.editedListItemText,
+        let pendingItem = cell.pendingItem,
+        let index = listItems.index(of: pendingItem) else  { return }
+        let toEditItem = listItems[index]
+        toEditItem.name = updatedText
+        
+        
+        self.tableView.reloadData()
+      
         
     }
 
@@ -43,7 +56,7 @@ class AddNewListViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var tableView: UITableView!
     let cancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonTapped))
     
-    var listItems: [String] = []
+    var listItems: [PendingListItem] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -107,20 +120,28 @@ class AddNewListViewController: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "editableListItem", for: indexPath) as? EditableListItemTableViewCell
         
         let newCellIndex = listItems.count
+        
         if indexPath.row == newCellIndex {
             cell?.updateAsEditableCell()
+            cell?.isPlaceHolderCell = true
         } else {
             let listItem = listItems[indexPath.row]
             cell?.updateWithPendingListItem(listItem: listItem)
+            cell?.isPlaceHolderCell = false
+            cell?.pendingItem = listItem
         }
         
         cell?.delegate = self
         return cell ?? UITableViewCell()
     }
     
-//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-////        if indexPath.row
-//    }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.row == listItems.count {
+            return false
+        } else {
+            return true
+        }
+    }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
