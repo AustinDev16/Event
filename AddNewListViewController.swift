@@ -11,6 +11,7 @@ import UIKit
 protocol NewListItemDelegate: class {
     func addListItem(cell: EditableListItemTableViewCell)
     func editListItem(cell: EditableListItemTableViewCell)
+    func reloadTableViewData()
 }
 class PendingListItem: Equatable {
     var name: String
@@ -39,11 +40,11 @@ class AddNewListViewController: UIViewController, UITableViewDelegate, UITableVi
         let index = listItems.index(of: pendingItem) else  { return }
         let toEditItem = listItems[index]
         toEditItem.name = updatedText
-        
-        
         self.tableView.reloadData()
-      
-        
+    }
+    
+    func reloadTableViewData() {
+        self.tableView.reloadData()
     }
 
     @IBAction func createButtonTapped(_ sender: AnyObject) {
@@ -69,6 +70,7 @@ class AddNewListViewController: UIViewController, UITableViewDelegate, UITableVi
         self.listTitle.placeholder = "Checklist name"
         self.listTitle.delegate = self
         self.listTitle.returnKeyType = .done
+        self.listTitle.autocapitalizationType = .words
         // Do any additional setup after loading the view.
         if self.title?.characters.count == 0 {
             self.createButton.isEnabled = false

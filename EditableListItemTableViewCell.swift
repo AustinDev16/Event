@@ -16,6 +16,7 @@ class EditableListItemTableViewCell: UITableViewCell, UITextFieldDelegate {
     var editedListItemText: String?
     var isPlaceHolderCell: Bool = false
     var pendingItem: PendingListItem?
+    var hasCapturedTextField: Bool = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -56,6 +57,11 @@ class EditableListItemTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     // MARK: - TextField delegate
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        hasCapturedTextField = false
+    }
+    
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // communicate new text back to model
         if isPlaceHolderCell {
@@ -70,9 +76,27 @@ class EditableListItemTableViewCell: UITableViewCell, UITextFieldDelegate {
             }
         }
         
+        hasCapturedTextField = true
         // add a new blank cell to the row
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        // to catch a move from one text field to another without
+        if hasCapturedTextField == false {
+            if isPlaceHolderCell {
+                if let text = textField.text, text.characters.count > 0 {
+                    self.listItemText = text
+                    delegate?.addListItem(cell: self)
+                }
+            } else {
+                if let text = textField.text, text.characters.count > 0 {
+                    self.editedListItemText = text
+                    delegate?.editListItem(cell: self)
+                }
+            }
+        }
     }
 
 }
