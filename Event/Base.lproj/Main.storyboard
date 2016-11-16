@@ -339,6 +339,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="createButton" destination="IyB-yY-fFT" id="MRy-AO-r3Z"/>
                         <outlet property="listTitle" destination="rnl-kb-e2M" id="5rS-my-niU"/>
                         <outlet property="tableView" destination="d6p-Bs-l5j" id="PuJ-kM-3ZB"/>
                     </connections>

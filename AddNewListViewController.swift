@@ -15,6 +15,7 @@ class AddNewListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     
+    @IBOutlet weak var createButton: UIBarButtonItem!
     @IBOutlet weak var listTitle: UITextField!
     @IBOutlet weak var tableView: UITableView!
     let cancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonTapped))
@@ -31,8 +32,11 @@ class AddNewListViewController: UIViewController, UITableViewDelegate, UITableVi
         self.title = ""
         self.listTitle.placeholder = "Add a title"
         self.listTitle.delegate = self
-        self.listTitle.returnKeyType = .done        
+        self.listTitle.returnKeyType = .done
         // Do any additional setup after loading the view.
+        if self.title?.characters.count == 0 {
+            self.createButton.isEnabled = false
+        }
     }
     
     func cancelButtonTapped(){
@@ -44,6 +48,11 @@ class AddNewListViewController: UIViewController, UITableViewDelegate, UITableVi
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let text = textField.text {
             self.title = text
+            if self.title?.characters.count == 0 {
+                self.createButton.isEnabled = false
+            } else {
+                self.createButton.isEnabled = true
+            }
         }
         textField.resignFirstResponder()
         return true
