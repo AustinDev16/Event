@@ -71,6 +71,17 @@ class ChecklistController {
         
     }
     
+    func findChecklistWith(name: String, forEvent: Event) -> Checklist? {
+        var foundChecklists: [Checklist] = []
+        let castedChecklists = forEvent.checklists.flatMap {$0 as? Checklist}
+        for checklist in castedChecklists {
+            if checklist.name.lowercased() == name.lowercased() {
+                foundChecklists.append(checklist)
+            }
+        }
+        return foundChecklists.first
+    }
+    
     // MARK: - ListItem functions
     
     func addItemToList(name: String, responsibleParty: String = "none", checklist: Checklist, event: Event){

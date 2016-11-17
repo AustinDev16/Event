@@ -65,7 +65,9 @@ class EventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let navController = storyboard.instantiateViewController(withIdentifier: "addChecklistNavigationController") as! UINavigationController
             navController.navigationBar.barTintColor = AppearanceController.tanColor
-            
+            guard let event = self.innerContentViewDelegate?.event,
+            let editViewController = navController.viewControllers.first as? AddNewListViewController else { return }
+            editViewController.event = event
             
             self.present(navController, animated: true, completion: nil)
             

@@ -34,6 +34,16 @@ class AddNewListViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 
     @IBAction func createButtonTapped(_ sender: AnyObject) {
+        guard let event = self.event,
+        let title = listTitle.text, title.characters.count > 0 else { return }
+        // Create new checklist
+        ChecklistController.sharedController.createNewCheckList(name: title, event: event)
+        guard let newChecklist = ChecklistController.sharedController.findChecklistWith(name: title, forEvent: event) else  { return }
+        // Create new checklist items
+        for item in listItems {
+            ChecklistController.sharedController.addItemToList(name: item.name, checklist: newChecklist, event: event)
+        }
+        
         self.dismiss(animated: true, completion: nil)
     }
     
