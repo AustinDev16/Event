@@ -27,7 +27,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
       
-        checkForLoggedInUser()
+        //checkForLoggedInUser()
         
         self.title = "Events"
         
