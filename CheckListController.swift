@@ -46,25 +46,25 @@ class ChecklistController {
         PersistenceController.sharedController.saveToPersistedStorage()
         
         // CloudKit Saving
-        let newRecord = CKRecord(checklist: newChecklist)
-        
-        CloudKitManager.sharedController.saveRecord(newRecord) { (record, error) in
-            DispatchQueue.main.async {
-                if error != nil {
-                    print("Error saving new checklist to cloud")
-                }
-                if let record = record {
-                    print ("Success saving checklist to cloud")
-                    newChecklist.ckRecordID = record.recordID.recordName
-                    PersistenceController.sharedController.saveToPersistedStorage()
-                }
-            }
-        }
+//        let newRecord = CKRecord(checklist: newChecklist)
+//
+//        CloudKitManager.sharedController.saveRecord(newRecord) { (record, error) in
+//            DispatchQueue.main.async {
+//                if error != nil {
+//                    print("Error saving new checklist to cloud")
+//                }
+//                if let record = record {
+//                    print ("Success saving checklist to cloud")
+//                    newChecklist.ckRecordID = record.recordID.recordName
+//                    PersistenceController.sharedController.saveToPersistedStorage()
+//                }
+//            }
+//        }
     }
     
     func deleteCheckList(checklist: Checklist, event: Event){
         
-        CloudKitSyncController.shared.deleteChecklist(checklist: checklist, event: event)
+        //CloudKitSyncController.shared.deleteChecklist(checklist: checklist, event: event)
         event.removeFromChecklists(checklist)
         checklist.managedObjectContext?.delete(checklist)
         PersistenceController.sharedController.saveToPersistedStorage()
@@ -93,20 +93,20 @@ class ChecklistController {
         PersistenceController.sharedController.saveToPersistedStorage()
         
         // Save to cloudkit
-        let newRecord = CKRecord(listItem: newItem)
-        CloudKitManager.sharedController.saveRecord(newRecord) { (record, error) in
-            DispatchQueue.main.async {
-                if error != nil {
-                    print("Error saving listItem: \(error?.localizedDescription)")
-                }
-                if let record = record {
-                    print("Success saving new list item")
-                    newItem.ckRecordID = record.recordID.recordName
-                    PersistenceController.sharedController.saveToPersistedStorage()
-                }
-                
-            }
-        }
+//        let newRecord = CKRecord(listItem: newItem)
+//        CloudKitManager.sharedController.saveRecord(newRecord) { (record, error) in
+//            DispatchQueue.main.async {
+//                if error != nil {
+//                    print("Error saving listItem: \(error?.localizedDescription)")
+//                }
+//                if let record = record {
+//                    print("Success saving new list item")
+//                    newItem.ckRecordID = record.recordID.recordName
+//                    PersistenceController.sharedController.saveToPersistedStorage()
+//                }
+//                
+//            }
+//        }
         
         
     }
@@ -120,7 +120,7 @@ class ChecklistController {
     
     func removeItemFromList(listItem: ListItem, checklist: Checklist){
         
-        CloudKitSyncController.shared.deleteListItem(listItem: listItem)
+        //CloudKitSyncController.shared.deleteListItem(listItem: listItem)
         checklist.removeFromListItems(listItem)
         
         
@@ -140,19 +140,19 @@ class ChecklistController {
         
         PersistenceController.sharedController.saveToPersistedStorage()
         
-        // Create Record to Modify
-        
-        let newRecord = CKRecord(updatedListItemWithRecordID: listItem)
-        CloudKitManager.sharedController.modifyRecords([newRecord], perRecordCompletion: nil) { (records, error) in
-            DispatchQueue.main.async {
-                if error != nil {
-                    print("Error modifying checklist: \(error?.localizedDescription)")
-                } else {
-                    print("Success updating the list item")
-                }
-                
-            }
-        }
+//        // Create Record to Modify
+//        
+//        let newRecord = CKRecord(updatedListItemWithRecordID: listItem)
+//        CloudKitManager.sharedController.modifyRecords([newRecord], perRecordCompletion: nil) { (records, error) in
+//            DispatchQueue.main.async {
+//                if error != nil {
+//                    print("Error modifying checklist: \(error?.localizedDescription)")
+//                } else {
+//                    print("Success updating the list item")
+//                }
+//                
+//            }
+//        }
         
     }
     
