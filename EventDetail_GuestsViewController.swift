@@ -18,7 +18,7 @@ class EventDetail_GuestsViewController: UIViewController, UITableViewDelegate, U
     
     var guests: [Guest] {
         guard let event = innerContentViewDelegate?.event else {return []}
-        return event.guests.flatMap{ $0 as? Guest}
+        return event.guests.compactMap{ $0 as? Guest}
     }
     
     var confirmedGuests: [Guest] {
@@ -86,12 +86,12 @@ class EventDetail_GuestsViewController: UIViewController, UITableViewDelegate, U
     }
     
     //MARK: - OTHER methods
-    func guestListUpdated(){
+    @objc func guestListUpdated(){
         self.tableView.reloadData()
     }
 
 
-    func inviteGuestsButtonTapped(){
+    @objc func inviteGuestsButtonTapped(){
         print("invite guests button tapped")
     }
     
@@ -152,7 +152,7 @@ class EventDetail_GuestsViewController: UIViewController, UITableViewDelegate, U
         return "Uninvite"
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             guard let event = self.innerContentViewDelegate?.event else {return}
             var guest: Guest

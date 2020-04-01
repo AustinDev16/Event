@@ -11,7 +11,7 @@ import EventKit
 
 extension Event {
     convenience init(calEvent: EKEvent){
-        let name = calEvent.title
+        let name = calEvent.title ?? ""
         let date = calEvent.startDate as NSDate
         let location = calEvent.location ?? ""
         let detailDescription = calEvent.notes ?? ""

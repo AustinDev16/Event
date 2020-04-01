@@ -48,7 +48,7 @@ class MyAccountViewController: UIViewController {
     }
     
     // MARK: - Button Actions
-    func editButtonTapped(){
+    @objc func editButtonTapped(){
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         guard let navigationController = storyboard.instantiateViewController(withIdentifier: "editAccountNavigationController") as? UINavigationController,
         let editVC = navigationController.viewControllers.first as? EditAccountViewController else { return }

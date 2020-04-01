@@ -11,7 +11,12 @@ import UIKit
 class EditableListItemTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     let textField = UITextField()
-    let addButton = UIButton(type: .custom)
+    weak var delegate: NewListItemDelegate?
+    var listItemText: String?
+    var editedListItemText: String?
+    var isPlaceHolderCell: Bool = false
+    var pendingItem: PendingListItem?
+    var hasCapturedTextField: Bool = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,11 +29,13 @@ class EditableListItemTableViewCell: UITableViewCell, UITextFieldDelegate {
         // Configure the view for the selected state
     }
     
-    func updateWithPendingListItem(listItem: ListItem){
-        
+    func updateWithPendingListItem(listItem: PendingListItem){
+        self.textField.text = listItem.name
     }
     
     func updateAsEditableCell(){
+        self.pendingItem = nil
+        self.textField.text = nil
         setUpEditableCell()
     }
     
@@ -38,6 +45,7 @@ class EditableListItemTableViewCell: UITableViewCell, UITextFieldDelegate {
         textField.autocapitalizationType = .sentences
         textField.autocorrectionType = .yes
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.returnKeyType = .done
         
         self.contentView.addSubview(textField)
         
@@ -49,9 +57,46 @@ class EditableListItemTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     // MARK: - TextField delegate
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        hasCapturedTextField = false
+    }
+    
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // communicate new text back to model
+        if isPlaceHolderCell {
+            if let text = textField.text, text.count > 0 {
+                self.listItemText = text
+                delegate?.addListItem(cell: self)
+            }
+        } else {
+            if let text = textField.text, text.count > 0 {
+                self.editedListItemText = text
+                delegate?.editListItem(cell: self)
+            }
+        }
+        
+        hasCapturedTextField = true
+        // add a new blank cell to the row
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        // to catch a move from one text field to another without
+        if hasCapturedTextField == false {
+            if isPlaceHolderCell {
+                if let text = textField.text, text.count > 0 {
+                    self.listItemText = text
+                    delegate?.addListItem(cell: self)
+                }
+            } else {
+                if let text = textField.text, text.count > 0 {
+                    self.editedListItemText = text
+                    delegate?.editListItem(cell: self)
+                }
+            }
+        }
     }
 
 }

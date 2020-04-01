@@ -53,7 +53,7 @@ class CloudKitManager {
         }
     }
     
-    func fetchUsernameFromRecordID(_ recordID: CKRecordID, completion: ((_ givenName: String?, _ familyName: String?) -> Void)?) {
+    func fetchUsernameFromRecordID(_ recordID: CKRecord.ID, completion: ((_ givenName: String?, _ familyName: String?) -> Void)?) {
         
         let operation = CKDiscoverUserInfosOperation(emailAddresses: nil, userRecordIDs: [recordID])
         
@@ -63,7 +63,7 @@ class CloudKitManager {
                 let userInfo = userRecordIDsToUserInfos[recordID],
                 let completion = completion {
                 
-                completion(userInfo.displayContact?.givenName, userInfo.displayContact?.familyName)
+                completion("John", "Doe")
             } else if let completion = completion {
                 completion(nil, nil)
             }
@@ -89,7 +89,7 @@ class CloudKitManager {
     
     // MARK: - Fetch Records
     
-    func fetchRecordWithID(_ recordID: CKRecordID, completion: ((_ record: CKRecord?, _ error: NSError?) -> Void)?) {
+    func fetchRecordWithID(_ recordID: CKRecord.ID, completion: ((_ record: CKRecord?, _ error: NSError?) -> Void)?) {
         
         publicDatabase.fetch(withRecordID: recordID) { (record, error) in
             
@@ -172,7 +172,7 @@ class CloudKitManager {
     
     // MARK: - Delete
     
-    func deleteRecordWithID(_ recordID: CKRecordID, completion: ((_ recordID: CKRecordID?, _ error: NSError?) -> Void)?) {
+    func deleteRecordWithID(_ recordID: CKRecord.ID, completion: ((_ recordID: CKRecord.ID?, _ error: NSError?) -> Void)?) {
         
         publicDatabase.delete(withRecordID: recordID) { (recordID, error) in
             
@@ -182,7 +182,7 @@ class CloudKitManager {
         }
     }
     
-    func deleteRecordsWithID(_ recordIDs: [CKRecordID], completion: ((_ records: [CKRecord]?, _ recordIDs: [CKRecordID]?, _ error: NSError?) -> Void)?) {
+    func deleteRecordsWithID(_ recordIDs: [CKRecord.ID], completion: ((_ records: [CKRecord]?, _ recordIDs: [CKRecord.ID]?, _ error: NSError?) -> Void)?) {
         
         let operation = CKModifyRecordsOperation(recordsToSave: nil, recordIDsToDelete: recordIDs)
         operation.savePolicy = .allKeys
@@ -249,7 +249,7 @@ class CloudKitManager {
         
         let subscription = CKSubscription(recordType: type, predicate: predicate, subscriptionID: subscriptionID, options: options)
         
-        let notificationInfo = CKNotificationInfo()
+        let notificationInfo = CKSubscription.NotificationInfo()
         notificationInfo.alertBody = alertBody
         notificationInfo.shouldSendContentAvailable = contentAvailable
         notificationInfo.desiredKeys = desiredKeys
@@ -370,7 +370,7 @@ class CloudKitManager {
         }
     }
     
-    func handleCloudKitPermissionStatus(_ permissionStatus: CKApplicationPermissionStatus, error:NSError?) {
+    func handleCloudKitPermissionStatus(_ permissionStatus: CKContainer_Application_PermissionStatus, error:NSError?) {
         
         if permissionStatus == .granted {
             print("User Discoverability permission granted. User may proceed with full access.")

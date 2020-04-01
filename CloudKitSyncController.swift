@@ -12,14 +12,14 @@ import CloudKit
 
 class CloudKitSyncController {
     static let shared = CloudKitSyncController()
-    var defaultZoneID: CKRecordZoneID {
-        return CKRecordZoneID(zoneName: "_defaultZone", ownerName: "__defaultOwner__")
+    var defaultZoneID: CKRecordZone.ID {
+        return CKRecordZone.ID(zoneName: "_defaultZone", ownerName: "__defaultOwner__")
     }
     
     func getEventsFromUserAccount(){
         guard let user = UserAccountController.sharedController.hostUser else { return }
         
-        let allEventHandles = user.eventHandles.flatMap { $0 as? EventHandle }
+        let allEventHandles = user.eventHandles.compactMap { $0 as? EventHandle }
         
         // MARK: - events Created by USER
         let eventsUserCreated = allEventHandles.filter { $0.eventType == EventType.createdByUser.rawValue }
@@ -105,7 +105,7 @@ class CloudKitSyncController {
     
     func deleteListItem(listItem: ListItem){
         guard let recordName = listItem.ckRecordID else { return }
-        let newRecordID = CKRecordID(recordName: recordName)
+        let newRecordID = CKRecord.ID(recordName: recordName)
         CloudKitManager.sharedController.deleteRecordWithID(newRecordID) { (recordID, error) in
             DispatchQueue.main.async {
                 if error != nil {
@@ -118,18 +118,18 @@ class CloudKitSyncController {
     }
     
     func deleteChecklist(checklist: Checklist, event: Event){
-        var recordsToDelete: [CKRecordID]  = []
+        var recordsToDelete: [CKRecord.ID]  = []
         var recordIDS: [String?] = []
         recordIDS.append(checklist.ckRecordID)
         
-        let listItems = checklist.listItems.flatMap{ $0 as? ListItem }
+        let listItems = checklist.listItems.compactMap{ $0 as? ListItem }
         for listItem in listItems {
             recordIDS.append(listItem.ckRecordID)
         }
         
         for recordID in recordIDS {
             if let recordID = recordID {
-                let newRecordID = CKRecordID(recordName: recordID)
+                let newRecordID = CKRecord.ID(recordName: recordID)
                 recordsToDelete.append(newRecordID)
             }
         }
@@ -148,14 +148,14 @@ class CloudKitSyncController {
     }
     
     func deleteEvent(event: Event){
-        var recordsToDelete: [CKRecordID]  = []
+        var recordsToDelete: [CKRecord.ID]  = []
         var recordIDS: [String?] = []
         // Event
         recordIDS.append(event.ckRecordID)
         
         // Update user account
         if let user = UserAccountController.sharedController.hostUser {
-            let eventHandles = user.eventHandles.flatMap{$0 as? EventHandle}
+            let eventHandles = user.eventHandles.compactMap{$0 as? EventHandle}
             let handleToDelete = eventHandles.filter{$0.eventID == event.eventID}
             if let handle = handleToDelete.first {
                 user.removeFromEventHandles(handle)
@@ -172,10 +172,10 @@ class CloudKitSyncController {
         }
         
         // All children
-        let checklists = event.checklists.flatMap{ $0 as? Checklist }
+        let checklists = event.checklists.compactMap{ $0 as? Checklist }
         for checklist in checklists {
             recordIDS.append(checklist.ckRecordID)
-            let listItems = checklist.listItems.flatMap{$0 as? ListItem }
+            let listItems = checklist.listItems.compactMap{$0 as? ListItem }
             for listItem in listItems {
                 recordIDS.append(listItem.ckRecordID)
             }
@@ -184,7 +184,7 @@ class CloudKitSyncController {
         // Create recordIDs
         for recordID in recordIDS{
             if let recordID = recordID {
-                let newrecordID = CKRecordID(recordName: recordID)
+                let newrecordID = CKRecord.ID(recordName: recordID)
                 recordsToDelete.append(newrecordID)
             }
         }
@@ -208,10 +208,10 @@ class CloudKitSyncController {
                 // get recordIds for all Checklists and list items
                 
                 let checklistIDs = ChecklistController.sharedController.checklistRecordIDs()
-                var checklistReferences: [CKReference] = []
+                var checklistReferences: [CKRecord.Reference] = []
                 for ID in checklistIDs{
                     let record = CKRecord(recordType: Checklist.recordType, recordID: ID)
-                    let reference = CKReference(record: record, action: .none)
+                    let reference = CKRecord.Reference(record: record, action: .none)
                     checklistReferences.append(reference)
                 }
                 let predicate = NSPredicate(format: "NOT(recordID IN %@)", checklistReferences)
@@ -231,10 +231,10 @@ class CloudKitSyncController {
                         }
                         // Go get the list items
                             let listItemIDs = ChecklistController.sharedController.listItemRecordIDs()
-                            var listItemReferences: [CKReference] = []
+                        var listItemReferences: [CKRecord.Reference] = []
                             for ID in listItemIDs {
                                 let record = CKRecord(recordType: ListItem.recordType, recordID: ID)
-                                let reference = CKReference(record: record, action: .none)
+                                let reference = CKRecord.Reference(record: record, action: .none)
                                 listItemReferences.append(reference)
                             }
                             let predicate = NSPredicate(format: "NOT(recordID IN %@)", listItemReferences)
@@ -272,7 +272,7 @@ class CloudKitSyncController {
             if success {
                 // Check which events are saved and which ones need to be deleted
                 guard let user = UserAccountController.sharedController.hostUser else { return }
-                let eventHandles = user.eventHandles.flatMap{$0 as? EventHandle }
+                let eventHandles = user.eventHandles.compactMap{$0 as? EventHandle }
                 var eventsToKeep: [Event] = []
                 for event in EventController.sharedController.events{
                     for eventHandle in eventHandles{
@@ -327,7 +327,7 @@ class CloudKitSyncController {
         // Update userAccount
         guard let user = UserAccountController.sharedController.hostUser,
             let recordIDString = user.ckRecordID else { return }
-        let userRecordID = CKRecordID(recordName: recordIDString)
+        let userRecordID = CKRecord.ID(recordName: recordIDString)
         CloudKitManager.sharedController.fetchRecordWithID(userRecordID) { (record, error) in
             DispatchQueue.main.async {
                 if error != nil {

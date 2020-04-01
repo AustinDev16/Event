@@ -103,19 +103,19 @@ class EventController {
                 
         PersistenceController.sharedController.saveToPersistedStorage()
         
-        // Save new event to cloud
-        let newRecord = CKRecord(event: newEvent)
-        CloudKitManager.sharedController.saveRecord(newRecord) { (record, error) in
-            DispatchQueue.main.async {
-                if error != nil {
-                    print ("Error saving new event to cloud")
-                }
-                if let record = record {
-                    newEvent.ckRecordID = record.recordID.recordName
-                    PersistenceController.sharedController.saveToPersistedStorage()
-                }
-            }
-        }
+//        // Save new event to cloud
+//        let newRecord = CKRecord(event: newEvent)
+//        CloudKitManager.sharedController.saveRecord(newRecord) { (record, error) in
+//            DispatchQueue.main.async {
+//                if error != nil {
+//                    print ("Error saving new event to cloud")
+//                }
+//                if let record = record {
+//                    newEvent.ckRecordID = record.recordID.recordName
+//                    PersistenceController.sharedController.saveToPersistedStorage()
+//                }
+//            }
+//        }
     }
     
     func addEvent(calEvent: EKEvent){
@@ -125,19 +125,19 @@ class EventController {
         
         PersistenceController.sharedController.saveToPersistedStorage()
         
-        // Save new event to cloud
-        let newRecord = CKRecord(event: newEvent)
-        CloudKitManager.sharedController.saveRecord(newRecord) { (record, error) in
-            DispatchQueue.main.async {
-                if error != nil {
-                    print ("Error saving new event to cloud")
-                }
-                if let record = record {
-                    newEvent.ckRecordID = record.recordID.recordName
-                    PersistenceController.sharedController.saveToPersistedStorage()
-                }
-            }
-        }
+//        // Save new event to cloud
+//        let newRecord = CKRecord(event: newEvent)
+//        CloudKitManager.sharedController.saveRecord(newRecord) { (record, error) in
+//            DispatchQueue.main.async {
+//                if error != nil {
+//                    print ("Error saving new event to cloud")
+//                }
+//                if let record = record {
+//                    newEvent.ckRecordID = record.recordID.recordName
+//                    PersistenceController.sharedController.saveToPersistedStorage()
+//                }
+//            }
+//        }
     }
     
     func addGuest(newGuest: DiscoverableUser,
@@ -162,13 +162,13 @@ class EventController {
         
         switch deletionType {
         case .eventOnly:
-            CloudKitSyncController.shared.deleteEvent(event: event)
+            //CloudKitSyncController.shared.deleteEvent(event: event)
             event.managedObjectContext?.delete(event)
             PersistenceController.sharedController.saveToPersistedStorage()
         case .eventAndCalendar:
             if CalendarController.shared.hasAccess{
             CalendarController.shared.deleteCalendarEvent(forEvent: event)
-            CloudKitSyncController.shared.deleteEvent(event: event)
+            //CloudKitSyncController.shared.deleteEvent(event: event)
             event.managedObjectContext?.delete(event)
             PersistenceController.sharedController.saveToPersistedStorage()
             } else {
@@ -188,16 +188,16 @@ class EventController {
         
         PersistenceController.sharedController.saveToPersistedStorage()
         
-        let newRecord = CKRecord(updatedEventWithRecordID: eventToModify)
-        CloudKitManager.sharedController.modifyRecords([newRecord], perRecordCompletion: nil) { (records, error) in
-            DispatchQueue.main.async {
-                if error != nil {
-                    print("Error updating event: \(error?.localizedDescription)")
-                } else {
-                    print("Success updating record \(records?.first?.recordID.recordName)")
-                }
-            }
-        }
+//        let newRecord = CKRecord(updatedEventWithRecordID: eventToModify)
+//        CloudKitManager.sharedController.modifyRecords([newRecord], perRecordCompletion: nil) { (records, error) in
+//            DispatchQueue.main.async {
+//                if error != nil {
+//                    print("Error updating event: \(error?.localizedDescription)")
+//                } else {
+//                    print("Success updating record \(records?.first?.recordID.recordName)")
+//                }
+//            }
+//        }
     }
     
     func modifyEvent(calEvent: EKEvent, eventToModify: Event){
@@ -210,16 +210,16 @@ class EventController {
         
         PersistenceController.sharedController.saveToPersistedStorage()
         
-        let newRecord = CKRecord(updatedEventWithRecordID: eventToModify)
-        CloudKitManager.sharedController.modifyRecords([newRecord], perRecordCompletion: nil) { (records, error) in
-            DispatchQueue.main.async {
-                if error != nil {
-                    print("Error updating event: \(error?.localizedDescription)")
-                } else {
-                    print("Success updating record \(records?.first?.recordID.recordName)")
-                }
-            }
-        }
+//        let newRecord = CKRecord(updatedEventWithRecordID: eventToModify)
+//        CloudKitManager.sharedController.modifyRecords([newRecord], perRecordCompletion: nil) { (records, error) in
+//            DispatchQueue.main.async {
+//                if error != nil {
+//                    print("Error updating event: \(error?.localizedDescription)")
+//                } else {
+//                    print("Success updating record \(records?.first?.recordID.recordName)")
+//                }
+//            }
+//        }
     }
     
 

@@ -19,7 +19,7 @@ class ChecklistController {
     // MARK: - CloudKit helper
     func findChecklist(forID: String, eventID: String) -> Checklist? {
         guard let event = EventController.sharedController.findEvent(forID: eventID) else { return nil }
-        let checklists = event.checklists.flatMap{$0 as? Checklist }
+        let checklists = event.checklists.compactMap{$0 as? Checklist }
         return  checklists.filter{$0.checklistID == forID}.first
     }
     
@@ -46,29 +46,40 @@ class ChecklistController {
         PersistenceController.sharedController.saveToPersistedStorage()
         
         // CloudKit Saving
-        let newRecord = CKRecord(checklist: newChecklist)
-        
-        CloudKitManager.sharedController.saveRecord(newRecord) { (record, error) in
-            DispatchQueue.main.async {
-                if error != nil {
-                    print("Error saving new checklist to cloud")
-                }
-                if let record = record {
-                    print ("Success saving checklist to cloud")
-                    newChecklist.ckRecordID = record.recordID.recordName
-                    PersistenceController.sharedController.saveToPersistedStorage()
-                }
-            }
-        }
+//        let newRecord = CKRecord(checklist: newChecklist)
+//
+//        CloudKitManager.sharedController.saveRecord(newRecord) { (record, error) in
+//            DispatchQueue.main.async {
+//                if error != nil {
+//                    print("Error saving new checklist to cloud")
+//                }
+//                if let record = record {
+//                    print ("Success saving checklist to cloud")
+//                    newChecklist.ckRecordID = record.recordID.recordName
+//                    PersistenceController.sharedController.saveToPersistedStorage()
+//                }
+//            }
+//        }
     }
     
     func deleteCheckList(checklist: Checklist, event: Event){
         
-        CloudKitSyncController.shared.deleteChecklist(checklist: checklist, event: event)
+        //CloudKitSyncController.shared.deleteChecklist(checklist: checklist, event: event)
         event.removeFromChecklists(checklist)
         checklist.managedObjectContext?.delete(checklist)
         PersistenceController.sharedController.saveToPersistedStorage()
         
+    }
+    
+    func findChecklistWith(name: String, forEvent: Event) -> Checklist? {
+        var foundChecklists: [Checklist] = []
+        let castedChecklists = forEvent.checklists.flatMap {$0 as? Checklist}
+        for checklist in castedChecklists {
+            if checklist.name.lowercased() == name.lowercased() {
+                foundChecklists.append(checklist)
+            }
+        }
+        return foundChecklists.first
     }
     
     // MARK: - ListItem functions
@@ -82,20 +93,20 @@ class ChecklistController {
         PersistenceController.sharedController.saveToPersistedStorage()
         
         // Save to cloudkit
-        let newRecord = CKRecord(listItem: newItem)
-        CloudKitManager.sharedController.saveRecord(newRecord) { (record, error) in
-            DispatchQueue.main.async {
-                if error != nil {
-                    print("Error saving listItem: \(error?.localizedDescription)")
-                }
-                if let record = record {
-                    print("Success saving new list item")
-                    newItem.ckRecordID = record.recordID.recordName
-                    PersistenceController.sharedController.saveToPersistedStorage()
-                }
-                
-            }
-        }
+//        let newRecord = CKRecord(listItem: newItem)
+//        CloudKitManager.sharedController.saveRecord(newRecord) { (record, error) in
+//            DispatchQueue.main.async {
+//                if error != nil {
+//                    print("Error saving listItem: \(error?.localizedDescription)")
+//                }
+//                if let record = record {
+//                    print("Success saving new list item")
+//                    newItem.ckRecordID = record.recordID.recordName
+//                    PersistenceController.sharedController.saveToPersistedStorage()
+//                }
+//                
+//            }
+//        }
         
         
     }
@@ -109,7 +120,7 @@ class ChecklistController {
     
     func removeItemFromList(listItem: ListItem, checklist: Checklist){
         
-        CloudKitSyncController.shared.deleteListItem(listItem: listItem)
+        //CloudKitSyncController.shared.deleteListItem(listItem: listItem)
         checklist.removeFromListItems(listItem)
         
         
@@ -129,42 +140,42 @@ class ChecklistController {
         
         PersistenceController.sharedController.saveToPersistedStorage()
         
-        // Create Record to Modify
-        
-        let newRecord = CKRecord(updatedListItemWithRecordID: listItem)
-        CloudKitManager.sharedController.modifyRecords([newRecord], perRecordCompletion: nil) { (records, error) in
-            DispatchQueue.main.async {
-                if error != nil {
-                    print("Error modifying checklist: \(error?.localizedDescription)")
-                } else {
-                    print("Success updating the list item")
-                }
-                
-            }
-        }
+//        // Create Record to Modify
+//        
+//        let newRecord = CKRecord(updatedListItemWithRecordID: listItem)
+//        CloudKitManager.sharedController.modifyRecords([newRecord], perRecordCompletion: nil) { (records, error) in
+//            DispatchQueue.main.async {
+//                if error != nil {
+//                    print("Error modifying checklist: \(error?.localizedDescription)")
+//                } else {
+//                    print("Success updating the list item")
+//                }
+//                
+//            }
+//        }
         
     }
     
-    func checklistRecordIDs() -> [CKRecordID] {
+    func checklistRecordIDs() -> [CKRecord.ID] {
         var checklists: [Checklist] = []
-        var recordIDs: [CKRecordID] = []
+        var recordIDs: [CKRecord.ID] = []
         for event in EventController.sharedController.events{
-            let newChecklists = event.checklists.flatMap{ $0 as? Checklist }
+            let newChecklists = event.checklists.compactMap{ $0 as? Checklist }
             checklists += newChecklists
         }
         for checklist in checklists {
             if let recordIDString = checklist.ckRecordID {
-            recordIDs.append(CKRecordID(recordName: recordIDString))
+                recordIDs.append(CKRecord.ID(recordName: recordIDString))
             }
         }
         return recordIDs
     }
     
-    func listItemRecordIDs() -> [CKRecordID]{
-        var recordIDs: [CKRecordID] = []
+    func listItemRecordIDs() -> [CKRecord.ID]{
+        var recordIDs: [CKRecord.ID] = []
         for listItem in ChecklistController.sharedController.allListItems{
             if let recordIDString = listItem.ckRecordID {
-                recordIDs.append(CKRecordID(recordName: recordIDString))
+                recordIDs.append(CKRecord.ID(recordName: recordIDString))
             }
         }
         return recordIDs

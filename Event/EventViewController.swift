@@ -27,7 +27,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
       
-        checkForLoggedInUser()
+        //checkForLoggedInUser()
         
         self.title = "Events"
         
@@ -45,7 +45,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
 
     
-    func eventsUpdated(){
+    @objc func eventsUpdated(){
         self.tableView.reloadData()
     }
     
@@ -155,7 +155,7 @@ class EventViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     
     // Override to support editing the table view.
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             var eventToDelete: Event?
             switch indexPath.section {

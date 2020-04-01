@@ -61,18 +61,18 @@ class UserAccountController {
         UserAccountController.sharedController.hostUser?.addToEventHandles(eventHandle)
         PersistenceController.sharedController.saveToPersistedStorage()
         
-        // Modify Account Record and push to cloud
-        guard let user = self.hostUser else { return }
-        
-        
-        let recordToModify = CKRecord(updatedUserWithRecordID: user)
-        
-        CloudKitManager.sharedController.modifyRecords([recordToModify], perRecordCompletion: nil) { (records, error) in
-            if error != nil {
-                print("Error saving updated userAccount \(error?.localizedDescription)")
-            }
-            
-        }
+//        // Modify Account Record and push to cloud
+//        guard let user = self.hostUser else { return }
+//        
+//        
+//        let recordToModify = CKRecord(updatedUserWithRecordID: user)
+//        
+//        CloudKitManager.sharedController.modifyRecords([recordToModify], perRecordCompletion: nil) { (records, error) in
+//            if error != nil {
+//                print("Error saving updated userAccount \(error?.localizedDescription)")
+//            }
+//            
+//        }
 
         
         
@@ -85,128 +85,128 @@ class UserAccountController {
     
     // MARK: Account Functions
     func getLoggedInUserID(completion: @escaping (_ success: Bool) -> Void) {
-        CloudKitManager.sharedController.fetchLoggedInUserRecord { (record, error) in
-            DispatchQueue.main.async {
-                
-                if error != nil {
-                    print("error fetching logged in user record")
-                    completion(false)
-                }
-                guard let record = record else { return  }
-              
-                self.iCloudUserID = record.recordID.recordName
-               
-                print("getLoggedInUserID() \(record.recordID.recordName) ")
-                completion(true)
-                
-            }
-        }
+//        CloudKitManager.sharedController.fetchLoggedInUserRecord { (record, error) in
+//            DispatchQueue.main.async {
+//                
+//                if error != nil {
+//                    print("error fetching logged in user record")
+//                    completion(false)
+//                }
+//                guard let record = record else { return  }
+//              
+//                self.iCloudUserID = record.recordID.recordName
+//               
+//                print("getLoggedInUserID() \(record.recordID.recordName) ")
+//                completion(true)
+//                
+//            }
+//        }
     }
     
     
     func getUserAccountFromCloud(completion: @escaping (_ success: Bool) -> Void) {
         
-        UserAccountController.sharedController.getLoggedInUserID { (success) in
-            if success {
-                
-                let userPredicate = NSPredicate(format: "\(User.kCloudKitUserID) == %@", UserAccountController.sharedController.iCloudUserID!)
-                CloudKitManager.sharedController.fetchRecordsWithType(User.recordType, predicate: userPredicate,recordFetchedBlock: nil, completion: { (records, error) in
-                    
-                    DispatchQueue.main.async {
-                        if error != nil {
-                            print("Could retrieve userAccount from cloud \(error?.localizedDescription)")
-                            completion(false)
-                        }
-                        
-                        if let records = records {
-                            guard let userRecord = records.first else { completion(false); return }
-                            
-                            guard let _ = User(record: userRecord) else { completion(false); return }
-                            PersistenceController.sharedController.saveToPersistedStorage()
-                            
-                            completion(true)
-                        } else {
-                            completion(false)
-                        }
-                    }
-                 })
-                
-            } else {
-                print("Error getting account from cloud because there was no iCloud account.")
-                completion(false)
-            }
-        }
+//        UserAccountController.sharedController.getLoggedInUserID { (success) in
+//            if success {
+//                
+//                let userPredicate = NSPredicate(format: "\(User.kCloudKitUserID) == %@", UserAccountController.sharedController.iCloudUserID!)
+//                CloudKitManager.sharedController.fetchRecordsWithType(User.recordType, predicate: userPredicate,recordFetchedBlock: nil, completion: { (records, error) in
+//                    
+//                    DispatchQueue.main.async {
+//                        if error != nil {
+//                            print("Could retrieve userAccount from cloud \(error?.localizedDescription)")
+//                            completion(false)
+//                        }
+//                        
+//                        if let records = records {
+//                            guard let userRecord = records.first else { completion(false); return }
+//                            
+//                            guard let _ = User(record: userRecord) else { completion(false); return }
+//                            PersistenceController.sharedController.saveToPersistedStorage()
+//                            
+//                            completion(true)
+//                        } else {
+//                            completion(false)
+//                        }
+//                    }
+//                 })
+//                
+//            } else {
+//                print("Error getting account from cloud because there was no iCloud account.")
+//                completion(false)
+//            }
+//        }
     }
     
     func createNewAccount(name: String, phoneNumber: String){
         
-        guard let iCloudUserID = self.iCloudUserID else { print("No icloud user id...yet"); return}
-
-        let newUser = User(name: name, phoneNumber: phoneNumber, cloudKitUserID: iCloudUserID)
-        
-        
-        
-        // Create/Save CloudKit Record
-        let record = CKRecord(user: newUser)
-        
-        CloudKitManager.sharedController.saveRecord(record) { (record, error) in
-            
-            DispatchQueue.main.async {
-                if error != nil {
-                    print("Error saving account record to the cloud")
-                }
-                guard let record = record else { return }
-                newUser.ckRecordID = record.recordID.recordName
-                PersistenceController.sharedController.saveToPersistedStorage()
-            }
-        }
+//        guard let iCloudUserID = self.iCloudUserID else { print("No icloud user id...yet"); return}
+//
+//        let newUser = User(name: name, phoneNumber: phoneNumber, cloudKitUserID: iCloudUserID)
+//        
+//        
+//        
+//        // Create/Save CloudKit Record
+//        let record = CKRecord(user: newUser)
+//        
+//        CloudKitManager.sharedController.saveRecord(record) { (record, error) in
+//            
+//            DispatchQueue.main.async {
+//                if error != nil {
+//                    print("Error saving account record to the cloud")
+//                }
+//                guard let record = record else { return }
+//                newUser.ckRecordID = record.recordID.recordName
+//                PersistenceController.sharedController.saveToPersistedStorage()
+//            }
+//        }
     }
     
     func modifyCurrentAccount(user: User, name: String, phoneNumber: String){
-        user.name = name
-        user.phoneNumber = phoneNumber
-        
-        let modifiedRecord = CKRecord(updatedUserWithRecordID: user)
-        
-        PersistenceController.sharedController.saveToPersistedStorage()
-        
-        // Modify Cloud Kit record
-        CloudKitManager.sharedController.modifyRecords([modifiedRecord], perRecordCompletion: { (record, error) in
-            DispatchQueue.main.async {
-                if error != nil {
-                    print("Error modifying the account: \(error?.localizedDescription)")
-                    // put the record in the offline queue
-                }
-                if record != nil {
-                    print("Successfully updated account info")
-                }
-            }
-            }, completion: nil)
+//        user.name = name
+//        user.phoneNumber = phoneNumber
+//        
+//        let modifiedRecord = CKRecord(updatedUserWithRecordID: user)
+//        
+//        PersistenceController.sharedController.saveToPersistedStorage()
+//        
+//        // Modify Cloud Kit record
+//        CloudKitManager.sharedController.modifyRecords([modifiedRecord], perRecordCompletion: { (record, error) in
+//            DispatchQueue.main.async {
+//                if error != nil {
+//                    print("Error modifying the account: \(error?.localizedDescription)")
+//                    // put the record in the offline queue
+//                }
+//                if record != nil {
+//                    print("Successfully updated account info")
+//                }
+//            }
+//            }, completion: nil)
         
     }
     
     func updateCurrentAccountFromSync(updatedUser: User){
-        guard let currentUser = UserAccountController.sharedController.hostUser else { return }
-        if currentUser.cloudKitUserID != updatedUser.cloudKitUserID || currentUser.ckRecordID! != updatedUser.ckRecordID! { print("Wrong user record"); return}
-        if currentUser.name != updatedUser.name {
-            currentUser.name = updatedUser.name
-        }
-        if currentUser.phoneNumber != updatedUser.phoneNumber {
-            currentUser.phoneNumber = updatedUser.phoneNumber
-        }
-        
-        let currentEventHandles = currentUser.eventHandles.flatMap{ $0 as? EventHandle }
-        let updatedEventHandles = updatedUser.eventHandles.flatMap{ $0 as? EventHandle }
-       
-        
-        for event in currentEventHandles {
-            currentUser.removeFromEventHandles(event)
-        }
-        for event in updatedEventHandles {
-            currentUser.addToEventHandles(event)
-        }
-
-        updatedUser.managedObjectContext?.delete(updatedUser)
-        PersistenceController.sharedController.saveToPersistedStorage()
+//        guard let currentUser = UserAccountController.sharedController.hostUser else { return }
+//        if currentUser.cloudKitUserID != updatedUser.cloudKitUserID || currentUser.ckRecordID! != updatedUser.ckRecordID! { print("Wrong user record"); return}
+//        if currentUser.name != updatedUser.name {
+//            currentUser.name = updatedUser.name
+//        }
+//        if currentUser.phoneNumber != updatedUser.phoneNumber {
+//            currentUser.phoneNumber = updatedUser.phoneNumber
+//        }
+//        
+//        let currentEventHandles = currentUser.eventHandles.flatMap{ $0 as? EventHandle }
+//        let updatedEventHandles = updatedUser.eventHandles.flatMap{ $0 as? EventHandle }
+//       
+//        
+//        for event in currentEventHandles {
+//            currentUser.removeFromEventHandles(event)
+//        }
+//        for event in updatedEventHandles {
+//            currentUser.addToEventHandles(event)
+//        }
+//
+//        updatedUser.managedObjectContext?.delete(updatedUser)
+//        PersistenceController.sharedController.saveToPersistedStorage()
     }
 }

@@ -22,9 +22,9 @@
 		FAB0079D1DB805A00094307E /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0079C1DB805A00094307E /* CalendarController.swift */; };
 		FAB0079F1DB80B090094307E /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB0079E1DB80B090094307E /* CalendarHelper.swift */; };
 		FAB007A11DB8439F0094307E /* AppearanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB007A01DB8439F0094307E /* AppearanceController.swift */; };
-		FABCE9811DAC06E500DEB1DF /* ListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABCE9801DAC06E500DEB1DF /* ListItemTableViewCell.swift */; };
-		FABCE9841DAC074300DEB1DF /* ListItemDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABCE9831DAC074300DEB1DF /* ListItemDelegate.swift */; };
 		FACF38C01DA84C9400513642 /* InnerContentViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACF38BF1DA84C9400513642 /* InnerContentViewDelegate.swift */; };
+		FADB889B2434584C00FFC510 /* ListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADB889A2434584C00FFC510 /* ListItemTableViewCell.swift */; };
+		FADB889D2434586300FFC510 /* ListItemDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADB889C2434586300FFC510 /* ListItemDelegate.swift */; };
 		FADEA3C31DA54EC8000A46C3 /* EventModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3C11DA54EC8000A46C3 /* EventModel.xcdatamodeld */; };
 		FADEA3C51DA54F24000A46C3 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3C41DA54F24000A46C3 /* CoreDataStack.swift */; };
 		FADEA3DB1DA59014000A46C3 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADEA3D11DA59014000A46C3 /* User+CoreDataClass.swift */; };
@@ -75,9 +75,9 @@
 		FAB0079C1DB805A00094307E /* CalendarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
 		FAB0079E1DB80B090094307E /* CalendarHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
 		FAB007A01DB8439F0094307E /* AppearanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceController.swift; sourceTree = "<group>"; };
-		FABCE9801DAC06E500DEB1DF /* ListItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListItemTableViewCell.swift; path = ../CustomListItemCells/CustomListItemCells/ListItemTableViewCell.swift; sourceTree = "<group>"; };
-		FABCE9831DAC074300DEB1DF /* ListItemDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListItemDelegate.swift; path = ../CustomListItemCells/CustomListItemCells/ListItemDelegate.swift; sourceTree = "<group>"; };
 		FACF38BF1DA84C9400513642 /* InnerContentViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InnerContentViewDelegate.swift; sourceTree = "<group>"; };
+		FADB889A2434584C00FFC510 /* ListItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItemTableViewCell.swift; sourceTree = "<group>"; };
+		FADB889C2434586300FFC510 /* ListItemDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListItemDelegate.swift; sourceTree = "<group>"; };
 		FADEA3C21DA54EC8000A46C3 /* EventModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EventModel.xcdatamodel; sourceTree = "<group>"; };
 		FADEA3C41DA54F24000A46C3 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		FADEA3D11DA59014000A46C3 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -138,10 +138,10 @@
 		FABCE9821DAC06F500DEB1DF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FADB889A2434584C00FFC510 /* ListItemTableViewCell.swift */,
 				FA189C911DC2CF9B00BFD419 /* EditableListItemTableViewCell.swift */,
 				FAE8AE101DA54BC3000F1A34 /* Main.storyboard */,
 				FAE5493B1DAEC33200CBF542 /* DiscoverableUserTableViewCell.swift */,
-				FABCE9801DAC06E500DEB1DF /* ListItemTableViewCell.swift */,
 			);
 			name = View;
 			path = ..;
@@ -186,9 +186,9 @@
 		FADEA3E61DA593BA000A46C3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FADB889C2434586300FFC510 /* ListItemDelegate.swift */,
 				FA8824D31DB0081000FCF870 /* CloudKitManager.swift */,
 				FAE5493D1DAECB8A00CBF542 /* InviteGuestDelegate.swift */,
-				FABCE9831DAC074300DEB1DF /* ListItemDelegate.swift */,
 				FACF38BF1DA84C9400513642 /* InnerContentViewDelegate.swift */,
 				FADEA3C41DA54F24000A46C3 /* CoreDataStack.swift */,
 			);
@@ -288,7 +288,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = "Austin Blaser";
 				TargetAttributes = {
 					FAE8AE081DA54BC3000F1A34 = {
@@ -314,6 +314,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -352,7 +353,8 @@
 				FADEA3E21DA59014000A46C3 /* Event+CoreDataProperties.swift in Sources */,
 				FADEA3DE1DA59014000A46C3 /* Guest+CoreDataProperties.swift in Sources */,
 				FACF38C01DA84C9400513642 /* InnerContentViewDelegate.swift in Sources */,
-				FABCE9841DAC074300DEB1DF /* ListItemDelegate.swift in Sources */,
+				FADB889D2434586300FFC510 /* ListItemDelegate.swift in Sources */,
+				FADB889B2434584C00FFC510 /* ListItemTableViewCell.swift in Sources */,
 				FADEA3EF1DA5A0EC000A46C3 /* CheckListController.swift in Sources */,
 				FAE5493C1DAEC33200CBF542 /* DiscoverableUserTableViewCell.swift in Sources */,
 				FADEA3E31DA59014000A46C3 /* ListItem+CoreDataClass.swift in Sources */,
@@ -371,7 +373,6 @@
 				FADEA3DD1DA59014000A46C3 /* Guest+CoreDataClass.swift in Sources */,
 				FADEA3ED1DA5A0D0000A46C3 /* PersistenceController.swift in Sources */,
 				FAEF1B071DA839EA00F2E64E /* EventDetail_DetailViewController.swift in Sources */,
-				FABCE9811DAC06E500DEB1DF /* ListItemTableViewCell.swift in Sources */,
 				FA8824D21DB007C900FCF870 /* CloudKitSyncController.swift in Sources */,
 				FADEA3DB1DA59014000A46C3 /* User+CoreDataClass.swift in Sources */,
 				FADEA3DC1DA59014000A46C3 /* User+CoreDataProperties.swift in Sources */,
@@ -419,20 +420,30 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -469,20 +480,30 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -518,7 +539,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.AustinBlaser.Event;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -532,7 +554,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.AustinBlaser.Event;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
