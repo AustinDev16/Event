@@ -121,12 +121,12 @@ class EditAccountViewController: UIViewController, UITextFieldDelegate {
         self.navigationItem.leftBarButtonItem = cancel
     }
     
-    func createNewAccount(){
+    @objc func createNewAccount(){
         view.endEditing(true)
         guard let name = nameTextField.text,
             let phoneNumber = phoneNumberTextField.text else {return}
         
-        if name.characters.count == 0 || phoneNumber.characters.count != 10 {
+        if name.count == 0 || phoneNumber.count != 10 {
             let characterAlert = UIAlertController(title: "Warning:", message: "Make sure you entered a name and 10 digit phone number.", preferredStyle: .alert)
             let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
             characterAlert.addAction(ok)
@@ -146,7 +146,7 @@ class EditAccountViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    func cancelNewAccountTapped(){
+    @objc func cancelNewAccountTapped(){
         view.endEditing(true)
         if (self.user != nil) {
             self.presentingViewController?.dismiss(animated: true, completion: nil)

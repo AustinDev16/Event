@@ -19,7 +19,7 @@ class ChecklistController {
     // MARK: - CloudKit helper
     func findChecklist(forID: String, eventID: String) -> Checklist? {
         guard let event = EventController.sharedController.findEvent(forID: eventID) else { return nil }
-        let checklists = event.checklists.flatMap{$0 as? Checklist }
+        let checklists = event.checklists.compactMap{$0 as? Checklist }
         return  checklists.filter{$0.checklistID == forID}.first
     }
     
@@ -156,26 +156,26 @@ class ChecklistController {
         
     }
     
-    func checklistRecordIDs() -> [CKRecordID] {
+    func checklistRecordIDs() -> [CKRecord.ID] {
         var checklists: [Checklist] = []
-        var recordIDs: [CKRecordID] = []
+        var recordIDs: [CKRecord.ID] = []
         for event in EventController.sharedController.events{
-            let newChecklists = event.checklists.flatMap{ $0 as? Checklist }
+            let newChecklists = event.checklists.compactMap{ $0 as? Checklist }
             checklists += newChecklists
         }
         for checklist in checklists {
             if let recordIDString = checklist.ckRecordID {
-            recordIDs.append(CKRecordID(recordName: recordIDString))
+                recordIDs.append(CKRecord.ID(recordName: recordIDString))
             }
         }
         return recordIDs
     }
     
-    func listItemRecordIDs() -> [CKRecordID]{
-        var recordIDs: [CKRecordID] = []
+    func listItemRecordIDs() -> [CKRecord.ID]{
+        var recordIDs: [CKRecord.ID] = []
         for listItem in ChecklistController.sharedController.allListItems{
             if let recordIDString = listItem.ckRecordID {
-                recordIDs.append(CKRecordID(recordName: recordIDString))
+                recordIDs.append(CKRecord.ID(recordName: recordIDString))
             }
         }
         return recordIDs

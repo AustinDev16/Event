@@ -22,8 +22,8 @@ class AddNewListViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func editListItem(cell: EditableListItemTableViewCell) {
         guard let updatedText = cell.editedListItemText,
-        let pendingItem = cell.pendingItem,
-        let index = listItems.index(of: pendingItem) else  { return }
+            let pendingItem = cell.pendingItem,
+            let index = listItems.firstIndex(of: pendingItem) else  { return }
         let toEditItem = listItems[index]
         toEditItem.name = updatedText
         self.tableView.reloadData()
@@ -35,7 +35,7 @@ class AddNewListViewController: UIViewController, UITableViewDelegate, UITableVi
 
     @IBAction func createButtonTapped(_ sender: AnyObject) {
         guard let event = self.event,
-        let title = listTitle.text, title.characters.count > 0 else { return }
+        let title = listTitle.text, title.count > 0 else { return }
         // Create new checklist
         ChecklistController.sharedController.createNewCheckList(name: title, event: event)
         guard let newChecklist = ChecklistController.sharedController.findChecklistWith(name: title, forEvent: event) else  { return }
@@ -69,23 +69,23 @@ class AddNewListViewController: UIViewController, UITableViewDelegate, UITableVi
         self.listTitle.returnKeyType = .done
         self.listTitle.autocapitalizationType = .words
         // Do any additional setup after loading the view.
-        if self.title?.characters.count == 0 {
+        if self.title?.count == 0 {
             self.createButton.isEnabled = false
         }
         
         self.listTitle.addTarget(self, action: #selector(updateTitleText), for: .editingChanged)
     }
     
-    func cancelButtonTapped(){
+    @objc func cancelButtonTapped(){
         self.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - TextField delegate methods
     
-    func updateTitleText(_ textField: UITextField){
+    @objc func updateTitleText(_ textField: UITextField){
         if let text = textField.text {
             self.title = text
-            if self.title?.characters.count == 0 {
+            if self.title?.count == 0 {
                 self.createButton.isEnabled = false
             } else {
                 self.createButton.isEnabled = true
@@ -96,7 +96,7 @@ class AddNewListViewController: UIViewController, UITableViewDelegate, UITableVi
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let text = textField.text {
             self.title = text
-            if self.title?.characters.count == 0 {
+            if self.title?.count == 0 {
                 self.createButton.isEnabled = false
             } else {
                 self.createButton.isEnabled = true
@@ -142,7 +142,7 @@ class AddNewListViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             listItems.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)

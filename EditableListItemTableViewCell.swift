@@ -65,12 +65,12 @@ class EditableListItemTableViewCell: UITableViewCell, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // communicate new text back to model
         if isPlaceHolderCell {
-            if let text = textField.text, text.characters.count > 0 {
+            if let text = textField.text, text.count > 0 {
                 self.listItemText = text
                 delegate?.addListItem(cell: self)
             }
         } else {
-            if let text = textField.text, text.characters.count > 0 {
+            if let text = textField.text, text.count > 0 {
                 self.editedListItemText = text
                 delegate?.editListItem(cell: self)
             }
@@ -86,12 +86,12 @@ class EditableListItemTableViewCell: UITableViewCell, UITextFieldDelegate {
         // to catch a move from one text field to another without
         if hasCapturedTextField == false {
             if isPlaceHolderCell {
-                if let text = textField.text, text.characters.count > 0 {
+                if let text = textField.text, text.count > 0 {
                     self.listItemText = text
                     delegate?.addListItem(cell: self)
                 }
             } else {
-                if let text = textField.text, text.characters.count > 0 {
+                if let text = textField.text, text.count > 0 {
                     self.editedListItemText = text
                     delegate?.editListItem(cell: self)
                 }

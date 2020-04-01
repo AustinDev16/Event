@@ -37,7 +37,7 @@ class EditEventViewController: UIViewController, UITextViewDelegate, UITextField
             self.title = "Edit Event"
             eventNameField.text = event.name
             locationField.text = event.location
-            if event.detailDescription.characters.count == 0 {
+            if event.detailDescription.count == 0 {
                 descriptionField.text = self.descriptionPlaceHolder
             } else {
             descriptionField.text = event.detailDescription
@@ -59,13 +59,13 @@ class EditEventViewController: UIViewController, UITextViewDelegate, UITextField
         self.navigationItem.rightBarButtonItem = doneButton
     }
     
-    func doneButtonTapped(){
+    @objc func doneButtonTapped(){
         view.endEditing(true)
         // Conditions for saving and editing
         guard let name = eventNameField.text,
-            name.characters.count > 0,
+            name.count > 0,
             let location = locationField.text,
-            location.characters.count > 0,
+            location.count > 0,
             var detailDescription = descriptionField.text else { return }
         
         let date = datePicker.date as NSDate
@@ -93,7 +93,7 @@ class EditEventViewController: UIViewController, UITextViewDelegate, UITextField
         
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
-    func cancelButtonTapped(){
+    @objc func cancelButtonTapped(){
         view.endEditing(true)
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }

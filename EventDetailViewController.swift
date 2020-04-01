@@ -18,14 +18,14 @@ class EventDetailViewController: UIViewController, InnerContentViewDelegate {
     var groupGuestsButton = UIBarButtonItem()
     var newListButton = UIBarButtonItem()
     
-    func editEventBarButtonTapped(){
+    @objc func editEventBarButtonTapped(){
         
     }
     
-    func groupsGuestsButtonTapped(){
+    @objc func groupsGuestsButtonTapped(){
     }
     
-    func newListButtonTapped(){
+    @objc func newListButtonTapped(){
     }
     // MARK: - Bar Button Setup
     
@@ -43,7 +43,7 @@ class EventDetailViewController: UIViewController, InnerContentViewDelegate {
         newListButton.title = "New List"
         newListButton.style = .plain
         newListButton.target = listsViewController
-        newListButton.action = #selector(newListButtonTapped)
+        newListButton.action = #selector(listsViewController.newListButtonTapped)
     }
     
     
@@ -127,7 +127,7 @@ class EventDetailViewController: UIViewController, InnerContentViewDelegate {
         }
     }
 
-    func segmentSelectionChanged(sender: UISegmentedControl){
+    @objc func segmentSelectionChanged(sender: UISegmentedControl){
         updateInnerContentView()
         updateNavigationBarButtons()
         
@@ -157,7 +157,7 @@ class EventDetailViewController: UIViewController, InnerContentViewDelegate {
     
     func addViewControllerAsChild(viewController: UIViewController){
         // add child view controller
-        self.addChildViewController(viewController)
+        self.addChild(viewController)
         
         // add child as subview
         
@@ -169,7 +169,7 @@ class EventDetailViewController: UIViewController, InnerContentViewDelegate {
         
         // Notify Child ViewController
         
-        viewController.didMove(toParentViewController: self)
+        viewController.didMove(toParent: self)
 
     }
     

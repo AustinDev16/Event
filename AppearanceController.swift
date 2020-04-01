@@ -26,7 +26,7 @@ class AppearanceController {
     }
     
     static func customizeColors(viewController: UIViewController){
-        viewController.navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black]
+        viewController.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         viewController.navigationController!.navigationBar.barTintColor = AppearanceController.tanColor
         UIBarButtonItem.appearance().tintColor = AppearanceController.purpleColor
         UINavigationBar.appearance().tintColor = AppearanceController.purpleColor

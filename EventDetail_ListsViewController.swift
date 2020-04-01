@@ -30,11 +30,11 @@ class EventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
         NotificationCenter.default.addObserver(self, selector: #selector(newItemListSaved), name: NSNotification.Name(rawValue: "newItemListSaved"), object: nil)
     }
     
-    func newChecklistsSaved(){
+    @objc func newChecklistsSaved(){
         self.tableView.reloadData()
     }
     
-    func newItemListSaved(){
+    @objc func newItemListSaved(){
         self.tableView.reloadData()
     }
     
@@ -59,7 +59,7 @@ class EventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
     
     
     
-    func newListButtonTapped(){
+    @objc func newListButtonTapped(){
         if true {
             
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
@@ -140,7 +140,7 @@ class EventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
         guard  let checklists = innerContentViewDelegate?.event?.checklists,
             let checklist = checklists[indexPath.section] as? Checklist else { return UITableViewCell() }
         
-        let items = checklist.listItems.flatMap { $0 as? ListItem}
+        let items = checklist.listItems.compactMap { $0 as? ListItem}
         
         cell.updateWithItem(item: items[indexPath.row])
         cell.listItem = items[indexPath.row]
@@ -149,7 +149,7 @@ class EventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
         return cell
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             guard let event = innerContentViewDelegate?.event,
                 let checklist = event.checklists[indexPath.section] as? Checklist,
@@ -177,7 +177,7 @@ class EventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
     
     func headerViewForSection(section: Int) -> UIView {
         guard let event = innerContentViewDelegate?.event else { return UIView()}
-        let checklists = event.checklists.flatMap { $0 as? Checklist}
+        let checklists = event.checklists.compactMap { $0 as? Checklist}
         let title = checklists[section].name
         let view = UIView()
         view.bounds = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 30)
@@ -227,7 +227,7 @@ class EventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
     }
     
     // MARK: - Add Actions
-    func deleteCheckListTapped(sender: Any){
+    @objc func deleteCheckListTapped(sender: Any){
         guard let button = sender as? UIButton,
         let event = innerContentViewDelegate?.event,
         let checklist = event.checklists[button.tag] as? Checklist else {return}
@@ -247,7 +247,7 @@ class EventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
         
     }
     
-    func addListItemButtonTapped(sender: Any){
+    @objc func addListItemButtonTapped(sender: Any){
       
         guard let button = sender as? UIButton,
             let event = innerContentViewDelegate?.event,
@@ -263,7 +263,7 @@ class EventDetail_ListsViewController: UIViewController, UITableViewDataSource, 
         let add = UIAlertAction(title: "Add", style: .default) { (_) in
             guard let textField = newListItemAlertController.textFields?.first,
                 let name = textField.text,
-                name.characters.count > 0 else { return }
+                name.count > 0 else { return }
             
             textField.resignFirstResponder()
             

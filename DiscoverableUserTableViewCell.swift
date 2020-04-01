@@ -55,7 +55,7 @@ class DiscoverableUserTableViewCell: UITableViewCell {
         
     }
     
-    func inviteButtonTapped(){
+    @objc func inviteButtonTapped(){
         inviteGuestDelegate?.inviteGuestButtonTapped(cell: self)
     }
     

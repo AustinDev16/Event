@@ -23,7 +23,7 @@ extension CKRecord {
     }
     
     convenience init(updatedUserWithRecordID: User){
-        let recordID = CKRecordID(recordName: updatedUserWithRecordID.ckRecordID!)
+        let recordID = CKRecord.ID(recordName: updatedUserWithRecordID.ckRecordID!)
         self.init(recordType: User.recordType, recordID: recordID)
         
         self[User.kDisplayName] = updatedUserWithRecordID.name as CKRecordValue?
@@ -49,7 +49,7 @@ extension CKRecord {
      }
     
     convenience init(updatedEventWithRecordID: Event){
-        let recordID = CKRecordID(recordName: updatedEventWithRecordID.ckRecordID!)
+        let recordID = CKRecord.ID(recordName: updatedEventWithRecordID.ckRecordID!)
         self.init(recordType: Event.recordType, recordID: recordID)
         
         self[Event.kName] = updatedEventWithRecordID.name as CKRecordValue?
@@ -72,7 +72,7 @@ extension CKRecord {
     }
     
     convenience init(updatedChecklistWithRecordID: Checklist) {
-        let recordID = CKRecordID(recordName: updatedChecklistWithRecordID.ckRecordID!)
+        let recordID = CKRecord.ID(recordName: updatedChecklistWithRecordID.ckRecordID!)
         self.init(recordType: Checklist.recordType, recordID: recordID)
         
         self[Checklist.kName] = updatedChecklistWithRecordID.name as CKRecordValue?
@@ -92,7 +92,7 @@ extension CKRecord {
     }
     
     convenience init(updatedListItemWithRecordID: ListItem) {
-        let recordID = CKRecordID(recordName: updatedListItemWithRecordID.ckRecordID!)
+        let recordID = CKRecord.ID(recordName: updatedListItemWithRecordID.ckRecordID!)
         self.init(recordType: ListItem.recordType, recordID: recordID)
         
         self[ListItem.kName] = updatedListItemWithRecordID.name as CKRecordValue?
